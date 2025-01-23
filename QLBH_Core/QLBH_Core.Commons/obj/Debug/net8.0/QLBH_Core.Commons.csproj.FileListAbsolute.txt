@@ -1,0 +1,14 @@
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\bin\Debug\net8.0\QLBH_Core.Commons.deps.json
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\bin\Debug\net8.0\QLBH_Core.Commons.runtimeconfig.json
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\bin\Debug\net8.0\QLBH_Core.Commons.dll
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\bin\Debug\net8.0\QLBH_Core.Commons.pdb
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\QLBH_Core.Commons.csproj.AssemblyReference.cache
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\QLBH_Core.Commons.GeneratedMSBuildEditorConfig.editorconfig
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\QLBH_Core.Commons.AssemblyInfoInputs.cache
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\QLBH_Core.Commons.AssemblyInfo.cs
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\QLBH_Core.Commons.csproj.CoreCompileInputs.cache
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\QLBH_Core.Commons.dll
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\refint\QLBH_Core.Commons.dll
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\QLBH_Core.Commons.pdb
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\QLBH_Core.Commons.genruntimeconfig.cache
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\ref\QLBH_Core.Commons.dll

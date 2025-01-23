@@ -1,0 +1,17 @@
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\bin\Debug\net8.0\QLBH_Core.Moddel.deps.json
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\bin\Debug\net8.0\QLBH_Core.Moddel.runtimeconfig.json
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\bin\Debug\net8.0\QLBH_Core.Moddel.dll
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\bin\Debug\net8.0\QLBH_Core.Moddel.pdb
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\bin\Debug\net8.0\QLBH_Core.Commons.dll
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\bin\Debug\net8.0\QLBH_Core.Commons.pdb
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\QLBH_Core.Moddel.csproj.AssemblyReference.cache
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\QLBH_Core.Moddel.GeneratedMSBuildEditorConfig.editorconfig
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\QLBH_Core.Moddel.AssemblyInfoInputs.cache
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\QLBH_Core.Moddel.AssemblyInfo.cs
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\QLBH_Core.Moddel.csproj.CoreCompileInputs.cache
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\QLBH_Cor.24EF9797.Up2Date
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\QLBH_Core.Moddel.dll
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\refint\QLBH_Core.Moddel.dll
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\QLBH_Core.Moddel.pdb
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\QLBH_Core.Moddel.genruntimeconfig.cache
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\ref\QLBH_Core.Moddel.dll
