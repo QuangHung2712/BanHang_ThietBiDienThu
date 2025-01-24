@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using QLBH_Core.Commons;
+using QLBH_Core.Commons.CustomException;
 using QLBH_Core.Moddel;
 using QLBH_Core.Moddel.Entity;
 using QLBH_Core.Moddel.Model.RequestModels;
+using QLBH_Core.Moddel.Model.ResponseModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,36 @@ namespace QLBH_Core.Service.ProductS
         public ProductService(AppDbContext appDbContext)
         {
             _Context = appDbContext;
+        }
+        public List<GetAllProductResModel> GetAll()
+        {
+            var result =  _Context.Products.Where(item=> !item.IsDelete).Select(item=>new GetAllProductResModel
+            {
+                Id = item.Id,  
+                Name = item.Name,
+                Price = item.Price,
+                ProductTypeName = item.ProductType.Name,
+                WarrantyPeriod = item.WarrantyPeriod,
+            }).ToList();
+            if(result.Count <= 0)
+            {
+                throw new NotFoundException("Sản phẩm");
+            }
+            return result;
+        }
+        public GetDetailProductResModel GetDetail(long Id)
+        {
+            var result = _Context.Products.GetAvailableById(Id);
+                return new GetDetailProductResModel
+            {
+                Id = result.Id,
+                Name = result.Name,
+                ProductTypeId = result.ProductTypeId,
+                Price = result.Price,
+                WarrantyPeriod= result.WarrantyPeriod,  
+                InfoProduct = _Context.InfoProducts.Where(item=> item.ProductId == result.Id).Select(record=> new InfoProductGetResModel { Id = record.Id,Name = record.Name, Describe = record.Describe}).ToList(),
+                PathImg = Functions.ConverPathIMG(_Context.ImgProducts.Where(item => item.ProductId == result.Id).Select(record => record.Path).ToList()),
+            };
         }
         public async Task CreateEdit(CreateEditProductReqModel data,List<IFormFile> img)
         {

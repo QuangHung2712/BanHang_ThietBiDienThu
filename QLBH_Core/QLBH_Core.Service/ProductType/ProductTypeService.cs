@@ -53,7 +53,7 @@ namespace QLBH_Core.Service.ProductTypeS
             {
                 throw new InUseException("Loại sản phẩm này");
             }
-            _Context.ProductTypes.Delete(Id);
+            _Context.ProductTypes.DeletePermanent(Id);
             await _Context.SaveChangesAsync();
         }
     }

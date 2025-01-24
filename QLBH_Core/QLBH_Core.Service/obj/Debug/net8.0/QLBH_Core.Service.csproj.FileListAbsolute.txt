@@ -20,3 +20,4 @@ D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Service\obj\Debug\net8.0\ref
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Service\bin\Debug\net8.0\selenium-manager\linux\selenium-manager
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Service\bin\Debug\net8.0\selenium-manager\macos\selenium-manager
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Service\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Service\obj\Debug\net8.0\QLBH_Core.Service.sourcelink.json

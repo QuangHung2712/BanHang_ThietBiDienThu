@@ -42,6 +42,7 @@ import axios from '@/plugins/axios';
 import notification from "./plugins/Confignotification";
 import commonPlugin from "./plugins/common";
 
+
 loadFonts()
 const i18n = createI18n({
     locale: 'vi',  // Ngôn ngữ mặc định là tiếng Việt

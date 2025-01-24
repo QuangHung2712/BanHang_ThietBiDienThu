@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 // Tạo một instance của axios
 const apiClient = axios.create({
   baseURL: "https://localhost:7254/api", // URL cơ bản của API
@@ -20,6 +21,7 @@ apiClient.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.log("Câu lệnh vẫn được thực hiện")
     return Promise.reject(error);
   }
 );
@@ -29,8 +31,10 @@ apiClient.interceptors.response.use(
   (error) => {
     // Xử lý lỗi chung
     if (error.response?.status === 401) {
-      console.error("Unauthorized! Please log in.");
+      alert("Bạn không có quyển thực hiện chức năng này");
+      return 
     }
+   
     return Promise.reject(error);
   }
 );

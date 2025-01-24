@@ -15,3 +15,4 @@ D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\refi
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\QLBH_Core.Moddel.pdb
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\QLBH_Core.Moddel.genruntimeconfig.cache
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\ref\QLBH_Core.Moddel.dll
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Moddel\obj\Debug\net8.0\QLBH_Core.Moddel.sourcelink.json

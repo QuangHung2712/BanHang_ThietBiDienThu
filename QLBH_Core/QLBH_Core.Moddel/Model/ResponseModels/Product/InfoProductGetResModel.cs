@@ -1,0 +1,15 @@
+﻿using QLBH_Core.Commons;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace QLBH_Core.Moddel.Model.ResponseModels
+{
+    public class InfoProductGetResModel : BaseEntity
+    {
+        public string Name { get; set; }
+        public string Describe { get; set; }
+    }
+}

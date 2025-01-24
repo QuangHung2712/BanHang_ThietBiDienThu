@@ -12,3 +12,4 @@ D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\ref
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\QLBH_Core.Commons.pdb
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\QLBH_Core.Commons.genruntimeconfig.cache
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\ref\QLBH_Core.Commons.dll
+D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.Commons\obj\Debug\net8.0\QLBH_Core.Commons.sourcelink.json

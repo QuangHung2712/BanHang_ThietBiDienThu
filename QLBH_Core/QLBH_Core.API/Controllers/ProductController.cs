@@ -10,7 +10,6 @@ namespace QLBH_Core.API.Controllers
 {
     [Route(Constants.DefaultValue.DEFAULT_CONTROLLER_ROUTER)]
     [ApiController]
-    [Authorize]
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
@@ -22,7 +21,7 @@ namespace QLBH_Core.API.Controllers
 
         [HttpPut]
         [Permission(Enums.FeatureCode.Admin)]
-        public async Task<ActionResult> CreateEdit([FromForm]CreateEditProductReqModel input,List<IFormFile> img)
+        public async Task<ActionResult> CreateEdit([FromForm]CreateEditProductReqModel input, [FromForm]List<IFormFile> img)
         {
             await _productService.CreateEdit(input, img);
             return Ok();
@@ -34,6 +33,20 @@ namespace QLBH_Core.API.Controllers
         {
             await _productService.Delete(Id);
             return Ok();
+        }
+        [HttpGet]
+        [Permission(Enums.FeatureCode.Admin)]
+        public IActionResult GetAll()
+        {
+            var result = _productService.GetAll();
+            return Ok(result);
+        }
+        [HttpGet("{Id}")]
+        [Permission(Enums.FeatureCode.Admin)]
+        public IActionResult GetDetail(long Id)
+        {
+            var result = _productService.GetDetail(Id);
+            return Ok(result);
         }
     }
 }

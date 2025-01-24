@@ -62,7 +62,7 @@ namespace QLBH_Core.Commons
                 entity.Update(record);
             }
         }
-        public static void Delete<T>(this DbSet<T> entity, long id) where T : BaseEntity
+        public static void DeletePermanent<T>(this DbSet<T> entity, long id) where T : BaseEntity
         {
             var record = entity.GetById(id);
             entity.Remove(record);

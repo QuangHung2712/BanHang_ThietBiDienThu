@@ -17,7 +17,7 @@ export function formatPrice(inputPrice) {
         price = price.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
     // Cập nhật giá trị cho price
-    return price;
+    return price ;
 }
 export default {
     formatTablePrice,

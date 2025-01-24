@@ -1,5 +1,6 @@
 <script>
     import pageheader from "@/components/page-header.vue"
+    import Swal from "sweetalert2";
     export default {
         name: "PRODUCT",
         components: {
@@ -16,6 +17,9 @@
                 ],
                 viewdialogEdit:false,
                 titleDialog: null,
+                time: null,
+                unitFeature: null,
+                form: false,
                 selectProduct:{
                     id: 0,
                     name: null,
@@ -34,21 +38,58 @@
                     ]
                 },
                 previewUrls:[],
-                productTypeData:[]
+                productTypeData:[],
+                productData:[],
+                searchName: null,
+                searchProductType: null,
+                viewdialogProductTypeEdit: null,
+                selectProductType:{
+                    id: 0,
+                    name: null
+                },
+                form1: false,
             }
+        },
+        computed:{
+            filteredProduct() {
+                return this.productData.filter((item) => {
+                    // Lọc theo loại sản phẩm
+                    const matchesProductType = this.searchProductType
+                    ? item.productTypeName === this.searchProductType
+                    : true;
+
+                    // Lọc theo tên khách 
+                    const matchesSearchName = this.searchName
+                    ? item.name?.toLowerCase().includes(this.searchName.toLowerCase())
+                    : true;
+
+
+                    return matchesProductType &&  matchesSearchName;
+                });
+            },
         },
         created(){
             this.GetProductType();
+            this.GetProduct();
         },
         methods:{
             GetProductType(){
                 this.$apiClient.get(`/ProductType/GetAll`)
                         .then(response=>{
                             this.productTypeData = response.data;
-                            this.viewdialog = false;
                         })
                         .catch(error=>{
-                            this.$notify(error.response.data.Message,error.response.data.Errors.join('. '),"error");
+                            this.$notify(error.response.data.Message??"Đã xảy ra lỗi",error.response.data.Errors.join('. ')?? " ","error");
+                        })
+            },
+            GetProduct(){
+                this.$apiClient.get(`/Product/GetAll`)
+                        .then(response=>{
+                            this.productData = response.data;
+                        })
+                        .catch(error=>{
+                            console.log(error.response)
+                            this.$notify(error.response.data.Message??"Đã xảy ra lỗi",error.response.data.Errors.join('. ')?? " ","error");
                         })
             },
             createEditProduct(id){
@@ -70,6 +111,19 @@
                         img: [],
                     };
                 }
+                else{
+                    this.$apiClient.get(`/Product/GetDetail/${id}`)
+                        .then(response=>{
+                            this.selectProduct = response.data;
+                            this.loadImages();
+                            const str = this.selectProduct.warrantyPeriod.split(" ");
+                            this.time = str[0];
+                            this.unitFeature = str[1]
+                        })
+                        .catch(error=>{
+                            this.$notify(error.response.data.Message??"Đã xảy ra lỗi",error.response.data.Errors.join('. ')?? " ","error");
+                        })
+                }
             },
             handleFileChange() {
                 this.previewUrls = [];
@@ -81,12 +135,11 @@
                     };
                     reader.readAsDataURL(file);
                     }
-                    console.log(this.previewUrls)
                 }
             },
             async loadImages(){
-                this.selectRoom.imgRoom = [];
-                for (let url of this.selectRoom.pathImgRoom) {
+                this.selectProduct.img = [];
+                for (let url of this.selectProduct.pathImg) {
                     try {
                     
                         const response = await fetch(url);
@@ -94,13 +147,11 @@
                         const blob = await response.blob(); // Chuyển phản hồi thành Blob
                         const file = new File([blob], url.split('/').pop(), { type: blob.type }); // Tạo File từ Blob
                         // Lưu vào mảng imgRoom
-                    this.selectRoom.imgRoom.push(file);
-                        console.log(`Ảnh từ ${url} đã được tải và lưu vào imgRoom.`);
+                        this.selectProduct.img.push(file);
                     } catch (error) {
-                        console.error(`Lỗi khi tải ảnh từ ${url}:`, error);
+                        this.$notify("Đã xảy ra lỗi khi load ảnh",error,"error");
                     }
                 }
-                console.log('Tất cả ảnh đã được tải:', this.selectRoom.imgRoom);
             },
             DeleteInfoProduct(index){
                 this.selectProduct.infoProduct.splice(index, 1);
@@ -111,7 +162,72 @@
                     name: null,
                     describe: null
                 })
-            }
+            },
+            FormatPrice(){
+                this.selectProduct.price = this.$common.formatPrice(this.selectProduct.price);
+            },
+            Save(){
+                if(!/^\d+$/.test(this.selectProduct.price))
+                this.selectProduct.price =  this.selectProduct.price.replace(/[^\d]/g, '');
+                const formData = new FormData();
+                formData.append("id",this.selectProduct.id);
+                formData.append("name", this.selectProduct.name);
+                formData.append("price", this.selectProduct.price);
+                formData.append("warrantyPeriod",this.time + " " + this.unitFeature);
+                formData.append("productType", this.selectProduct.productTypeId);
+                if (this.selectProduct.infoProduct) {
+                    this.selectProduct.infoProduct.forEach((info, index) => {
+                        formData.append(`infoProduct[${index}].name`, info.name);
+                        formData.append(`infoProduct[${index}].describe`, info.describe);
+                    });
+                }
+                if(this.selectProduct.img)
+                {
+                    this.selectProduct.img.forEach((File)=>{
+                        formData.append("img", File);
+                    })
+                }
+                this.$apiClient.put(`/Product/CreateEdit`,formData)
+                        .then(()=>{
+                            this.$notify("Thao tác thành công"," ","success");
+                            this.viewdialogEdit = false
+                            this.GetProduct();
+                        })
+                        .catch(error=>{
+                            this.$notify(error.response.data.Message??"Đã xảy ra lỗi",error.response.data.Errors.join('. ')?? " ","error");
+                        })
+            },
+            DeleteProduct(Id,Name){
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn btn-success",
+                        cancelButton: "btn btn-danger ml-2",
+                    },
+                    buttonsStyling: false,
+                });
+
+                swalWithBootstrapButtons
+                    .fire({
+                        title: "Bạn có chắc chắn không?",
+                        text: `Bạn đang muốn xóa loại sản phẩm: ${Name}`,
+                        icon: "warning",
+                        confirmButtonText: "Có!",
+                        cancelButtonText: "Không!",
+                        showCancelButton: true,
+                    })
+                    .then((confirm) => {
+                        if (confirm.value) {
+                            this.$apiClient.delete(`/Product/Delete/${Id}`)
+                                .then(()=>{
+                                    this.$notify("Thao tác thành công"," ","success");
+                                    this.GetProduct();
+                                })
+                                .catch(error=>{
+                                    this.$notify(error.response.data.Message??"Đã xảy ra lỗi",error.response.data.Errors.join('. ')?? " ","error");
+                                })
+                        } else if ( /* Read more about handling dismissals below */ confirm.dismiss === Swal.DismissReason.cancel) return
+                    });
+            },
         }
     }
 </script>
@@ -127,7 +243,7 @@
                         :items="productTypeData"
                         item-title="name"
                         item-value="id"
-                        v-model="searchStatusRoom"
+                        v-model="searchProductType"
                         variant="outlined"
                         hide-details>
                     </v-select>
@@ -144,7 +260,7 @@
             </BRow>
             <v-data-table 
             :headers = "headersTable"
-                :items="filteredRooms"
+                :items="filteredProduct"
                 class="border-sm rounded-lg">
                 <template v-slot:[`item.priceRoom`]="{ item }">
                     <!-- Hiển thị giá đã định dạng -->
@@ -152,8 +268,8 @@
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
                     <v-icon small @click="(viewdialogDetail = !viewdialogDetail)&& (DetailRoom(item.id))" title="Xem chi tiết">mdi-eye</v-icon>
-                    <v-icon class="ml-lg-3" small @click="(viewdialogEdit = !viewdialogEdit) && (EditRoom(item.id,'Sửa phòng'))" title="Sửa phòng" >mdi-pencil-circle </v-icon>
-                    <v-icon class="ml-lg-3" v-show="!item.customerName" small @click="deleteRoom(item.id,item.numberOfRoom)" title="Xoá phòng" >mdi-delete-empty </v-icon>
+                    <v-icon class="ml-lg-3" small @click="(viewdialogEdit = !viewdialogEdit) && (createEditProduct(item.id))" title="Sửa phòng" >mdi-pencil-circle </v-icon>
+                    <v-icon class="ml-lg-3" v-show="!item.customerName" small @click="DeleteProduct(item.id,item.name)" title="Xoá phòng" >mdi-delete-empty </v-icon>
                 </template>
             </v-data-table>
         </BCardBody>
@@ -170,7 +286,7 @@
                         </div>
                         <div class="form-group m-0">
                             <label class="form-label">Giá:</label>
-                            <v-text-field v-model="selectProduct.price" :rules="[rules.required]" type="text" variant="outlined" clearable placeholder="Nhập vào giá của sản phẩm" class="input-control"></v-text-field>
+                            <v-text-field v-model="selectProduct.price" :rules="[rules.required]" @input="FormatPrice" type="text" variant="outlined" clearable placeholder="Nhập vào giá của sản phẩm" class="input-control"></v-text-field>
                         </div>
                         <div class="form-group m-0">
                             <label class="form-label">Loại sản phẩm:</label>
@@ -181,6 +297,14 @@
                                 item-value="id"
                                 v-model="selectProduct.productTypeId"
                                 variant="outlined">
+                                <template #append>
+                                    <v-icon 
+                                    class="cursor-pointer"
+                                    @click="(viewdialogProductTypeEdit = !viewdialogProductTypeEdit) && (onAddClick)"
+                                    >
+                                    mdi-plus
+                                    </v-icon>
+                                </template>
                             </v-select>
                         </div>
                         <div class="form-group m-0">
@@ -191,7 +315,7 @@
                                         clearable
                                         label="Thời gian"
                                         :items=[1,2,3,4,5,6,7,8,9,10,11,12]
-                                        v-model="searchStatusRoom"
+                                        v-model="time"
                                         variant="outlined">
                                     </v-select>
                                 </BCol>
@@ -200,7 +324,7 @@
                                         clearable
                                         label="Đơn vị tính"
                                         :items="['Năm','Tháng']"
-                                        v-model="searchStatusRoom"
+                                        v-model="unitFeature"
                                         variant="outlined">
                                     </v-select>
                                 </BCol>
@@ -260,7 +384,27 @@
         <div class="modal-footer v-modal-footer">
             <BButton type="button" variant="light" @click="viewdialogEdit = false">Close
             </BButton>
-            <BButton type="button" variant="primary" @click="createEditProduct()" :disabled="!form">Save Changes</BButton>
+            <BButton type="button" variant="primary" @click="Save()" :disabled="!form">Save Changes</BButton>
+        </div>
+    </BModal>
+    <BModal v-model="viewdialogProductTypeEdit" hide-footer :title="titleDialog" modal-class="fadeInRight"
+        class="v-modal-custom" centered size="xl" >
+        <div class="card-body">
+            <v-form v-model="form1" ref="form">
+                <BRow>
+                    <BCol class="col-lg-12">
+                        <div class="form-group m-0">
+                            <label class="form-label">Tên loại sản phẩm:</label>
+                            <v-text-field v-model="selectProductType.name" :rules="[rules.required]" variant="outlined" clearable placeholder="Nhập vào tên loại sản phẩm" class="input-control"></v-text-field>
+                        </div>
+                    </BCol>
+                </BRow>
+            </v-form>
+        </div>
+        <div class="modal-footer v-modal-footer">
+            <BButton type="button" variant="light" @click="viewdialogProductTypeEdit = false">Close
+            </BButton>
+            <BButton type="button" variant="primary" @click="Save()" :disabled="!form">Save Changes</BButton>
         </div>
     </BModal>
 </template>
