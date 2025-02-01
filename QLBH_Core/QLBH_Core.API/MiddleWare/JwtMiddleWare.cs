@@ -7,6 +7,9 @@ using System.Security.Claims;
 using System.Text;
 using static QLBH_Core.Commons.Enums;
 using QLBH_Core.Commons;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using QLBH_Core.Commons.Output;
 
 namespace QLNhaTro.API.MiddleWare
 {
@@ -56,8 +59,18 @@ namespace QLNhaTro.API.MiddleWare
                     context.Items[Constants.JWT.Permission] = grantedPermissions;
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                context.Response.ContentType = "application/json";
+                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+
+                var errorResponse = new ErrorResponse
+                {
+                    Success = false,
+                    Message = "Thất bại trong quá trình xử lý",
+                };
+
+                context.Response.WriteAsync(JsonSerializer.Serialize(errorResponse));
                 // do nothing if jwt validation fails
                 // user is not attached to context so request won't have access to secure routes
             }

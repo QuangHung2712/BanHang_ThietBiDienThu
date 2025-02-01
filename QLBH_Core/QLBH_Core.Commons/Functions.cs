@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+
 using System.Text;
 using System.Threading.Tasks;
 using static QLBH_Core.Commons.Constants;
@@ -15,12 +16,13 @@ namespace QLBH_Core.Commons
 {
     public static class Functions
     {
+        #region Hàm liên quan đến dữ liệu
         public static T GetAvailableById<T>(this DbSet<T> entity, long id) where T : BaseEntityIsDelete
         {
             var record = entity.Where(c => c.Id == id && !c.IsDelete).FirstOrDefault();
             if (record == null)
             {
-                throw new NotFoundException(nameof(T));
+                throw new NotFoundException(typeof(T).Name);
             }
             return record;
         }
@@ -29,7 +31,7 @@ namespace QLBH_Core.Commons
             var record = entity.Where(c => c.Id == id && !c.IsDelete).FirstOrDefault();
             if (record == null)
             {
-                throw new NotFoundException(nameof(T));
+                throw new NotFoundException(typeof(T).Name);
             }
         }
         public static T GetById<T>(this DbSet<T> entity, long id) where T : BaseEntity
@@ -37,7 +39,7 @@ namespace QLBH_Core.Commons
             var record = entity.Where(c => c.Id == id).FirstOrDefault();
             if (record == null)
             {
-                throw new NotFoundException(nameof(T));
+                throw new NotFoundException(typeof(T).Name);
             }
             return record;
         }
@@ -46,7 +48,7 @@ namespace QLBH_Core.Commons
             var record = entity.Where(c => c.Id == id).FirstOrDefault();
             if (record == null)
             {
-                throw new NotFoundException(nameof(T));
+                throw new NotFoundException(typeof(T).Name);
             }
         }
         public static void Delete<T>(this DbSet<T> entity, long id, bool isPermanent = false) where T : BaseEntityIsDelete
@@ -67,6 +69,25 @@ namespace QLBH_Core.Commons
             var record = entity.GetById(id);
             entity.Remove(record);
         }
+        public static void IsAlreadyExists<T>(this DbSet<T> entity, string propertyName, object value) where T : BaseEntity
+        {
+            // Lấy ra thông tin thuộc tính của đối tượng
+            var propertyInfo = typeof(T).GetProperty(propertyName);
+
+            if (propertyInfo == null)
+            {
+                throw new ArgumentException($"Property '{propertyName}' not found on type '{typeof(T).Name}'");
+            }
+
+            // Kiểm tra sự tồn tại của bản ghi với điều kiện trường và giá trị
+            var record = entity.FirstOrDefault(c => propertyInfo.GetValue(c).Equals(value));
+
+            if (record != null)
+            {
+                throw new AlreadyExistsException(propertyName);
+            }
+        }
+        #endregion
         public static string GetDescription(this Enum value)
         {
             var field = value.GetType().GetField(value.ToString());

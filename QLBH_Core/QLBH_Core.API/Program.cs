@@ -29,7 +29,7 @@ builder.Services.AddTransient<JwtMiddleWare>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 builder.Services.AddSwaggerGen(option =>
 {
-    option.SwaggerDoc("v1", new OpenApiInfo { Title = "BoardingHouseManagement API", Version = "v1" });
+    option.SwaggerDoc("v1", new OpenApiInfo { Title = "QLBH Thiết bị nhà hàng API", Version = "v1" });
     option.CustomSchemaIds(type => type.ToString());
     option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -57,10 +57,10 @@ builder.Services.AddSwaggerGen(option =>
 });
 var app = builder.Build();
 
-app.UseDbMigration(app.Environment.IsDevelopment());
+app.UseDbMigration(app.Environment.IsDevelopment());//  tự động update database vào db
 
-app.UseMiddleware<JwtMiddleWare>();//  tự động update database vào db
-app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseMiddleware<JwtMiddleWare>(); // Xác thực người dùng
+app.UseMiddleware<ErrorHandlingMiddleware>(); // Hander lỗi
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -22,7 +22,7 @@ namespace QLNhaTro.API.MiddleWare
             try
             {
                 var providedPermissions = (List<FeatureCode>)context.HttpContext.Items[Constants.JWT.Permission];
-                if (!providedPermissions.Any(p=>requiredPermissions.Contains(p)))
+                if ((!providedPermissions.Any(p=>requiredPermissions.Contains(p))) && (requiredPermissions.Count() != 0))
                 {
                     context.Result = new JsonResult(new { message = "Không có quyền" })
                     {

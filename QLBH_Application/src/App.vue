@@ -10,13 +10,12 @@ export default {
       return notification.state;
     },
   },
-  // created(){
-  //   this.$apiClient.get("/Server/ping")
-  //     .catch(error=>{
-  //       console.log(error);
-  //       this.$router.push({ name: 'error'});
-  //     })
-  // }
+  created(){
+    this.$apiClient.get("/Server/ping")
+      .catch(()=>{
+        this.$router.push({ name: 'error'});
+      })
+  }
   
 };
 </script>

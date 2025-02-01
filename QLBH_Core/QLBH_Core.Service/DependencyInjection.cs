@@ -3,6 +3,7 @@ using QLBH_Core.Service.Auth;
 using QLBH_Core.Service.Order;
 using QLBH_Core.Service.ProductS;
 using QLBH_Core.Service.ProductTypeS;
+using QLBH_Core.Service.Users;
 
 namespace QLBH_Core.Service
 {
@@ -14,6 +15,8 @@ namespace QLBH_Core.Service
             services.AddScoped<IOrderService,OrderService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductTypeService, ProductTypeService>();
+            services.AddScoped<IUserService, UserService>();
+
         }
     }
 }

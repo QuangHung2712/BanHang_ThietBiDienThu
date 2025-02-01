@@ -13,6 +13,8 @@ namespace QLBH_Core.API.Extensions
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
                 context.Database.Migrate();
+                SeedData.Seed(context);
+
                 /*if (isDevelopment)
                 {
                     DataSeeding.DevelopmentSeeding(context);

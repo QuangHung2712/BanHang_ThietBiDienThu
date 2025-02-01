@@ -2,6 +2,7 @@
 using QLBH_Core.Commons;
 using QLBH_Core.Moddel.Model.RequestModels;
 using QLBH_Core.Service.Auth;
+using QLNhaTro.API.MiddleWare;
 
 namespace QLBH_Core.API.Controllers
 {
@@ -20,6 +21,13 @@ namespace QLBH_Core.API.Controllers
         {
             var result = _authService.Login(data);
             return Ok(result);
+        }
+        [HttpPut]
+        [Permission]
+        public async Task<IActionResult> ChangePassword(ChangePasswordReqModel input)
+        {
+            await _authService.ChangePassword(input);
+            return Ok();
         }
     }
 }

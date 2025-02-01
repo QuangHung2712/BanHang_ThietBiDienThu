@@ -1,5 +1,7 @@
 import { createStore } from 'vuex';
 import modules from './modules';
+import Axios from "axios";
+
 
 
 
@@ -41,36 +43,30 @@ const store = createStore({
     },
     actions: {
         login({ commit }, Userformation) {
-            const { token, userId } = Userformation
+            //const { token, userId } = Userformation
             // Lưu token và userId vào Vuex
-            commit('setToken', token);
-            commit('setUser', userId);
+            commit('setToken', Userformation);
             // Cập nhật token vào header mặc định của axios
             //axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         },
         logout({ commit }) {
             // Xóa dữ liệu trong Vuex
-            commit('clearAuth');
+            commit('setToken', null);
 
             // Xóa token trong localStorage
-            localStorage.removeItem('tokenlandlord');
-            localStorage.removeItem('landlordId');
+            localStorage.removeItem('token');
 
             // Xóa header Authorization
-            //delete axios.defaults.headers.common['Authorization'];
+            delete Axios.defaults.headers.common['Authorization'];
 
         },
         autoLogin({ commit }) {
 
             // Kiểm tra token trong localStorage khi tải ứng dụng
             const token = localStorage.getItem('token');
-            const userId = localStorage.getItem('userId');
             if (token) {
                 commit('setToken', token);
                 // Gọi thêm API để lấy userId nếu cần
-            }
-            if(userId){
-                commit('setUser', userId);
             }
         },
     },

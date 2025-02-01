@@ -1,4 +1,6 @@
 import axios from "axios";
+import Swal from "sweetalert2";
+import Store from "../../state/store";
 
 
 // Tạo một instance của axios
@@ -31,10 +33,31 @@ apiClient.interceptors.response.use(
   (error) => {
     // Xử lý lỗi chung
     if (error.response?.status === 401) {
-      alert("Bạn không có quyển thực hiện chức năng này");
-      return 
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: "btn btn-success",
+            cancelButton: "btn btn-danger ml-2",
+        },
+        buttonsStyling: false,
+      });
+
+      swalWithBootstrapButtons
+          .fire({
+              title: "Bạn không có quyền!",
+              text: `Bạn đang không có quyền thực hiện chức năng này hoặc phiên đăng nhập đã hết hạn. Bạn có muốn đăng nhập lại không`,
+              icon: "warning",
+              confirmButtonText: "Có!",
+              cancelButtonText: "Không!",
+              showCancelButton: true,
+          })
+          .then((confirm) => {
+              if (confirm.value) {
+                Store.dispatch("logout");
+                window.location.href = "/login";
+              } else if ( /* Read more about handling dismissals below */ confirm.dismiss === Swal.DismissReason.cancel) return
+          });
+        return new Promise(() => {}); 
     }
-   
     return Promise.reject(error);
   }
 );

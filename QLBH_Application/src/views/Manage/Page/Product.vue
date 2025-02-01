@@ -110,6 +110,8 @@
                         ],
                         img: [],
                     };
+                    this.time = null;
+                    this.unitFeature = null;
                 }
                 else{
                     this.$apiClient.get(`/Product/GetDetail/${id}`)
@@ -228,6 +230,21 @@
                         } else if ( /* Read more about handling dismissals below */ confirm.dismiss === Swal.DismissReason.cancel) return
                     });
             },
+            onAddClick(){
+                this.selectProductType.id = 0;
+                this.selectProductType.name = null;
+            },
+            SaveProductType(){
+                this.$apiClient.put(`/ProductType/CreateEdit`,this.selectProductType)
+                        .then(()=>{
+                            this.$notify("Thao tác thành công","","success");
+                            this.viewdialogProductTypeEdit = false;
+                            this.GetProductType();
+                        })
+                        .catch(error=>{
+                            this.$notify(error.response.data.Message,error.response.data.Errors.join('. '),"error");
+                        })
+            }
         }
     }
 </script>
@@ -242,7 +259,7 @@
                         label="Loại sản phẩm"
                         :items="productTypeData"
                         item-title="name"
-                        item-value="id"
+                        item-value="name"
                         v-model="searchProductType"
                         variant="outlined"
                         hide-details>
@@ -290,22 +307,24 @@
                         </div>
                         <div class="form-group m-0">
                             <label class="form-label">Loại sản phẩm:</label>
-                            <v-select
+                            <v-autocomplete
                                 clearable
                                 :items="productTypeData"
                                 item-title="name"
                                 item-value="id"
                                 v-model="selectProduct.productTypeId"
+                                placeholder="Chọn loại sản phẩm"
+                                dense
                                 variant="outlined">
                                 <template #append>
                                     <v-icon 
                                     class="cursor-pointer"
-                                    @click="(viewdialogProductTypeEdit = !viewdialogProductTypeEdit) && (onAddClick)"
+                                    @click="(viewdialogProductTypeEdit = !viewdialogProductTypeEdit) && (onAddClick())"
                                     >
                                     mdi-plus
                                     </v-icon>
                                 </template>
-                            </v-select>
+                            </v-autocomplete>
                         </div>
                         <div class="form-group m-0">
                             <label class="form-label">Thời gian bảo hành:</label>
@@ -387,8 +406,8 @@
             <BButton type="button" variant="primary" @click="Save()" :disabled="!form">Save Changes</BButton>
         </div>
     </BModal>
-    <BModal v-model="viewdialogProductTypeEdit" hide-footer :title="titleDialog" modal-class="fadeInRight"
-        class="v-modal-custom" centered size="xl" >
+    <BModal v-model="viewdialogProductTypeEdit" hide-footer title="Thêm loại sản phẩm" modal-class="fadeInRight"
+        class="v-modal-custom" centered size="md" >
         <div class="card-body">
             <v-form v-model="form1" ref="form">
                 <BRow>
@@ -404,7 +423,7 @@
         <div class="modal-footer v-modal-footer">
             <BButton type="button" variant="light" @click="viewdialogProductTypeEdit = false">Close
             </BButton>
-            <BButton type="button" variant="primary" @click="Save()" :disabled="!form">Save Changes</BButton>
+            <BButton type="button" variant="primary" @click="SaveProductType()" :disabled="!form1">Save Changes</BButton>
         </div>
     </BModal>
 </template>

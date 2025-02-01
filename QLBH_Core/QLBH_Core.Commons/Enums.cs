@@ -13,6 +13,7 @@ namespace QLBH_Core.Commons
         public enum FeatureCode
         {
             Admin = 0,
+            Manage = 1,
         }
     }
 }

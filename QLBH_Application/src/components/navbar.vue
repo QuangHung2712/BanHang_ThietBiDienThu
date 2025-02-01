@@ -8,10 +8,25 @@ export default {
     },
     data() {
         return {
+            infoUser:{
+                pathAvatar: null,
+                name : null
+            },
+            changePassword:{
+                id: 0,
+                PasswordOld: null,
+                PasswordNew: null
+            },
+            confirmPassword: null,
+            viewdialogChangePassword: false,
+            showPassword: null,
+            showPassword1: null,
+            showPassword2: null,
+            formChange: false,
         };
     },
     created(){
-
+        this.GetInfo();
     },
     methods: {
         changeMode(mode) {
@@ -36,7 +51,41 @@ export default {
         toggleMobileSidebar() {
             this.$store.commit('toggleMobileSidebar');
         },
-
+        GetInfo(){
+            this.$apiClient.get(`/User/GetInfo?UserId=${1}`)
+                .then(response=>{
+                    this.infoUser = response.data;
+                })
+                .catch(error=>{
+                    this.$notify(error.response.data.Message??"Đã xảy ra lỗi",error.response.data.Errors.join('. ')?? " ","error");
+                })
+        },
+        SignOut(){
+            this.$store.dispatch('logout');
+        },
+        btnViewChangePass(){
+            this.changePassword = {
+                id: 1,
+                PasswordOld: null,
+                PasswordNew: null,
+            }
+            this.confirmPassword = null;
+            this.showPassword = false;
+            this.showPassword1 = false;
+            this.showPassword2 = false;
+            this.formChange = false;
+        },
+        SaveChangePassword(){
+            this.$apiClient.put(`/Auth/ChangePassword`,this.changePassword)
+                        .then(()=>{
+                            this.$notify("Đổi mật khẩu thành công","","success");
+                            this.viewdialogChangePassword = false;
+                        })
+                        .catch(error=>{
+                            console.log(error.response);
+                            this.$notify(error.response.data.Message,error.response.data.Errors.join('. '),"error");
+                        })
+        }
     }
             
 }
@@ -207,7 +256,7 @@ export default {
                     </div>
                 </BDropdown> -->
                 <BDropdown variant="link-secondary" auto-close="outside" class="card-header-dropdown py-0" toggle-class="text-reset dropdown-btn arrow-none me-0" menu-class="dropdown-menu-end dropdown-user-profile dropdown-menu-end pc-h-dropdown" aria-haspopup="true" :offset="{ alignmentAxis: -145, crossAxis: 0, mainAxis: 20 }">
-                    <template #button-content><span class="text-muted"> <img src="infoUser.pathAvatar" alt="user-image" class="user-avtar">
+                    <template #button-content><span class="text-muted"> <img :src="infoUser.pathAvatar" alt="user-image" class="user-avtar">
                         </span>
                     </template>
                     <div class="dropdown-header d-flex align-items-center justify-content-between">
@@ -220,10 +269,10 @@ export default {
                                     <li class="list-group-item">
                                         <div class="d-flex align-items-center">
                                             <div class="flex-shrink-0">
-                                                <img src="infoUser.pathAvatar" alt="user-image" class="wid-50 rounded-circle">
+                                                <img :src="infoUser.pathAvatar" alt="user-image" class="wid-50 rounded-circle">
                                             </div>
                                             <div class="flex-grow-1 mx-3">
-                                                <h5 class="mb-0">{{ userName }}</h5>
+                                                <h5 class="mb-0">{{ infoUser.name }}</h5>
                                             </div>
                                         </div>
                                     </li>
@@ -243,18 +292,18 @@ export default {
                                                 <input class="form-check-input f-18" id="dark-mode" type="checkbox" @click="changeMode('dark')" role="switch">
                                             </div>
                                         </div>
-                                        <div class="dropdown-item"  @click="(viewdialogInfo = !viewdialogInfo) &&(btnInfo())">
+                                        <!-- <div class="dropdown-item"  @click="(viewdialogInfo = !viewdialogInfo) &&(btnInfo())">
                                             <span class="d-flex align-items-center">
                                                 <i class="ph-duotone ph-user-circle"></i>
                                                 <span>Thông tin cá nhân</span>
                                             </span>
-                                        </div>
-                                        <div @click="(viewdialogEditBank = !iewdialogEditBank) &&(btnEditBank())" class="dropdown-item">
+                                        </div> -->
+                                        <!-- <div @click="(viewdialogEditBank = !iewdialogEditBank) &&(btnEditBank())" class="dropdown-item">
                                             <span class="d-flex align-items-center">
                                                 <i class="ph-duotone ph-gear-six"></i>
                                                 <span>Thông tin thanh toán</span>
                                             </span>
-                                        </div>
+                                        </div> -->
                                         <router-link to="/login" class="dropdown-item" @click="SignOut()">
                                             <span class="d-flex align-items-center">
                                                 <i class="ph-duotone ph-power"></i>
@@ -270,7 +319,7 @@ export default {
             </ul>
         </div>
     </div>
-    <!-- <BModal v-model="viewdialogChangePassword" hide-footer title="Đổi mật khẩu" modal-class="fadeInRight"
+    <BModal v-model="viewdialogChangePassword" hide-footer title="Đổi mật khẩu" modal-class="fadeInRight"
         class="v-modal-custom" centered size="md" >
         <div class="card-body">
             <v-form v-model="formChange" ref="formChange">
@@ -312,7 +361,7 @@ export default {
                             <label class="form-label">Mật khẩu mới:</label>
                             <v-text-field 
                                 :type="showPassword2 ? 'text' : 'password'" 
-                                v-model="passwordConfirm" 
+                                v-model="confirmPassword" 
                                 :rules="[rules.matchPassword]" 
                                 variant="outlined" 
                                 clearable 
@@ -329,10 +378,10 @@ export default {
         <div class="modal-footer v-modal-footer">
             <BButton type="button" variant="light" @click="viewdialogChangePassword = false">Close
             </BButton>
-            <BButton type="button" variant="primary" @click="btnChangePassword()" :disabled="!formChange">Save Changes</BButton>
+            <BButton type="button" variant="primary" @click="SaveChangePassword()" :disabled="!formChange">Save Changes</BButton>
         </div>
     </BModal>
-    <BModal v-model="viewdialogInfo" hide-footer title="Đổi thông tin cá nhân" modal-class="fadeInRight"
+    <!-- <BModal v-model="viewdialogInfo" hide-footer title="Đổi thông tin cá nhân" modal-class="fadeInRight"
         class="v-modal-custom" centered size="xl" >
         <div class="card-body">
             <v-form v-model="form" ref="form">

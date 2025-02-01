@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "e9nu0DOyPql9jBQ2Wl7Hr17sspb1YwNB71RlTVcBudo=",
+  "Hash": "RmjoS1cR8GG4FVqMiRP1Tg0najLyLs7m0HTRZ+50d+U=",
   "Source": "QLBH_Core.API",
   "BasePath": "_content/QLBH_Core.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

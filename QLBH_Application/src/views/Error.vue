@@ -3,6 +3,15 @@
 export default {
     name: "LOGIN",
     components: {
+    },
+    created(){
+        this.$apiClient.get("/Server/ping")
+        .then(()=>{
+            this.$router.push({ name: 'FindARoom'});
+        })
+        .catch(error=>{
+            this.$notify("Đã xảy ra lỗi khi kết nối với Server",error,"error");
+        })
     }
 }
 </script>

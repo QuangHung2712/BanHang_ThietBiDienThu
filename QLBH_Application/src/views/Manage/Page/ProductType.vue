@@ -123,7 +123,7 @@
 
 
 <template>
-        <pageheader title="" pageTitle="Dịch vụ" />
+        <pageheader title="" pageTitle="Loại sản phẩm" />
         <BRow>
             <BCol class="col-sm-12">
                 <BCard no-body class="table-card p-sm-2">

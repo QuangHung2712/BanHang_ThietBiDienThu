@@ -10,5 +10,6 @@ namespace QLBH_Core.Service.Auth
     public interface IAuthService
     {
         string Login(LoginReqModel input);
+        Task ChangePassword(ChangePasswordReqModel data);
     }
 }

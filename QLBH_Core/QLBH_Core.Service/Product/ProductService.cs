@@ -110,6 +110,7 @@ namespace QLBH_Core.Service.ProductS
                 var productData = _Context.Products.GetAvailableById(data.Id);
                 productData.Name = data.Name;
                 productData.Price = data.Price;
+                productData.ProductTypeId = data.ProductType;
                 productData.WarrantyPeriod = data.WarrantyPeriod;
                 _Context.Products.Update(productData);
 

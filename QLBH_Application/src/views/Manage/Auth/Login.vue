@@ -40,12 +40,12 @@ export default {
             
             this.$apiClient.post(`/Auth/Login`,this.login)
                 .then(response=>{
-                    //this.$store.dispatch('login',response.data);
+                    this.$store.dispatch('login',response.data);
                     localStorage.setItem('token',response.data)
                     //localStorage.setItem('landlordId',response.data.userId)
                     //if(this.remember){}
                     this.errorMessage = ""
-                    this.$router.push({ name: 'manage' });
+                    this.$router.push({ name: 'manage' });                    
                 })
                 .catch(error=>{
                     //this.$notify(error.response.data.Message,error.response.data.Errors.join('. '), "error");

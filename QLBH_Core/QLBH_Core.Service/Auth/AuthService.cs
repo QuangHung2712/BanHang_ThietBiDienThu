@@ -16,12 +16,12 @@ namespace QLBH_Core.Service.Auth
 {
     public class AuthService : IAuthService
     {
-        private readonly AppDbContext appDbContext;
+        private readonly AppDbContext _Context;
         private readonly AppSettings _appSettings;
 
         public AuthService(AppDbContext appDbContext, IOptions<AppSettings> appSettings)
         {
-            this.appDbContext = appDbContext;
+            _Context = appDbContext;
             _appSettings = appSettings.Value;
         }
         public string Login(LoginReqModel input)
@@ -51,6 +51,17 @@ namespace QLBH_Core.Service.Auth
                 Console.WriteLine(ex);
                 throw;
             }
+        }
+        public async Task ChangePassword(ChangePasswordReqModel data)
+        {
+            var infoUser = _Context.Users.GetAvailableById(data.Id);
+            if(infoUser.Password != data.PasswordOld)
+            {
+                throw new Exception("Mật khẩu cũ không đúng");
+            }
+            infoUser.Password = data.PasswordNew;
+            _Context.Users.Update(infoUser);
+            await _Context.SaveChangesAsync();
         }
     }
 }

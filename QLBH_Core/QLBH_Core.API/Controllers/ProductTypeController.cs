@@ -20,7 +20,7 @@ namespace QLBH_Core.API.Controllers
         }
 
         [HttpGet]
-        [Permission(Enums.FeatureCode.Admin)]
+        [Permission(Enums.FeatureCode.Manage, Enums.FeatureCode.Admin)]
         public IActionResult GetAll() 
         {
             var result = _productTypeService.GetAll();
