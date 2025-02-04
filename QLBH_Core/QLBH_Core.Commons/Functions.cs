@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Reflection;
 
 using System.Text;
@@ -69,22 +70,11 @@ namespace QLBH_Core.Commons
             var record = entity.GetById(id);
             entity.Remove(record);
         }
-        public static void IsAlreadyExists<T>(this DbSet<T> entity, string propertyName, object value) where T : BaseEntity
+        public static void IsAlreadyExists<T>(this DbSet<T> entity, string propertyName, object value,string exceptionName = "") where T : BaseEntity
         {
-            // Lấy ra thông tin thuộc tính của đối tượng
-            var propertyInfo = typeof(T).GetProperty(propertyName);
-
-            if (propertyInfo == null)
+            if (entity.Any($"{propertyName} == @0", value))
             {
-                throw new ArgumentException($"Property '{propertyName}' not found on type '{typeof(T).Name}'");
-            }
-
-            // Kiểm tra sự tồn tại của bản ghi với điều kiện trường và giá trị
-            var record = entity.FirstOrDefault(c => propertyInfo.GetValue(c).Equals(value));
-
-            if (record != null)
-            {
-                throw new AlreadyExistsException(propertyName);
+                throw new AlreadyExistsException(exceptionName ?? propertyName);
             }
         }
         #endregion

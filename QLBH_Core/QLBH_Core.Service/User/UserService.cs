@@ -56,6 +56,7 @@ namespace QLBH_Core.Service.Users
         }
         public async Task Create(CreateEditUserReqModel input)
         {
+            _Context.Users.IsAlreadyExists("Email",input.Email);
             var userNew = new User
             {
                 Name = input.Name,

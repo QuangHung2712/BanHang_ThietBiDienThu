@@ -30,6 +30,7 @@ namespace QLBH_Core.Service.ProductTypeS
         }
         public async Task CreateEdit(CreateEditProductTypeReqModel data)
         {
+            _Context.ProductTypes.IsAlreadyExists("Name", data.Name,"Loại sản phẩm");
             if(data.Id <= 0)
             {
                 var newProductType = new ProductType

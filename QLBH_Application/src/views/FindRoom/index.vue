@@ -376,8 +376,8 @@ export default {
         </v-snackbar>
         <BNav style="background-color: #023573; max-height: 75px;" class="navbar navbar-expand-md navbar-light default">
             <div class="container">
-                <a class="pc-navbar-brand" href="/">
-                    <h3 class="color-text">TÌM KIẾM NHÀ TRỌ</h3>
+                <a class="pc-navbar-brand" href="/" style="width: 40%;">
+                    <img src="/images/logo.png" alt=""  style="width: 45%;">
                 </a>
                 <button @click="toggleMenu" class="navbar-toggler rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -403,407 +403,408 @@ export default {
                             <button @click="ViewLogin()" class="btn btn-primary mr-4">Đăng nhập</button>
                         </li>
                     </ul>
-                    <BDropdown v-show="LoginStatus" variant="link-secondary" auto-close="outside" class="info card-header-dropdown py-0" toggle-class="text-reset dropdown-btn arrow-none me-0" menu-class="dropdown-menu-end dropdown-user-profile dropdown-menu-end pc-h-dropdown" aria-haspopup="true" :offset="{ alignmentAxis: -145, crossAxis: 0, mainAxis: 20 }">
-                        <template  #button-content><span class="text-muted"> <img :src="infoUser.pathAvatar" alt="user-image" class="user-avtar">
-                            </span>
-                        </template>
-                        <div class="dropdown-header d-flex align-items-center justify-content-between">
-                            <h4 class="m-0">Thông tin cá nhân</h4>
-                        </div>
-                        <div class="dropdown-body">
-                            <simplebar data-simplebar style="max-height: 500px;">
-                                <div class="profile-notification-scroll position-relative" style="max-height: calc(100vh - 225px)">
-                                    <ul class="list-group list-group-flush w-100">
-                                        <li class="list-group-item">
-                                            <div class="d-flex align-items-center">
-                                                <div class="flex-shrink-0">
-                                                    <img :src="infoUser.pathAvatar" alt="user-image" class="wid-50 rounded-circle">
-                                                </div>
-                                                <div class="flex-grow-1 mx-3">
-                                                    <h5 class="mb-0">{{ userName }}</h5>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="dropdown-item" @click="viewdialogChangePassword = !viewdialogChangePassword">
-                                                <span class="d-flex align-items-center">
-                                                    <i class="ph-duotone ph-key"></i>
-                                                    <span>Đổi mật khẩu</span>
-                                                </span>
-                                            </div>
-                                            <div class="dropdown-item d-flex justify-content-between">
-                                                <span class="d-flex align-items-center">
-                                                    <i class="ph-duotone ph-moon"></i>
-                                                    <span>Dark mode</span>
-                                                </span>
-                                                <div class="form-check form-switch form-check-reverse m-0">
-                                                    <input class="form-check-input f-18" id="dark-mode" type="checkbox" @click="changeMode('dark')" role="switch">
-                                                </div>
-                                            </div>
-                                            <div class="dropdown-item"  @click="(viewdialogInfo = !viewdialogInfo) &&(btnInfo())">
-                                                <span class="d-flex align-items-center">
-                                                    <i class="ph-duotone ph-user-circle"></i>
-                                                    <span>Thông tin cá nhân</span>
-                                                </span>
-                                            </div>
-                                            <router-link to="/listPost" class="dropdown-item">
-                                                <span class="d-flex align-items-center">
-                                                    <i class="ph-duotone ph-gear-six"></i>
-                                                    <span>Quản lý bài đăng</span>
-                                                </span>
-                                            </router-link>
-                                            <div to="/login" class="dropdown-item" @click="SignOut()">
-                                                <span class="d-flex align-items-center">
-                                                    <i class="ph-duotone ph-power"></i>
-                                                    <span>Đăng xuất</span>
-                                                </span>
-                                            </div>
-                                        </li>
-                                    </ul>
+
+                </div>
+            </div>
+        </BNav>
+        <BDropdown v-show="LoginStatus" variant="link-secondary" auto-close="outside" class="info card-header-dropdown py-0" toggle-class="text-reset dropdown-btn arrow-none me-0" menu-class="dropdown-menu-end dropdown-user-profile dropdown-menu-end pc-h-dropdown" aria-haspopup="true" :offset="{ alignmentAxis: -145, crossAxis: 0, mainAxis: 20 }">
+            <template  #button-content><span class="text-muted"> <img :src="infoUser.pathAvatar" alt="user-image" class="user-avtar">
+                </span>
+            </template>
+            <div class="dropdown-header d-flex align-items-center justify-content-between">
+                <h4 class="m-0">Thông tin cá nhân</h4>
+            </div>
+            <div class="dropdown-body">
+                <simplebar data-simplebar style="max-height: 500px;">
+                    <div class="profile-notification-scroll position-relative" style="max-height: calc(100vh - 225px)">
+                        <ul class="list-group list-group-flush w-100">
+                            <li class="list-group-item">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <img :src="infoUser.pathAvatar" alt="user-image" class="wid-50 rounded-circle">
+                                    </div>
+                                    <div class="flex-grow-1 mx-3">
+                                        <h5 class="mb-0">{{ userName }}</h5>
+                                    </div>
                                 </div>
-                            </simplebar>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="dropdown-item" @click="viewdialogChangePassword = !viewdialogChangePassword">
+                                    <span class="d-flex align-items-center">
+                                        <i class="ph-duotone ph-key"></i>
+                                        <span>Đổi mật khẩu</span>
+                                    </span>
+                                </div>
+                                <div class="dropdown-item d-flex justify-content-between">
+                                    <span class="d-flex align-items-center">
+                                        <i class="ph-duotone ph-moon"></i>
+                                        <span>Dark mode</span>
+                                    </span>
+                                    <div class="form-check form-switch form-check-reverse m-0">
+                                        <input class="form-check-input f-18" id="dark-mode" type="checkbox" @click="changeMode('dark')" role="switch">
+                                    </div>
+                                </div>
+                                <div class="dropdown-item"  @click="(viewdialogInfo = !viewdialogInfo) &&(btnInfo())">
+                                    <span class="d-flex align-items-center">
+                                        <i class="ph-duotone ph-user-circle"></i>
+                                        <span>Thông tin cá nhân</span>
+                                    </span>
+                                </div>
+                                <router-link to="/listPost" class="dropdown-item">
+                                    <span class="d-flex align-items-center">
+                                        <i class="ph-duotone ph-gear-six"></i>
+                                        <span>Quản lý bài đăng</span>
+                                    </span>
+                                </router-link>
+                                <div to="/login" class="dropdown-item" @click="SignOut()">
+                                    <span class="d-flex align-items-center">
+                                        <i class="ph-duotone ph-power"></i>
+                                        <span>Đăng xuất</span>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </simplebar>
+            </div>
+        </BDropdown> 
+        <BModal v-model="modalLogin" hide-footer class="v-modal-custom" id="login-modal" centered>
+            <template #title>
+                <h4 class="f-w-500 mb-1">Đăng nhập bằng Email</h4>
+                <p class="m-0 pb-0">Chưa có tài khoản?<a href="#" class="link-primary ms-2" 
+                        data-bs-target="#registration-modal" @click="toggleModal">Tạo tài khoản</a></p>
+            </template>
+            <v-form v-model="form">
+                <div class="form-group">
+                    <label class="form-label">Email </label>
+                    <v-text-field 
+                            type="email" 
+                            variant="outlined" 
+                            placeholder="Nhập vào Email" 
+                            :rules="[rules.required]" 
+                            v-model="login.email"
+                            prepend-inner-icon="mdi-email-outline"
+                    ></v-text-field>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mật khẩu</label>
+                    <v-text-field 
+                        :type="showPassword ? 'text' : 'password'" 
+                        variant="outlined"
+                        placeholder="Nhập vào mật khẩu" 
+                        :rules="[rules.required]"  
+                        v-model="login.password"
+                        prepend-inner-icon="mdi-lock-outline"
+                        :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                        @click:append-inner="showPassword = !showPassword"
+                    ></v-text-field>
+                </div>
+            </v-form>
+            <div class="d-flex mt-1 justify-content-between align-items-center">
+                <div class="form-check">
+                    <input class="form-check-input input-primary" v-model="remember" type="checkbox" id="customCheckc1" checked="">
+                    <label class="form-check-label text-muted" for="customCheckc1">Nhớ mật khẩu?</label>
+                </div>
+            </div>
+            <div class="d-grid mt-4">
+                <button type="button" @click="Login()" :disabled="!form" class="btn btn-primary">Đăng nhập</button>
+                <p v-if="errorMessage" class="text-danger mt-2">{{ errorMessage }}</p>
+            </div>
+        </BModal>
+        <BModal v-model="modalRegister" hide-footer class="modal fade login-modal" id="registration-modal" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" size="lg">
+            <template #title>
+                <h4 class="f-w-500 mb-1">Đăng kỳ bằng Email</h4>
+                <p class="mb-3">Đã có tài khoản? <a href="#" class="link-primary"
+                        data-bs-target="#login-modal" @click="toggleModal">Đăng nhập</a></p>
+            </template>
+            <v-form v-model="form">
+                <BRow>
+                    <BCol class="col-lg-6">
+                        <div class="form-group m-0">
+                            <label class="form-label">Họ và tên</label>
+                            <v-text-field 
+                                type="text" 
+                                variant="outlined" 
+                                placeholder="Họ và tên" 
+                                :rules="[rules.required]" 
+                                v-model="register.fullName"
+                            ></v-text-field>                        
                         </div>
-                    </BDropdown> 
-                    <BModal v-model="modalLogin" hide-footer class="v-modal-custom" id="login-modal" centered>
-                        <template #title>
-                            <h4 class="f-w-500 mb-1">Đăng nhập bằng Email</h4>
-                            <p class="m-0 pb-0">Chưa có tài khoản?<a href="#" class="link-primary ms-2" 
-                                    data-bs-target="#registration-modal" @click="toggleModal">Tạo tài khoản</a></p>
-                        </template>
-                        <v-form v-model="form">
+                    </BCol>
+                    <BCol class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">Ngày sinh</label>
+                            <input type="date" class="form-control" id="example-datemin" :rules="[required]" v-model="register.doB" min="2000-01-02">
+                        </div>
+                    </BCol>
+                    <BCol class="col-lg-6">
+                        <div class="form-group m-0">
+                            <label class="form-label">Số điện thoại</label>
+                            <v-text-field 
+                                type="text" 
+                                variant="outlined" 
+                                placeholder="Số điện thoại" 
+                                :rules="[rules.required, rules.validPhone]" 
+                                v-model="register.phoneNumber"
+                            ></v-text-field>                        
+                        </div>
+                    </BCol>
+                    <BCol class="col-lg-6">
+                        <div class="form-group m-0">
+                            <label class="form-label">Email</label>
+                            <v-text-field 
+                                type="text" 
+                                variant="outlined" 
+                                placeholder="Email" 
+                                :rules="[rules.required, rules.validEmail]"
+                                v-model="register.email"
+                            ></v-text-field>                        
+                        </div>
+                    </BCol>
+                    <BCol class="col-lg-6">
+                        <div class="form-group m-0">
+                            <label class="form-label">Căn cước công dân</label>
+                            <v-text-field 
+                                type="number" 
+                                variant="outlined" 
+                                placeholder="Căn cược công dân" 
+                                :rules="[rules.required]" 
+                                v-model="register.cCCD"
+                            ></v-text-field>                    
+                        </div>
+                    </BCol>
+                    <BCol class="col-lg-6">
+                        <div class="form-group m-0">
+                            <label class="form-label">Số điện thoại đăng ký Zalo</label>
+                            <v-text-field 
+                                type="text" 
+                                variant="outlined" 
+                                placeholder="Số điện thoại đăng ký Zalo" 
+                                :rules="[rules.required, rules.validPhone]"
+                                v-model="register.sDTZalo"
+                            ></v-text-field>                        
+                        </div>
+                    </BCol>
+                    <BCol class="col-lg-12">
+                        <div class="form-group m-0">
+                            <label class="form-label">Địa chỉ</label>
+                            <v-text-field 
+                                type="text" 
+                                variant="outlined" 
+                                placeholder="Địa chỉ thường trù" 
+                                :rules="[rules.required]" 
+                                v-model="register.address"
+                            ></v-text-field>                                     
+                        </div>
+                    </BCol>
+                </BRow>
+                
+                <div class="d-flex mt-1 justify-content-between align-items-center">
+                    <div class="form-check">
+                        <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="">
+                        <label class="form-check-label text-muted" for="customCheckc1">Tôi đồng ý với tất cả các Điều khoản & Điều kiện</label>
+                    </div>
+                </div>
+            </v-form>
+            <div class="d-grid mt-4">
+                <button type="button" @click="Register()" :disabled="!form" class="btn btn-primary">Đăng ký</button>
+            </div>
+        </BModal>
+        <BModal v-model="viewdialogChangePassword" hide-footer title="Đổi mật khẩu" modal-class="fadeInRight"
+            class="v-modal-custom" centered size="md" >
+            <div class="card-body">
+                <v-form v-model="formChange" ref="formChange">
+                    <BRow>
+                        <BCol class="col-lg-12">
                             <div class="form-group">
-                                <label class="form-label">Email </label>
-                                <v-text-field 
-                                        type="email" 
-                                        variant="outlined" 
-                                        placeholder="Nhập vào Email" 
-                                        :rules="[rules.required]" 
-                                        v-model="login.email"
-                                        prepend-inner-icon="mdi-email-outline"
-                                ></v-text-field>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Mật khẩu</label>
+                                <label class="form-label">Mật khẩu cũ:</label>
                                 <v-text-field 
                                     :type="showPassword ? 'text' : 'password'" 
-                                    variant="outlined"
-                                    placeholder="Nhập vào mật khẩu" 
-                                    :rules="[rules.required]"  
-                                    v-model="login.password"
-                                    prepend-inner-icon="mdi-lock-outline"
+                                    v-model="changePassword.passwordOld" 
+                                    :rules="[rules.required]" 
+                                    variant="outlined" 
+                                    clearable 
+                                    placeholder="Nhập vào mật khẩu cũ" 
+                                    class="input-control"
                                     :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                                     @click:append-inner="showPassword = !showPassword"
                                 ></v-text-field>
                             </div>
-                        </v-form>
-                        <div class="d-flex mt-1 justify-content-between align-items-center">
-                            <div class="form-check">
-                                <input class="form-check-input input-primary" v-model="remember" type="checkbox" id="customCheckc1" checked="">
-                                <label class="form-check-label text-muted" for="customCheckc1">Nhớ mật khẩu?</label>
+                        </BCol>
+                        <BCol class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label">Mật khẩu mới:</label>
+                                <v-text-field 
+                                    :type="showPassword1 ? 'text' : 'password'" 
+                                    v-model="changePassword.passwordNew" 
+                                    :rules="[rules.validPassword]"
+                                    variant="outlined" 
+                                    clearable
+                                    placeholder="Nhập vào mật khẩu mới"
+                                    class="input-control"
+                                    :append-inner-icon="showPassword1 ? 'mdi-eye' : 'mdi-eye-off'"
+                                    @click:append-inner="showPassword1 = !showPassword1"
+                                ></v-text-field>
                             </div>
-                        </div>
-                        <div class="d-grid mt-4">
-                            <button type="button" @click="Login()" :disabled="!form" class="btn btn-primary">Đăng nhập</button>
-                            <p v-if="errorMessage" class="text-danger mt-2">{{ errorMessage }}</p>
-                        </div>
-                    </BModal>
-                    <BModal v-model="modalRegister" hide-footer class="modal fade login-modal" id="registration-modal" data-bs-keyboard="false"
-                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" size="lg">
-                        <template #title>
-                            <h4 class="f-w-500 mb-1">Đăng kỳ bằng Email</h4>
-                            <p class="mb-3">Đã có tài khoản? <a href="#" class="link-primary"
-                                    data-bs-target="#login-modal" @click="toggleModal">Đăng nhập</a></p>
-                        </template>
-                        <v-form v-model="form">
-                            <BRow>
-                                <BCol class="col-lg-6">
-                                    <div class="form-group m-0">
-                                        <label class="form-label">Họ và tên</label>
-                                        <v-text-field 
-                                            type="text" 
-                                            variant="outlined" 
-                                            placeholder="Họ và tên" 
-                                            :rules="[rules.required]" 
-                                            v-model="register.fullName"
-                                        ></v-text-field>                        
-                                    </div>
-                                </BCol>
-                                <BCol class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-label">Ngày sinh</label>
-                                        <input type="date" class="form-control" id="example-datemin" :rules="[required]" v-model="register.doB" min="2000-01-02">
-                                    </div>
-                                </BCol>
-                                <BCol class="col-lg-6">
-                                    <div class="form-group m-0">
-                                        <label class="form-label">Số điện thoại</label>
-                                        <v-text-field 
-                                            type="text" 
-                                            variant="outlined" 
-                                            placeholder="Số điện thoại" 
-                                            :rules="[rules.required, rules.validPhone]" 
-                                            v-model="register.phoneNumber"
-                                        ></v-text-field>                        
-                                    </div>
-                                </BCol>
-                                <BCol class="col-lg-6">
-                                    <div class="form-group m-0">
-                                        <label class="form-label">Email</label>
-                                        <v-text-field 
-                                            type="text" 
-                                            variant="outlined" 
-                                            placeholder="Email" 
-                                            :rules="[rules.required, rules.validEmail]"
-                                            v-model="register.email"
-                                        ></v-text-field>                        
-                                    </div>
-                                </BCol>
-                                <BCol class="col-lg-6">
-                                    <div class="form-group m-0">
-                                        <label class="form-label">Căn cước công dân</label>
-                                        <v-text-field 
-                                            type="number" 
-                                            variant="outlined" 
-                                            placeholder="Căn cược công dân" 
-                                            :rules="[rules.required]" 
-                                            v-model="register.cCCD"
-                                        ></v-text-field>                    
-                                    </div>
-                                </BCol>
-                                <BCol class="col-lg-6">
-                                    <div class="form-group m-0">
-                                        <label class="form-label">Số điện thoại đăng ký Zalo</label>
-                                        <v-text-field 
-                                            type="text" 
-                                            variant="outlined" 
-                                            placeholder="Số điện thoại đăng ký Zalo" 
-                                            :rules="[rules.required, rules.validPhone]"
-                                            v-model="register.sDTZalo"
-                                        ></v-text-field>                        
-                                    </div>
-                                </BCol>
-                                <BCol class="col-lg-12">
-                                    <div class="form-group m-0">
-                                        <label class="form-label">Địa chỉ</label>
-                                        <v-text-field 
-                                            type="text" 
-                                            variant="outlined" 
-                                            placeholder="Địa chỉ thường trù" 
-                                            :rules="[rules.required]" 
-                                            v-model="register.address"
-                                        ></v-text-field>                                     
-                                    </div>
-                                </BCol>
-                            </BRow>
-                           
-                            <div class="d-flex mt-1 justify-content-between align-items-center">
-                                <div class="form-check">
-                                    <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="">
-                                    <label class="form-check-label text-muted" for="customCheckc1">Tôi đồng ý với tất cả các Điều khoản & Điều kiện</label>
+                        </BCol>
+                        <BCol class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label">Mật khẩu mới:</label>
+                                <v-text-field 
+                                    :type="showPassword2 ? 'text' : 'password'" 
+                                    v-model="passwordConfirm" 
+                                    :rules="[rules.matchPassword]" 
+                                    variant="outlined" 
+                                    clearable 
+                                    placeholder="Nhập lại mật khẩu" 
+                                    class="input-control"
+                                    :append-inner-icon="showPassword2 ? 'mdi-eye' : 'mdi-eye-off'"
+                                    @click:append-inner="showPassword2 = !showPassword2"
+                                ></v-text-field>
+                            </div>
+                        </BCol>
+                    </BRow>
+                </v-form>
+            </div>
+            <div class="modal-footer v-modal-footer">
+                <BButton type="button" variant="light" @click="viewdialogChangePassword = false">Close
+                </BButton>
+                <BButton type="button" variant="primary" @click="btnChangePassword()" :disabled="!formChange">Save Changes</BButton>
+            </div>
+        </BModal>
+        <BModal v-model="viewdialogInfo" hide-footer title="Đổi thông tin cá nhân" modal-class="fadeInRight"
+            class="v-modal-custom" centered size="xl" >
+            <div class="card-body">
+                <v-form v-model="form" ref="form">
+                    <BRow>
+                        <BCol class="col-lg-12 ">
+                            <div class="form-group">
+                                <label class="form-label">Ảnh đại diện:</label>
+                                <div class="d-flex align-items-center">
+                                    <v-avatar :image="previewImage || infoUser.pathAvatar" size="80"></v-avatar>
+                                    <input type="file" @change="onFileSelected" accept="image/*" class="input-control ml-2" />
                                 </div>
                             </div>
-                        </v-form>
-                        <div class="d-grid mt-4">
-                            <button type="button" @click="Register()" :disabled="!form" class="btn btn-primary">Đăng ký</button>
-                        </div>
-                    </BModal>
-                    <BModal v-model="viewdialogChangePassword" hide-footer title="Đổi mật khẩu" modal-class="fadeInRight"
-                        class="v-modal-custom" centered size="md" >
-                        <div class="card-body">
-                            <v-form v-model="formChange" ref="formChange">
+                        </BCol>
+                        <BCol class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label">Họ và tên:</label>
+                                <v-text-field v-model="infoUser.fullName" :rules="[rules.required]" variant="outlined" clearable placeholder="Nhập vào họ và tên" class="input-control"></v-text-field>
+                            </div>
+                        </BCol>
+                        <BCol class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label">Ngày sinh:</label>
+                                <input type="date" class="form-control" id="example-datemin" :rules="[rules.required]" v-model="infoUser.doB" min="2000-01-02">
+                            </div>
+                        </BCol>
+                        <BCol class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label">Số điện thoại:</label>
+                                <v-text-field v-model="infoUser.phoneNumber" :rules="[rules.required]" type="text" variant="outlined" clearable placeholder="Nhập vào số điện thoại"></v-text-field>
+                            </div>
+                        </BCol>
+                        <BCol class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label">Số điện thoại đăng ký Zalo:</label>
+                                <v-text-field v-model="infoUser.sdtZalo" :rules="[rules.required]" type="text" @input="formatPrice" variant="outlined" clearable placeholder="Nhập vào số điện thoại đăng ký zalo" class="input-control"></v-text-field>
+                            </div>
+                        </BCol>
+                        <BCol class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label">CCCD:</label>
+                                <v-text-field v-model="infoUser.cccd" :rules="[rules.required]" type="text" @input="formatPrice" variant="outlined" clearable placeholder="Nhập vào căn cước công dân" class="input-control"></v-text-field>
+                            </div>
+                        </BCol>
+                        <BCol class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label">Email:</label>
+                                <v-text-field v-model="infoUser.email" :rules="[rules.required]" type="text" @input="formatPrice" variant="outlined" clearable placeholder="Nhập vào email" class="input-control"></v-text-field>
+                            </div>
+                        </BCol>
+                        <div v-show="handleIconClick" v-cloak>
+                            <transition name="slide-up">
                                 <BRow>
-                                    <BCol class="col-lg-12">
+                                    <BCol class="col-lg-4">
                                         <div class="form-group">
-                                            <label class="form-label">Mật khẩu cũ:</label>
-                                            <v-text-field 
-                                                :type="showPassword ? 'text' : 'password'" 
-                                                v-model="changePassword.passwordOld" 
-                                                :rules="[rules.required]" 
-                                                variant="outlined" 
-                                                clearable 
-                                                placeholder="Nhập vào mật khẩu cũ" 
-                                                class="input-control"
-                                                :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                                                @click:append-inner="showPassword = !showPassword"
-                                            ></v-text-field>
-                                        </div>
-                                    </BCol>
-                                    <BCol class="col-lg-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Mật khẩu mới:</label>
-                                            <v-text-field 
-                                                :type="showPassword1 ? 'text' : 'password'" 
-                                                v-model="changePassword.passwordNew" 
-                                                :rules="[rules.validPassword]"
-                                                variant="outlined" 
+                                            <label class="form-label">Tỉnh</label>
+                                            <v-autocomplete
+                                                v-model="selectTinh"
+                                                :items="tinhData"
+                                                item-title="full_name"
+                                                item-value="id"
+                                                outlined
+                                                dense
                                                 clearable
-                                                placeholder="Nhập vào mật khẩu mới"
-                                                class="input-control"
-                                                :append-inner-icon="showPassword1 ? 'mdi-eye' : 'mdi-eye-off'"
-                                                @click:append-inner="showPassword1 = !showPassword1"
-                                            ></v-text-field>
+                                                @update:modelValue="onTinhChange"
+                                            ></v-autocomplete>
+                                        </div>
+                                    </BCol>
+                                    <BCol class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Quận, huyện</label>
+                                            <v-autocomplete
+                                                v-model="selectHuyen"
+                                                :items="huyenData"
+                                                item-title="full_name"
+                                                item-value="id"
+                                                outlined
+                                                dense
+                                                clearable
+                                                :disabled="!selectTinh"
+                                                @update:modelValue="onHuyenChange"
+                                            ></v-autocomplete>
+                                        </div>
+                                    </BCol>
+                                    <BCol class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Phường, xã</label>
+                                            <v-autocomplete
+                                                v-model="selectPhuong"
+                                                :items="phuongData"
+                                                item-title="full_name"
+                                                item-value="id"
+                                                outlined
+                                                dense
+                                                clearable
+                                                :disabled="!selectHuyen"
+                                                @update:modelValue="onPhuongChange"
+                                            ></v-autocomplete>
                                         </div>
                                     </BCol>
                                     <BCol class="col-lg-12">
                                         <div class="form-group">
-                                            <label class="form-label">Mật khẩu mới:</label>
-                                            <v-text-field 
-                                                :type="showPassword2 ? 'text' : 'password'" 
-                                                v-model="passwordConfirm" 
-                                                :rules="[rules.matchPassword]" 
-                                                variant="outlined" 
-                                                clearable 
-                                                placeholder="Nhập lại mật khẩu" 
-                                                class="input-control"
-                                                :append-inner-icon="showPassword2 ? 'mdi-eye' : 'mdi-eye-off'"
-                                                @click:append-inner="showPassword2 = !showPassword2"
-                                            ></v-text-field>
+                                        <label class="form-label">Số nhà:</label>
+                                        <v-text-field
+                                            v-model="address"
+                                            variant="outlined"
+                                            :disabled="!selectPhuong"
+                                            clearable
+                                            placeholder="Nhập vào tên dịch vụ"
+                                            class="input-control"
+                                            @input="FormatAddress"
+                                        ></v-text-field>
                                         </div>
                                     </BCol>
                                 </BRow>
-                            </v-form>
+                            </transition>
                         </div>
-                        <div class="modal-footer v-modal-footer">
-                            <BButton type="button" variant="light" @click="viewdialogChangePassword = false">Close
-                            </BButton>
-                            <BButton type="button" variant="primary" @click="btnChangePassword()" :disabled="!formChange">Save Changes</BButton>
-                        </div>
-                    </BModal>
-                    <BModal v-model="viewdialogInfo" hide-footer title="Đổi thông tin cá nhân" modal-class="fadeInRight"
-                        class="v-modal-custom" centered size="xl" >
-                        <div class="card-body">
-                            <v-form v-model="form" ref="form">
-                                <BRow>
-                                    <BCol class="col-lg-12 ">
-                                        <div class="form-group">
-                                            <label class="form-label">Ảnh đại diện:</label>
-                                            <div class="d-flex align-items-center">
-                                                <v-avatar :image="previewImage || infoUser.pathAvatar" size="80"></v-avatar>
-                                                <input type="file" @change="onFileSelected" accept="image/*" class="input-control ml-2" />
-                                            </div>
-                                        </div>
-                                    </BCol>
-                                    <BCol class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Họ và tên:</label>
-                                            <v-text-field v-model="infoUser.fullName" :rules="[rules.required]" variant="outlined" clearable placeholder="Nhập vào họ và tên" class="input-control"></v-text-field>
-                                        </div>
-                                    </BCol>
-                                    <BCol class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Ngày sinh:</label>
-                                            <input type="date" class="form-control" id="example-datemin" :rules="[rules.required]" v-model="infoUser.doB" min="2000-01-02">
-                                        </div>
-                                    </BCol>
-                                    <BCol class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Số điện thoại:</label>
-                                            <v-text-field v-model="infoUser.phoneNumber" :rules="[rules.required]" type="text" variant="outlined" clearable placeholder="Nhập vào số điện thoại"></v-text-field>
-                                        </div>
-                                    </BCol>
-                                    <BCol class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Số điện thoại đăng ký Zalo:</label>
-                                            <v-text-field v-model="infoUser.sdtZalo" :rules="[rules.required]" type="text" @input="formatPrice" variant="outlined" clearable placeholder="Nhập vào số điện thoại đăng ký zalo" class="input-control"></v-text-field>
-                                        </div>
-                                    </BCol>
-                                    <BCol class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="form-label">CCCD:</label>
-                                            <v-text-field v-model="infoUser.cccd" :rules="[rules.required]" type="text" @input="formatPrice" variant="outlined" clearable placeholder="Nhập vào căn cước công dân" class="input-control"></v-text-field>
-                                        </div>
-                                    </BCol>
-                                    <BCol class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Email:</label>
-                                            <v-text-field v-model="infoUser.email" :rules="[rules.required]" type="text" @input="formatPrice" variant="outlined" clearable placeholder="Nhập vào email" class="input-control"></v-text-field>
-                                        </div>
-                                    </BCol>
-                                    <div v-show="handleIconClick" v-cloak>
-                                        <transition name="slide-up">
-                                            <BRow>
-                                                <BCol class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Tỉnh</label>
-                                                        <v-autocomplete
-                                                            v-model="selectTinh"
-                                                            :items="tinhData"
-                                                            item-title="full_name"
-                                                            item-value="id"
-                                                            outlined
-                                                            dense
-                                                            clearable
-                                                            @update:modelValue="onTinhChange"
-                                                        ></v-autocomplete>
-                                                    </div>
-                                                </BCol>
-                                                <BCol class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Quận, huyện</label>
-                                                        <v-autocomplete
-                                                            v-model="selectHuyen"
-                                                            :items="huyenData"
-                                                            item-title="full_name"
-                                                            item-value="id"
-                                                            outlined
-                                                            dense
-                                                            clearable
-                                                            :disabled="!selectTinh"
-                                                            @update:modelValue="onHuyenChange"
-                                                        ></v-autocomplete>
-                                                    </div>
-                                                </BCol>
-                                                <BCol class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Phường, xã</label>
-                                                        <v-autocomplete
-                                                            v-model="selectPhuong"
-                                                            :items="phuongData"
-                                                            item-title="full_name"
-                                                            item-value="id"
-                                                            outlined
-                                                            dense
-                                                            clearable
-                                                            :disabled="!selectHuyen"
-                                                            @update:modelValue="onPhuongChange"
-                                                        ></v-autocomplete>
-                                                    </div>
-                                                </BCol>
-                                                <BCol class="col-lg-12">
-                                                    <div class="form-group">
-                                                    <label class="form-label">Số nhà:</label>
-                                                    <v-text-field
-                                                        v-model="address"
-                                                        variant="outlined"
-                                                        :disabled="!selectPhuong"
-                                                        clearable
-                                                        placeholder="Nhập vào tên dịch vụ"
-                                                        class="input-control"
-                                                        @input="FormatAddress"
-                                                    ></v-text-field>
-                                                    </div>
-                                                </BCol>
-                                            </BRow>
-                                        </transition>
-                                    </div>
-                                    <BCol class="col-lg-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Địa chỉ:</label>
-                                            <v-text-field v-model="infoUser.address" :rules="[rules.required]" type="text" readonly @click="handleIconClick = !handleIconClick" variant="outlined" class="input-control"></v-text-field>
-                                        </div>
-                                    </BCol>
-                                </BRow>
-                            </v-form>
-                        </div>
-                        <div class="modal-footer v-modal-footer">
-                            <BButton type="button" variant="light" @click="viewdialogInfo = false">Close
-                            </BButton>
-                            <BButton type="button" variant="primary" @click="UpdateInfo()" :disabled="!form">Save Changes</BButton>
-                        </div>
-                    </BModal>
-                </div>
+                        <BCol class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label">Địa chỉ:</label>
+                                <v-text-field v-model="infoUser.address" :rules="[rules.required]" type="text" readonly @click="handleIconClick = !handleIconClick" variant="outlined" class="input-control"></v-text-field>
+                            </div>
+                        </BCol>
+                    </BRow>
+                </v-form>
             </div>
-        </BNav>
+            <div class="modal-footer v-modal-footer">
+                <BButton type="button" variant="light" @click="viewdialogInfo = false">Close
+                </BButton>
+                <BButton type="button" variant="primary" @click="UpdateInfo()" :disabled="!form">Save Changes</BButton>
+            </div>
+        </BModal>
         <router-view>
 
         </router-view>

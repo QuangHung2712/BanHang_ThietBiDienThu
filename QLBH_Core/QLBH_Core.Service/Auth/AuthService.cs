@@ -59,6 +59,10 @@ namespace QLBH_Core.Service.Auth
             {
                 throw new Exception("Mật khẩu cũ không đúng");
             }
+            if(infoUser.Password == data.PasswordNew)
+            {
+                throw new Exception("Mật khẩu mới không được trùng với mật khẩu cũ");
+            }
             infoUser.Password = data.PasswordNew;
             _Context.Users.Update(infoUser);
             await _Context.SaveChangesAsync();

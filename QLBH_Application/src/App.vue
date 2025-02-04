@@ -35,9 +35,9 @@ export default {
 </template>
 <style>
   .custom-snackbar {
-    top: 15vh !important; /* Vị trí từ trên xuống */
+    top: 15% !important; /* Vị trí từ trên xuống */
     right: 10% !important; /* Cách lề phải 10% */
-    bottom: auto !important; /* Đảm bảo không bị căn dưới */
+    /* bottom: auto !important;  Đảm bảo không bị căn dưới  */
     left: auto !important; /* Loại bỏ căn lề trái nếu cần */
   }
   .v-snackbar__content{
