@@ -23,7 +23,7 @@ namespace QLBH_Core.API.Extensions
             {
 
                 context.Response.ContentType = "application/json";
-                context.Response.StatusCode = 400;
+                context.Response.StatusCode = 500;
                 var errorResponse = new ErrorResponse
                 {
                     Success = false,
@@ -41,7 +41,7 @@ namespace QLBH_Core.API.Extensions
             catch (Exception ex)
             {
                 context.Response.ContentType = "application/json";
-                context.Response.StatusCode = 400;
+                context.Response.StatusCode = 500;
 
                 var errorResponse = new ErrorResponse
                 {

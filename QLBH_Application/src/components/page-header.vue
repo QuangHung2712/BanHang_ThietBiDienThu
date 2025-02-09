@@ -33,7 +33,7 @@ export default {
             <BRow class="align-items-center">
                 <BCol md="12">
                     <ul class="breadcrumb">
-                        <!-- <li class="breadcrumb-item"><router-link to="/manage">Trang quản lý</router-link></li> -->
+                        <li class="breadcrumb-item"><router-link to="/">Trang chủ</router-link></li>
                         <li class="breadcrumb-item"><BLink href="javascript: void(0)" @click="goBack">{{ pageTitle }}</BLink></li>
                         <li class="breadcrumb-item" aria-current="page">{{ title }}</li>
                     </ul>

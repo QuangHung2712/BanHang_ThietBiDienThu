@@ -1,6 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import Store from "../../state/store";
+import notification from "@/components/common/Notification"; 
 
 
 // Tạo một instance của axios
@@ -57,6 +58,21 @@ apiClient.interceptors.response.use(
               } else if ( /* Read more about handling dismissals below */ confirm.dismiss === Swal.DismissReason.cancel) return
           });
         return new Promise(() => {}); 
+    }
+    if(error.response?.status === 400){
+      notification.show(
+        "Lỗi yêu cầu",
+        "Dữ liệu gửi không hợp lệ. Vui lòng kiểm tra lại!",
+        "error"
+      );
+      return new Promise(() => {}); 
+    }
+    if(error.response?.status === 500){
+      notification.show(
+        error.response.data.Message??"Đã xảy ra lỗi",error.response.data.Errors.join('. ')?? " ",
+        "error"
+      );
+      return new Promise(() => {}); 
     }
     return Promise.reject(error);
   }

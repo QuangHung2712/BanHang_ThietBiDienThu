@@ -178,8 +178,4 @@ D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.API\bin\Debug\net8.0\seleniu
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.API\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.API\bin\Debug\net8.0\WebDriver.dll
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.API\obj\Debug\net8.0\QLBH_Core.API.sourcelink.json
-D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.API\bin\Debug\net8.0\QLBH_Core.API.staticwebassets.endpoints.json
-D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.API\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.API\obj\Debug\net8.0\staticwebassets\msbuild.QLBH_Core.API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.API\bin\Debug\net8.0\System.Linq.Dynamic.Core.dll

@@ -1069,10 +1069,7 @@
           "System.Linq.Dynamic.Core": "1.6.0.1"
         },
         "runtime": {
-          "QLBH_Core.Commons.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "QLBH_Core.Commons.dll": {}
         }
       }
     }

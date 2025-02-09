@@ -87,10 +87,7 @@
                         .then(response=>{
                             this.productData = response.data;
                         })
-                        .catch(error=>{
-                            console.log(error.response)
-                            this.$notify(error.response.data.Message??"Đã xảy ra lỗi",error.response.data.Errors.join('. ')?? " ","error");
-                        })
+
             },
             createEditProduct(id){
                 if(id === 0){
