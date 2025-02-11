@@ -71,16 +71,17 @@ namespace QLBH_Core.Service.ProductS
                     };
                     _Context.Products.Add(newProduct);
                     await _Context.SaveChangesAsync();
-
-                    // Thêm mới thông tin sản phẩm
-                    var infoProductNew = data.InfoProduct.Select(item => new InfoProduct
+                    if(data.InfoProduct != null)
                     {
-                        Name = item.Name,
-                        Describe = item.Describe,
-                        ProductId = newProduct.Id,
-                    }).ToList();
-                    await _Context.InfoProducts.AddRangeAsync(infoProductNew);
-
+                        // Thêm mới thông tin sản phẩm
+                        var infoProductNew = data.InfoProduct.Select(item => new InfoProduct
+                        {
+                            Name = item.Name,
+                            Describe = item.Describe,
+                            ProductId = newProduct.Id,
+                        }).ToList();
+                        await _Context.InfoProducts.AddRangeAsync(infoProductNew);
+                    }    
                     //Lưu ảnh vào local
                     string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), $@"{Constants.DefaultValue.DEFAULT_BASE_Directory_IMG}\images\Products\{newProduct.Id}");
                     var filepath =  Functions.SaveImgToDB(img, directoryPath);
@@ -117,14 +118,17 @@ namespace QLBH_Core.Service.ProductS
                 //Xoá các thông tin sản phẩm cũ và thêm mới lại
                 var infoProduct = _Context.InfoProducts.Where(item=> item.ProductId == productData.Id).ToList();
                 _Context.InfoProducts.RemoveRange(infoProduct);
-                var infoProductNew = data.InfoProduct.Select(item => new InfoProduct
+                if (data.InfoProduct != null)
                 {
-                    Name = item.Name,
-                    Describe = item.Describe,
-                    ProductId = productData.Id,
-                }).ToList();
-                await _Context.InfoProducts.AddRangeAsync(infoProductNew);
-
+                    // Thêm mới thông tin sản phẩm
+                    var infoProductNew = data.InfoProduct.Select(item => new InfoProduct
+                    {
+                        Name = item.Name,
+                        Describe = item.Describe,
+                        ProductId = productData.Id,
+                    }).ToList();
+                    await _Context.InfoProducts.AddRangeAsync(infoProductNew);
+                }
                 //Xoá các đường dẫn ảnh sản phẩm cũ
                 var imgProductsOld =  _Context.ImgProducts.Where(item => item.ProductId == productData.Id).ToList();
                 _Context.ImgProducts.RemoveRange(imgProductsOld);
@@ -153,6 +157,40 @@ namespace QLBH_Core.Service.ProductS
             {
                 Directory.Delete(directoryPath, true);
             }
+        }
+        public List<ResultFindProductResModel> FindProduct(string? name)
+        {
+            var result = _Context.Products.Where(item => 
+                (string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower())))
+                .Select(record => new ResultFindProductResModel
+                {
+                    Id = record.Id,
+                    Name = record.Name,
+                    Price = record.Price,
+                    ProductType = record.ProductTypeId,
+                    PathImg = Functions.ConverPathIMG(_Context.ImgProducts.Where(img => img.ProductId == record.Id).Select(img => img.Path).FirstOrDefault()?? ""),
+                }).ToList();
+            if(result.Count == 0)
+            {
+                throw new Exception("Không có sản phẩm nào thoả mãn điều kiện của bạn");
+            }
+            return result;
+        }
+        public GetPriceProductResModel GetPriceByProductName(string? name)
+        {
+            var data = _Context.Products
+                .Where(item => string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower()))
+                .ToList();
+            if(data.Count == 0)
+            {
+                throw new Exception("Không có sản phẩm nào thoả mãn điều kiện của bạn");
+            }
+
+            return new GetPriceProductResModel
+            {
+                PriceFrom = data.Min(item => item.Price),
+                PriceTo = data.Max(item => item.Price),
+            };
         }
     }
 }

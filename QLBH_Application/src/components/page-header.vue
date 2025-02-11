@@ -35,7 +35,7 @@ export default {
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><router-link to="/">Trang chủ</router-link></li>
                         <li class="breadcrumb-item"><BLink href="javascript: void(0)" @click="goBack">{{ pageTitle }}</BLink></li>
-                        <li class="breadcrumb-item" aria-current="page">{{ title }}</li>
+                        <li class="" aria-current="page">{{ title }}</li>
                     </ul>
                 </BCol>
                 <BCol md="12">

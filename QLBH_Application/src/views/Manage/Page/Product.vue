@@ -241,6 +241,10 @@
                         .catch(error=>{
                             this.$notify(error.response.data.Message,error.response.data.Errors.join('. '),"error");
                         })
+            },
+            formatTable(data){
+                var result = this.$common.formatTablePrice(data)
+                return result
             }
         }
     }
@@ -276,9 +280,9 @@
             :headers = "headersTable"
                 :items="filteredProduct"
                 class="border-sm rounded-lg">
-                <template v-slot:[`item.priceRoom`]="{ item }">
+                <template v-slot:[`item.price`]="{ item }">
                     <!-- Hiển thị giá đã định dạng -->
-                    {{ FormatTablePrice(item.priceRoom) }}
+                    {{ this.$common.formatTablePrice(item.price) }}
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
                     <v-icon small @click="(viewdialogDetail = !viewdialogDetail)&& (DetailRoom(item.id))" title="Xem chi tiết">mdi-eye</v-icon>

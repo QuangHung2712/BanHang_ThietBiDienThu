@@ -69,6 +69,8 @@ export default {
     data() {
         return{
             isOpen: false,
+            menu: true,
+            searchProductName: null,
         }
     },
     name: "LANDING",
@@ -76,8 +78,7 @@ export default {
         Rightbar,
     },
     created(){
-
-        
+        this.searchProductName = this.$route.query.productName ?? "";
     },
     methods: {
         changeMode(mode) {
@@ -102,6 +103,7 @@ export default {
 
             // Kiểm tra và thêm hoặc xóa sự kiện click bên ngoài
             if (navbar.classList.contains("show")) {
+                this.menu = false;
                 document.addEventListener("click", this.handleOutsideClick);
             } else {
                 document.removeEventListener("click", this.handleOutsideClick);
@@ -112,14 +114,25 @@ export default {
             const toggler = document.querySelector(".navbar-toggler");
 
             // Kiểm tra nếu click nằm ngoài menu và nút toggle
-            if (!navbar.contains(event.target) && !toggler.contains(event.target)) {
+            if ((!navbar.contains(event.target) && !toggler.contains(event.target)) || navbar.contains(event.target) && toggler.contains(event.target)) {
                 navbar.classList.remove("show");
+                this.menu = true;
                 document.removeEventListener("click", this.handleOutsideClick);
             }
         },
-        Test() {
-            this.isOpen = !this.isOpen;
+        closeMenu() {
+            this.menu = true;
+            const navbar = document.getElementById("navbarTogglerDemo01");
+            navbar.classList.remove("show");
         },
+        FindProductName(){
+            this.$router.push({ 
+                name: 'lstproduct', 
+                query: { 
+                    productName: this.searchProductName // Thêm query parameters vào URL
+                } 
+                });
+        }
     },
     setup() {
         return {
@@ -139,19 +152,22 @@ export default {
 
 <template>
     <header id="home">
-        <BNav style="background-color: #326e51; " class="navbar navbar-expand-md navbar-light default">
+        <BNav style="background-color: #326e51; " class="navbar navbar-expand-md navbar-light default p-2">
             <div class="container">
                 <BRow>
-                    <BCol class="col-xl-3 col-6">
+                    <BCol class="col-xl-3 col-6 col-md-4">
                         <a class="pc-navbar-brand" href="/" >
                             <img src="/images/logo.png" alt="" class="logo" >
                         </a>
                     </BCol>
                     
-                    <button @click="toggleMenu" class="navbar-toggler col-6" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <button @click="toggleMenu" v-show="menu" class="navbar-toggler col-6" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="col-xl-6 collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <button @click="closeMenu" v-show="!menu" class="navbar-toggler col-6" type="button" >
+                        <v-icon>mdi-close</v-icon>
+                    </button>
+                    <div class="col-6 collapse navbar-collapse" id="navbarTogglerDemo01">
                         <ul class="navbar-nav ">
                             <li class="nav-item px-1">
                                 <h4><router-link class="nav-link" to="/">TRANG CHỦ</router-link></h4>
@@ -167,8 +183,8 @@ export default {
                             </li>
                         </ul>
                     </div>
-                    <BCol class="col-xl-3">
-                        <v-text-field label="Tìm kiếm sản phẩm" hide-details append-icon="mdi-magnify"  class="custom-text-field"></v-text-field>
+                    <BCol class="col-xl-3 col-12">
+                        <v-text-field label="Tìm kiếm sản phẩm" v-model="searchProductName" hide-details append-icon="mdi-magnify"  @click:append="FindProductName()"  class="custom-text-field"></v-text-field>
                     </BCol>
                 </BRow>
             </div>

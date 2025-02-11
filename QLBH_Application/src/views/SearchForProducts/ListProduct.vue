@@ -20,20 +20,63 @@
                 ],
                 orderBy: null,
                 searchPrice: [0,1000000],
+                productTypeData: [],
+                searchProductType: null,
                 productData:[
-                    {id:1,name: "Tủ Bàn Mát Salad GoldCool 15 Khay 1/6 1.5M",price:3000000,img: 'images/test/z3277142962677_4bdf325a013a1ace985c6d15a2cfe66a.jpg'},
-                    {id:2,name: "Sản phẩm 2",price:3000000,img: 'images/test/z3277142962677_4bdf325a013a1ace985c6d15a2cfe66a.jpg'},
-                    {id:3,name: "Sản phẩm 3",price:3000000,img: 'images/test/z3277142962677_4bdf325a013a1ace985c6d15a2cfe66a.jpg'},
-                    {id:4,name: "Sản phẩm 4",price:3000000,img: 'images/test/z3277142962677_4bdf325a013a1ace985c6d15a2cfe66a.jpg'},
-                    {id:5,name: "Sản phẩm 5",price:3000000,img: 'images/test/z3277142962677_4bdf325a013a1ace985c6d15a2cfe66a.jpg'},
-                    {id:6,name: "Sản phẩm 6",price:3000000,img: 'images/test/z3277142962677_4bdf325a013a1ace985c6d15a2cfe66a.jpg'},
-                    {id:7,name: "Sản phẩm 7",price:3000000,img: 'images/test/z3277142962677_4bdf325a013a1ace985c6d15a2cfe66a.jpg'},
-                    {id:8,name: "Sản phẩm 8",price:3000000,img: 'images/test/z3277142962677_4bdf325a013a1ace985c6d15a2cfe66a.jpg'},
-                    {id:9,name: "Sản phẩm 9",price:3000000,img: 'images/test/z3277142962677_4bdf325a013a1ace985c6d15a2cfe66a.jpg'},
-                    {id:10,name: "Sản phẩm 10",price:3000000,img: 'images/test/z3277142962677_4bdf325a013a1ace985c6d15a2cfe66a.jpg'},
-
 
                 ]
+            }
+        },
+        watch: {
+            // Theo dõi sự thay đổi của query parameter productName
+            '$route.query.productName': function(newValue) {
+                this.productName = newValue?? ""; // Cập nhật giá trị của productName
+                // Gọi phương thức mỗi khi query thay đổi
+                this.GetProductType(newValue); 
+                this.GetPriceProduct(newValue);
+                this.GetProduct(newValue);
+            }
+        },
+        computed:{
+            filteredProduct() {
+                return this.productData.filter((item) => {
+                    // Lọc theo loại sản phẩm
+                    const matchesProductType = this.searchProductType
+                    ? item.productType === this.searchProductType
+                    : true;
+
+                    // Lọc theo tên khách 
+                    const matchesPriceFrom = item.price >= this.searchPrice[0] && item.price <= this.searchPrice[1]
+
+                    return matchesProductType &&  matchesPriceFrom;
+                });
+            },
+        },
+        created(){
+            var productName = this.$route.query.productName ?? "";
+            this.GetProductType(productName);
+            this.GetPriceProduct(productName);
+            this.GetProduct(productName);
+        },
+        methods:{
+            GetProductType(productName){
+                this.$apiClient.get(`/ProductType/GetProductTypeByName?name=${productName}`)
+                        .then(response=>{
+                            this.productTypeData = response.data;
+                        })
+            },
+            GetPriceProduct(productName){
+                this.$apiClient.get(`/Product/GetPrice?name=${productName}`)
+                        .then(response=>{
+                            this.searchPrice[0] = response.data.priceFrom;
+                            this.searchPrice[1] = response.data.priceTo;
+                        })
+            },
+            GetProduct(productName){
+                this.$apiClient.get(`/Product/FindProduct?name=${productName}`)
+                        .then(response=>{
+                            this.productData = response.data;
+                        })
             }
         }
     }
@@ -47,10 +90,10 @@
             <v-autocomplete
                 clearable
                 label="Loại sản phẩm"
-                :items="arrange"
-                item-title="title"
-                item-value="value"
-                v-model="orderBy"
+                :items="productTypeData"
+                item-title="name"
+                item-value="id"
+                v-model="searchProductType"
                 variant="outlined"
                 hide-details>
             </v-autocomplete>
@@ -106,11 +149,11 @@
             <BButton type="button" variant="primary" @click="saveUpdate()" >Lọc</BButton>
         </BCol>
     </BRow>
-    <BRow>
-        <div v-for="(item,index) in productData" :key="index" class="col-xl-3 col-12 p-2">
+    <BRow style="min-height: 685px;">
+        <div v-for="(item,index) in filteredProduct" :key="index" class="col-xl-3 col-12 p-2">
             <router-link >
                 <div class="d-flex w-100 justify-center">
-                    <img :src="item.img" width="280" height="280" alt="">
+                    <img :src="item.pathImg" width="280" height="280" alt="">
                 </div>
                 <div class="text-center mt-3">
                     <p style="font-size: 18px !important;">{{ item.name }}</p>

@@ -57,5 +57,15 @@ namespace QLBH_Core.Service.ProductTypeS
             _Context.ProductTypes.DeletePermanent(Id);
             await _Context.SaveChangesAsync();
         }
+        public List<BaseModel> GetProductypeByName(string? name)
+        {
+            return _Context.Products.Where(item=> string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower()))
+                .GroupBy(item=>item.ProductTypeId)
+                .Select(record => new BaseModel
+                {
+                    Id = record.First().ProductTypeId,
+                    Name = record.First().ProductType.Name,
+                }).ToList();
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace QLBH_Core.Service.ProductTypeS
         List<BaseModel> GetAll();
         Task CreateEdit(CreateEditProductTypeReqModel data);
         Task Delete(long Id);
+        List<BaseModel> GetProductypeByName(string? name);
     }
 }

@@ -15,5 +15,7 @@ namespace QLBH_Core.Service.ProductS
         Task Delete(long Id);
         GetDetailProductResModel GetDetail(long Id);
         List<GetAllProductResModel> GetAll();
+        List<ResultFindProductResModel> FindProduct(string? name);
+        GetPriceProductResModel GetPriceByProductName(string? name);
     }
 }

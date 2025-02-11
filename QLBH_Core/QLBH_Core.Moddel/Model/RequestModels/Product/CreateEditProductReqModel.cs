@@ -12,6 +12,6 @@ namespace QLBH_Core.Moddel.Model.RequestModels
         public decimal Price { get; set; }
         public string WarrantyPeriod { get; set; } // Thời gian bảo thành
         public long ProductType { get; set; }
-        public List<InfoProductCreateEditReqModel> InfoProduct { get; set; }
+        public List<InfoProductCreateEditReqModel>? InfoProduct { get; set; }
     }
 }

@@ -48,5 +48,17 @@ namespace QLBH_Core.API.Controllers
             var result = _productService.GetDetail(Id);
             return Ok(result);
         }
+        [HttpGet]
+        public IActionResult GetPrice([FromQuery] string? name)
+        {
+            var result = _productService.GetPriceByProductName(name);
+            return Ok(result);
+        }
+        [HttpGet]
+        public IActionResult FindProduct([FromQuery] string? name)
+        {
+            var result = _productService.FindProduct(name);
+            return Ok(result);
+        }
     }
 }

@@ -42,5 +42,11 @@ namespace QLBH_Core.API.Controllers
             await _productTypeService.Delete(Id);
             return Ok();
         }
+        [HttpGet]
+        public IActionResult GetProductTypeByName([FromQuery] string? name) 
+        {
+            var result =  _productTypeService.GetProductypeByName(name);
+            return Ok(result);
+        }
     }
 }
