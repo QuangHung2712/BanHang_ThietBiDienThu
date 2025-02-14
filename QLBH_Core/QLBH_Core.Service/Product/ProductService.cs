@@ -71,17 +71,15 @@ namespace QLBH_Core.Service.ProductS
                     };
                     _Context.Products.Add(newProduct);
                     await _Context.SaveChangesAsync();
-                    if(data.InfoProduct != null)
+
+                    // Thêm mới thông tin sản phẩm
+                    var infoProductNew = data.InfoProduct.Select(item => new InfoProduct
                     {
-                        // Thêm mới thông tin sản phẩm
-                        var infoProductNew = data.InfoProduct.Select(item => new InfoProduct
-                        {
-                            Name = item.Name,
-                            Describe = item.Describe,
-                            ProductId = newProduct.Id,
-                        }).ToList();
-                        await _Context.InfoProducts.AddRangeAsync(infoProductNew);
-                    }    
+                        Name = item.Name,
+                        Describe = item.Describe,
+                        ProductId = newProduct.Id,
+                    }).ToList();
+                    await _Context.InfoProducts.AddRangeAsync(infoProductNew);  
                     //Lưu ảnh vào local
                     string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), $@"{Constants.DefaultValue.DEFAULT_BASE_Directory_IMG}\images\Products\{newProduct.Id}");
                     var filepath =  Functions.SaveImgToDB(img, directoryPath);
@@ -118,17 +116,16 @@ namespace QLBH_Core.Service.ProductS
                 //Xoá các thông tin sản phẩm cũ và thêm mới lại
                 var infoProduct = _Context.InfoProducts.Where(item=> item.ProductId == productData.Id).ToList();
                 _Context.InfoProducts.RemoveRange(infoProduct);
-                if (data.InfoProduct != null)
+
+                // Thêm mới thông tin sản phẩm
+                var infoProductNew = data.InfoProduct.Select(item => new InfoProduct
                 {
-                    // Thêm mới thông tin sản phẩm
-                    var infoProductNew = data.InfoProduct.Select(item => new InfoProduct
-                    {
-                        Name = item.Name,
-                        Describe = item.Describe,
-                        ProductId = productData.Id,
-                    }).ToList();
-                    await _Context.InfoProducts.AddRangeAsync(infoProductNew);
-                }
+                    Name = item.Name,
+                    Describe = item.Describe,
+                    ProductId = productData.Id,
+                }).ToList();
+                await _Context.InfoProducts.AddRangeAsync(infoProductNew);
+
                 //Xoá các đường dẫn ảnh sản phẩm cũ
                 var imgProductsOld =  _Context.ImgProducts.Where(item => item.ProductId == productData.Id).ToList();
                 _Context.ImgProducts.RemoveRange(imgProductsOld);

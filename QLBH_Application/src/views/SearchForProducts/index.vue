@@ -80,6 +80,12 @@ export default {
     created(){
         this.searchProductName = this.$route.query.productName ?? "";
     },
+    watch: {
+        // Theo dõi sự thay đổi của query parameter productName
+        '$route.query.productName': function(newValue) {
+            this.searchProductName = newValue?? null
+        },
+    },
     methods: {
         changeMode(mode) {
             this.currentMode = mode;
@@ -126,6 +132,10 @@ export default {
             navbar.classList.remove("show");
         },
         FindProductName(){
+            if(this.searchProductName == ""){
+                this.$notify("Vui lòng nhập tên sản phẩm","","error");
+                return;
+            }
             this.$router.push({ 
                 name: 'lstproduct', 
                 query: { 
@@ -184,14 +194,14 @@ export default {
                         </ul>
                     </div>
                     <BCol class="col-xl-3 col-12">
-                        <v-text-field label="Tìm kiếm sản phẩm" v-model="searchProductName" hide-details append-icon="mdi-magnify"  @click:append="FindProductName()"  class="custom-text-field"></v-text-field>
+                        <v-text-field label="Tìm kiếm sản phẩm" v-model="searchProductName" hide-details append-icon="mdi-magnify"  @click:append="FindProductName()" @keyup.enter="FindProductName()"  class="custom-text-field"></v-text-field>
                     </BCol>
                 </BRow>
             </div>
 
         </BNav>
     </header>
-    <v-container>
+    <v-container style="min-height: 880px;">
         <router-view>
         </router-view>
     </v-container>

@@ -86,6 +86,12 @@ export default [
                 meta: { title: "Liên hệ" },
                 component: () => import("../views/SearchForProducts/Contact.vue"),
             },
+            {
+                path: "detail/:productId",
+                name: "detail",
+                meta: { title: "Chi tiết sản phẩm" },
+                component: () => import("../views/SearchForProducts/ProductDetail.vue"),
+            },
         ]
     },
 ]

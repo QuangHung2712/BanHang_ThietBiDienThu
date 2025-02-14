@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./QLBH_Core
+      dockerfile: Dockerfile
+    ports:
+      - "7254:80"  # Truy cập backend qua cổng 7254
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./QLBH_Application
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"  # Truy cập frontend qua cổng 8080
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "@Hungksdtqn2002"  # Mật khẩu quản trị viên
+      ACCEPT_EULA: "Y"

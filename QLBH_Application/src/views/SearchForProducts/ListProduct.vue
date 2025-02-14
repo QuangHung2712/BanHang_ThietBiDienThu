@@ -13,7 +13,6 @@
         data(){
             return{
                 arrange:[
-                    {title: 'Thứ tự mặc định', value: 0},
                     {title: 'Mới nhất', value: 1},
                     {title: 'Giá từ thấp đến cao', value: 2},
                     {title: 'Giá từ cao đến thấp', value: 3},
@@ -30,16 +29,16 @@
         watch: {
             // Theo dõi sự thay đổi của query parameter productName
             '$route.query.productName': function(newValue) {
-                this.productName = newValue?? ""; // Cập nhật giá trị của productName
+                // Cập nhật giá trị của productName
                 // Gọi phương thức mỗi khi query thay đổi
-                this.GetProductType(newValue); 
-                this.GetPriceProduct(newValue);
-                this.GetProduct(newValue);
-            }
+                this.GetProductType(newValue??""); 
+                this.GetPriceProduct(newValue??"");
+                this.GetProduct(newValue??"");
+            },
         },
         computed:{
             filteredProduct() {
-                return this.productData.filter((item) => {
+                let filtered = this.productData.filter((item) => {
                     // Lọc theo loại sản phẩm
                     const matchesProductType = this.searchProductType
                     ? item.productType === this.searchProductType
@@ -50,6 +49,29 @@
 
                     return matchesProductType &&  matchesPriceFrom;
                 });
+                if(this.orderBy == 2){
+                    return filtered.sort((a, b) => a.price - b.price);
+                }
+                else if(this.orderBy == 3){
+                    return filtered.sort((a, b) => b.price - a.price);
+                }
+                return filtered;
+            },
+            formattedPriceTo: {
+                get() {
+                    return this.$common.formatPrice(this.searchPrice[1]) ;
+                },
+                set(value) {
+                    this.searchPrice[1] = this.$common.formatPrice(value);
+                },
+            },
+            formattedPriceFrom: {
+                get() {
+                    return this.$common.formatPrice(this.searchPrice[0]) ;
+                },
+                set(value) {
+                    this.searchPrice[0] = this.$common.formatPrice(value);
+                },
             },
         },
         created(){
@@ -77,6 +99,11 @@
                         .then(response=>{
                             this.productData = response.data;
                         })
+            },
+            GotoDetail(id){
+                const route = this.$router.resolve({ name: 'detail', params: { productId: id } });
+                window.open(route.href, '_blank');
+
             }
         }
     }
@@ -98,14 +125,14 @@
                 hide-details>
             </v-autocomplete>
         </BCol>
-        <BCol class="col-xl-3 p-3">
+        <BCol class="col-xl-4 p-3">
             <div class="form-group m-0">
-                <label class="form-label">Giá phòng</label>
+                <label class="form-label">Giá sản phẩm</label>
                 <v-range-slider
                     v-model="searchPrice"
                     range
-                    min="0"
-                    max="10000000"
+                    :min="searchPrice[0]"
+                    :max="searchPrice[1]"
                     step="1000"
                     color="primary"
                     hide-details
@@ -113,21 +140,22 @@
                 <BRow>
                     <BCol class="col-6">
                         <v-text-field
-                            v-model="searchPrice[0]"
+                            v-model="formattedPriceFrom"
                             v-currency
                             currency="VND"
                             locale="vi-VN"
                             label="Từ"
                             hide-details
+                            suffix="VNĐ"
                         ></v-text-field>
                     </BCol>
                     <BCol class="col-6">
                         <v-text-field
                             label="Đến"
-                            v-model="searchPrice[1]"
+                            v-model="formattedPriceTo"
                             :type="'text'"
                             hide-details
-                            suffix="đ"
+                            suffix="VNĐ"
                         ></v-text-field>
                     </BCol>
                 </BRow>
@@ -145,13 +173,10 @@
                 hide-details>
             </v-select>
         </BCol>
-        <BCol class="col-xl-1 d-flex align-center">
-            <BButton type="button" variant="primary" @click="saveUpdate()" >Lọc</BButton>
-        </BCol>
     </BRow>
     <BRow style="min-height: 685px;">
         <div v-for="(item,index) in filteredProduct" :key="index" class="col-xl-3 col-12 p-2">
-            <router-link >
+            <router-link @click="GotoDetail(item.id)" target="_blank">
                 <div class="d-flex w-100 justify-center">
                     <img :src="item.pathImg" width="280" height="280" alt="">
                 </div>

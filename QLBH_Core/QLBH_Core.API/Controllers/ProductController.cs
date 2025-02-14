@@ -42,7 +42,6 @@ namespace QLBH_Core.API.Controllers
             return Ok(result);
         }
         [HttpGet("{Id}")]
-        [Permission(Enums.FeatureCode.Admin)]
         public IActionResult GetDetail(long Id)
         {
             var result = _productService.GetDetail(Id);
