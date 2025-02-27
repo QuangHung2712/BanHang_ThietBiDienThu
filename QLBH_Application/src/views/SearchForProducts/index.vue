@@ -49,6 +49,19 @@
         .logo {
             width: 80%; /* Kích thước hình ảnh giảm xuống 50% khi màn hình nhỏ */
         }
+        #home{
+            min-height: 110px;
+        }
+        .v-container{
+            padding: 16px 16px 16px 16px !important;
+        }
+        .m15{
+            margin-bottom: 7px;
+        }
+        .navbar-toggler{
+            color: white !important;
+            border: 0px;
+        }
     }
 </style>
 
@@ -165,17 +178,17 @@ export default {
         <BNav style="background-color: #326e51; " class="navbar navbar-expand-md navbar-light default p-2">
             <div class="container">
                 <BRow>
-                    <BCol class="col-xl-3 col-6 col-md-4">
+                    <BCol class="col-xl-3 col-6 col-md-4 m15">
                         <a class="pc-navbar-brand" href="/" >
                             <img src="/images/logo.png" alt="" class="logo" >
                         </a>
                     </BCol>
                     
-                    <button @click="toggleMenu" v-show="menu" class="navbar-toggler col-6" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                    <button @click="toggleMenu" v-show="menu" class="navbar-toggler col-6 m15" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                        <v-icon size="x-large">mdi-menu</v-icon>                      
                     </button>
-                    <button @click="closeMenu" v-show="!menu" class="navbar-toggler col-6" type="button" >
-                        <v-icon>mdi-close</v-icon>
+                    <button @click="closeMenu" v-show="!menu" class="navbar-toggler col-6 m15" type="button" >
+                        <v-icon size="x-large">mdi-close</v-icon>
                     </button>
                     <div class="col-6 collapse navbar-collapse" id="navbarTogglerDemo01">
                         <ul class="navbar-nav ">
@@ -198,10 +211,9 @@ export default {
                     </BCol>
                 </BRow>
             </div>
-
         </BNav>
     </header>
-    <v-container style="min-height: 880px;">
+    <v-container style="min-height: 880px;" class="p-0">
         <router-view>
         </router-view>
     </v-container>

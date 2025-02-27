@@ -70,6 +70,8 @@ createApp(App)
               validEmail: v => /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(v) || 'Email phải hợp lệ và kết thúc bằng @gmail.com',
               validPassword: v => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(v) || 'Mật khẩu phải có ít nhất 8 ký tự, bao gồm ít nhất 1 chữ cái và 1 chữ số',
               matchPassword: (v) => v === this.changePassword.passwordNew || 'Mật khẩu xác nhận không khớp',
+              validPhone: (v) => /^(0|\+84)(3[2-9]|5[2689]|7[06-9]|8[1-9]|9[0-9])\d{7}$/.test(v) || 'Số điện thoại không hợp lệ',
+
             }
           }
         }

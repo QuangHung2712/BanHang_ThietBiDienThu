@@ -255,7 +255,7 @@
         <BCardBody class="p-0">
             <BRow>
                 <BCol class="col-sm-4 col-6">
-                    <v-select
+                    <v-autocomplete
                         clearable
                         label="Loại sản phẩm"
                         :items="productTypeData"
@@ -264,7 +264,7 @@
                         v-model="searchProductType"
                         variant="outlined"
                         hide-details>
-                    </v-select>
+                    </v-autocomplete>
                 </BCol>
                 <Bcol class="col-sm-8 col-6"><v-text-field label="Tên sản phẩm" variant="outlined" v-model="searchName" clearable hide-details></v-text-field></Bcol>
             </BRow>

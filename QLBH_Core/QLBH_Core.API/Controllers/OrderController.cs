@@ -19,11 +19,17 @@ namespace QLBH_Core.API.Controllers
             _orderService = orderService;
         }
         [HttpPost]
-        [Permission(Enums.FeatureCode.Admin)]
         public async Task<ActionResult> Create([FromBody] CreateOrderReqModel input)
         {
             await _orderService.Create(input);
             return Ok();
+        }
+        [HttpGet]
+        [Permission(Enums.FeatureCode.Admin)]
+        public IActionResult GetAll()
+        {
+            var result = _orderService.GetAll();
+            return Ok(result);
         }
     }
 }

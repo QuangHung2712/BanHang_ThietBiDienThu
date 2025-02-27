@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace QLBH_Core.Moddel.Model.RequestModels
 {
-    public class CreateOrderReqModel : BaseEntity
+    public class CreateOrderReqModel
     {
-        public string? SDTZaloCustomer { get; set; }
+        public long ProductId { get; set; }
+        public string CustomerName { get; set; }
+        public string SDTCustomer { get; set; }
+        public string SDTZaloCustomer { get; set; }
+        public string? FbCustomer { get; set; }
     }
 }

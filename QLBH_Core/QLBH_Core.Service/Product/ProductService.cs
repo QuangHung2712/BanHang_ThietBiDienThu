@@ -45,6 +45,7 @@ namespace QLBH_Core.Service.ProductS
                 Id = result.Id,
                 Name = result.Name,
                 ProductTypeId = result.ProductTypeId,
+                ProductTypeName = _Context.ProductTypes.GetById(result.ProductTypeId).Name,
                 Price = result.Price,
                 WarrantyPeriod= result.WarrantyPeriod,  
                 InfoProduct = _Context.InfoProducts.Where(item=> item.ProductId == result.Id).Select(record=> new InfoProductGetResModel { Id = record.Id,Name = record.Name, Describe = record.Describe}).ToList(),
@@ -55,6 +56,10 @@ namespace QLBH_Core.Service.ProductS
         {
             //Kiểm tra xem loại sản phẩm có tồn tại không
             _Context.ProductTypes.IsGetById(data.ProductType);
+            if((data.InfoProduct == null ) || (data.InfoProduct.Count == 0))
+            {
+                throw new Exception("Bạn vui lòng thêm ít nhất 1 thông số");
+            }
 
             if(data.Id <= 0)
             {
@@ -188,6 +193,18 @@ namespace QLBH_Core.Service.ProductS
                 PriceFrom = data.Min(item => item.Price),
                 PriceTo = data.Max(item => item.Price),
             };
+        }
+        public List<ResultFindProductResModel> GetProductByType (long productType, long Id)
+        {
+            var result = _Context.Products.Where(item=> item.ProductTypeId == productType && !item.IsDelete && item.Id != Id).Select(record=> new ResultFindProductResModel
+            {
+                Id = record.Id, 
+                Name = record.Name, 
+                Price = record.Price,
+                ProductType = record.ProductTypeId,
+                PathImg = Functions.ConverPathIMG(_Context.ImgProducts.Where(img => img.ProductId == record.Id).Select(img => img.Path).FirstOrDefault() ?? ""),
+            }).ToList();
+            return result;
         }
     }
 }

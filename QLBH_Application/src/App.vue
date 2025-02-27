@@ -11,10 +11,10 @@ export default {
     },
   },
   created(){
-    this.$apiClient.get("/Server/ping")
-      .catch(()=>{
-        this.$router.push({ name: 'error'});
-      })
+    // this.$apiClient.get("/Server/ping")
+    //   .catch(()=>{
+    //     this.$router.push({ name: 'error'});
+    //   })
   }
   
 };

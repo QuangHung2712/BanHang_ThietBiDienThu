@@ -11,6 +11,7 @@ namespace QLBH_Core.Moddel.Model.ResponseModels
     {
         public string Name { get; set; }
         public long ProductTypeId { get; set; }
+        public string ProductTypeName { get; set; }
         public decimal Price { get; set; }
         public string WarrantyPeriod { get; set; } // Thời gian bảo hành
         public List<InfoProductGetResModel> InfoProduct {  get; set; }

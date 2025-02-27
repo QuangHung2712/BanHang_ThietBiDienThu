@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using QLBH_Core.Moddel.Model.RequestModels;
 using QLBH_Core.Moddel.Entity;
+using QLBH_Core.Moddel.Model.ResponseModels;
+using Microsoft.EntityFrameworkCore;
+using QLBH_Core.Commons;
 
 namespace QLBH_Core.Service.Order
 {
@@ -21,7 +24,33 @@ namespace QLBH_Core.Service.Order
         }
         public async Task Create(CreateOrderReqModel data)
         {
-            SendMessage("Test thử gửi tin nhắn zalo", data.SDTZaloCustomer);
+            var newOrder = new Orders
+            {
+                ProductId = data.ProductId,
+                CustomerName = data.CustomerName,
+                SDTCustomer = data.SDTCustomer,
+                SDTZaloCustomer = data.SDTZaloCustomer,
+                FbCustomer = data.FbCustomer,
+                OrderDate = DateTime.Now,
+            };
+            _Context.Orders.Add(newOrder);
+            await _Context.SaveChangesAsync();
+        }
+        public List<GetAllOrderResModel> GetAll()
+        {
+            var result = _Context.Orders.Include(item=> item.Product).Select(record=> new GetAllOrderResModel
+            {
+                Id = record.Id,
+                CustomerName= record.CustomerName,
+                FbCustomer= record.FbCustomer,
+                OrderDate = record.OrderDate,
+                ProductId = record.ProductId,
+                SDTCustomer= record.SDTCustomer,
+                SDTZaloCustomer= record.SDTZaloCustomer,
+                ProductName = record.Product.Name,
+                ProductIMG = Functions.ConverPathIMG(_Context.ImgProducts.Where(img => img.ProductId == record.ProductId).Select(img => img.Path).FirstOrDefault() ?? "")
+            }).ToList();
+            return result;
         }
         private void SendMessage(string message,string SDT)
         {

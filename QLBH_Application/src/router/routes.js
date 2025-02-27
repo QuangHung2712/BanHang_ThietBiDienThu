@@ -24,6 +24,12 @@ export default [
                 meta: { title: "Loại sản phẩm",requiresAuth: true },
                 component: () => import("../views/Manage/Page/ProductType.vue"),  
             },
+            {
+                path: "order",
+                name: "order",
+                meta: { title: "Chờ tư vấn",requiresAuth: true },
+                component: () => import("../views/Manage/Page/Order.vue"),  
+            },
         ]
     },
     {
