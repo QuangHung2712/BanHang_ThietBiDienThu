@@ -48,6 +48,9 @@
                     name: null
                 },
                 form1: false,
+                length: null,
+                width: null,
+                height: null,
             }
         },
         computed:{
@@ -109,6 +112,9 @@
                     };
                     this.time = null;
                     this.unitFeature = null;
+                    this.length = null;
+                    this.width = null;
+                    this.height = null;
                 }
                 else{
                     this.$apiClient.get(`/Product/GetDetail/${id}`)
@@ -116,8 +122,12 @@
                             this.selectProduct = response.data;
                             this.loadImages();
                             const str = this.selectProduct.warrantyPeriod.split(" ");
+                            const strSize = this.selectProduct.size.split("x");
                             this.time = str[0];
                             this.unitFeature = str[1]
+                            this.length = strSize[0];
+                            this.width = strSize[1];
+                            this.height = strSize[2]
                         })
                         .catch(error=>{
                             this.$notify(error.response.data.Message??"Đã xảy ra lỗi",error.response.data.Errors.join('. ')?? " ","error");
@@ -171,6 +181,9 @@
                 const formData = new FormData();
                 formData.append("id",this.selectProduct.id);
                 formData.append("name", this.selectProduct.name);
+                formData.append("size", this.length + "x" + this.width + "x" + this.height);
+                formData.append("capacity", this.selectProduct.capacity);
+                formData.append("manufacturer", this.selectProduct.manufacturer);
                 formData.append("price", this.selectProduct.price);
                 formData.append("warrantyPeriod",this.time + " " + this.unitFeature);
                 formData.append("productType", this.selectProduct.productTypeId);
@@ -306,6 +319,48 @@
                             <label class="form-label">Giá:</label>
                             <v-text-field v-model="selectProduct.price" :rules="[rules.required]" @input="FormatPrice" type="text" variant="outlined" clearable placeholder="Nhập vào giá của sản phẩm" class="input-control"></v-text-field>
                         </div>
+                        <div class="form-group m-0">
+                            <label class="form-label">Kích thước:</label>
+                            <BRow>
+                                <BCol class="col-lg-4">
+                                    <v-text-field
+                                        label="Chiều dài"
+                                        v-model="length"
+                                        type="number"
+                                        variant="outlined"
+                                        suffix="CM">
+                                    </v-text-field>
+                                </BCol>
+                                <BCol class="col-lg-4">
+                                    <v-text-field
+                                        label="Chiều rộng"
+                                        v-model="width"
+                                        type="number"
+                                        variant="outlined"
+                                        suffix="CM">
+                                    </v-text-field>
+                                </BCol>
+                                <BCol class="col-lg-4">
+                                    <v-text-field
+                                        label="Chiều cao"
+                                        v-model="height"
+                                        type="number"
+                                        variant="outlined"
+                                        suffix="CM">
+                                    </v-text-field>
+                                </BCol>
+                            </BRow>
+                        </div>
+                        <BRow>
+                            <div class="form-group m-0 col-xl-6">
+                                <label class="form-label">Công suất:</label>
+                                <v-text-field v-model="selectProduct.capacity" :rules="[rules.required]" type="number" variant="outlined" clearable placeholder="Nhập vào công suất của sản phẩm" class="input-control" suffix="W"></v-text-field>
+                            </div>
+                            <div class="form-group m-0 col-xl-6">
+                                <label class="form-label">Hãng:</label>
+                                <v-text-field v-model="selectProduct.manufacturer" :rules="[rules.required]" type="text" variant="outlined" clearable placeholder="Nhập vào hàng sản xuất của sản phẩm" class="input-control"></v-text-field>
+                            </div>
+                        </BRow>
                         <div class="form-group m-0">
                             <label class="form-label">Loại sản phẩm:</label>
                             <v-autocomplete

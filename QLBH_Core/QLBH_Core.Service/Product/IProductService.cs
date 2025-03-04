@@ -18,5 +18,6 @@ namespace QLBH_Core.Service.ProductS
         List<ResultFindProductResModel> FindProduct(string? name);
         GetPriceProductResModel GetPriceByProductName(string? name);
         List<ResultFindProductResModel> GetProductByType(long productType,long Id);
+        List<GetAllProductByTypeResModel> GetAllProductByType();
     }
 }

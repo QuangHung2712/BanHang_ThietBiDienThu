@@ -12,6 +12,9 @@ namespace QLBH_Core.Moddel.Model.ResponseModels
         public string Name { get; set; }
         public long ProductTypeId { get; set; }
         public string ProductTypeName { get; set; }
+        public string Size { get; set; } // Kích thước
+        public int Capacity { get; set; } // Công suất
+        public string Manufacturer { get; set; } // Hãng
         public decimal Price { get; set; }
         public string WarrantyPeriod { get; set; } // Thời gian bảo hành
         public List<InfoProductGetResModel> InfoProduct {  get; set; }

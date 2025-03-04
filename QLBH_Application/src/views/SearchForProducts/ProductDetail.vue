@@ -85,57 +85,62 @@
 </script>
 <template>
     <pageheader title="Chi tiết sản phẩm" pageTitle="Sản phẩm" />
-    <BRow class="mb-10">
-        <BCol class="col-xl-8 col-12">
-            <v-row justify="center" class="m-0" >
-                <!-- Carousel chính -->
-                <v-carousel v-model="currentSlide" hide-delimiters show-arrows="hover" height="480" >
-                    <v-carousel-item v-for="(item, index) in product.pathImg" :key="index">
-                        <v-img :src="item" @click="showImg(index)" />
-                    </v-carousel-item>
-                </v-carousel>
+    <div class="container">
+        <BRow class="mb-10">
+            <BCol class="col-xl-7 col-12">
+                <v-row justify="center" class="m-0" >
+                    <!-- Carousel chính -->
+                    <v-carousel v-model="currentSlide" hide-delimiters show-arrows="hover" height="480" >
+                        <v-carousel-item v-for="(item, index) in product.pathImg" :key="index">
+                            <v-img :src="item" @click="showImg(index)" />
+                        </v-carousel-item>
+                    </v-carousel>
 
-                <!-- Thumbnails -->
-                <v-row justify="center" class="m-0">
-                    <div
-                    v-for="(item, index) in product.pathImg"
-                    :key="index"
-                    @click="currentSlide = index"
-                    class="thumbnail-container"
-                    >
-                    <v-img
-                        :src="item"
-                        :alt="'Ảnh phòng ' + index "
-                        class="thumbnail"
-                        :class="{ active: currentSlide === index }"
-                    />
-                    </div>
+                    <!-- Thumbnails -->
+                    <v-row justify="center" class="m-0">
+                        <div
+                        v-for="(item, index) in product.pathImg"
+                        :key="index"
+                        @click="currentSlide = index"
+                        class="thumbnail-container"
+                        >
+                        <v-img
+                            :src="item"
+                            :alt="'Ảnh phòng ' + index "
+                            class="thumbnail"
+                            :class="{ active: currentSlide === index }"
+                        />
+                        </div>
+                    </v-row>
                 </v-row>
-            </v-row>
-        </BCol>
-        <BCol class="col-xl-4">
-            <div style="min-height: 480px;">
-                <h3>{{ product.name }}</h3>
-                <h1 class="text-red">{{ this.$common.formatTablePrice(product.price) }}</h1>
-                <ul class="text-xl text-black">
-                    <li><strong>Loại sản phẩm: </strong>{{ product.productTypeName }}</li>
-                    <li><strong>Bảo hành: </strong>{{ product.warrantyPeriod }}</li>
-                    <div v-for="(item ,index) in product.infoProduct" :key="index">
-                        <li><strong>{{ item.name }}: </strong>{{ item.describe }}</li>
-                    </div>
-                </ul>
-            </div>
-            <v-btn 
-            class="custom-button"
-            color="#3E5C44" 
-            size="large"
-            variant="flat"
-            @click="btnAdvise()"
-            >
-                <strong>TƯ VẤN</strong>
-            </v-btn>
-        </BCol>
-    </BRow>
+            </BCol>
+            <BCol class="col-xl-5">
+                <div style="min-height: 480px;">
+                    <h3>{{ product.name }}</h3>
+                    <h1 class="text-red">{{ this.$common.formatTablePrice(product.price) }}</h1>
+                    <ul class="text-xl text-black">
+                        <li><strong>Kích thước(DxRxC cm): </strong>{{ product.size }}</li>
+                        <li><strong>Công suất: </strong>{{ product.capacity }}W</li>
+                        <li><strong>Hãng: </strong>{{ product.manufacturer }}</li>
+                        <li><strong>Loại sản phẩm: </strong>{{ product.productTypeName }}</li>
+                        <li><strong>Bảo hành: </strong>{{ product.warrantyPeriod }}</li>
+                        <div v-for="(item ,index) in product.infoProduct" :key="index">
+                            <li><strong>{{ item.name }}: </strong>{{ item.describe }}</li>
+                        </div>
+                    </ul>
+                </div>
+                <v-btn 
+                class="custom-button"
+                color="#3E5C44" 
+                size="large"
+                variant="flat"
+                @click="btnAdvise()"
+                >
+                    <strong>TƯ VẤN</strong>
+                </v-btn>
+            </BCol>
+        </BRow>
+    </div>
     <BCard >
         <BCardHeader class="p-0">
             <h3>Sản phẩm tương tự</h3>

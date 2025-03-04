@@ -61,7 +61,7 @@ namespace QLNhaTro.API.MiddleWare
             }
             catch(Exception ex)
             {
-                context.Response.ContentType = "application/json";
+                /*context.Response.ContentType = "application/json";
                 context.Response.StatusCode = StatusCodes.Status401Unauthorized;
 
                 var errorResponse = new ErrorResponse
@@ -72,7 +72,7 @@ namespace QLNhaTro.API.MiddleWare
 
                 context.Response.WriteAsync(JsonSerializer.Serialize(errorResponse));
                 // do nothing if jwt validation fails
-                // user is not attached to context so request won't have access to secure routes
+                // user is not attached to context so request won't have access to secure routes*/
             }
         }
     }

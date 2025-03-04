@@ -65,5 +65,11 @@ namespace QLBH_Core.API.Controllers
             var result = _productService.GetProductByType(productType,Id);
             return Ok(result);
         }
+        [HttpGet]
+        public IActionResult GetAllProductByType()
+        {
+            var result = _productService.GetAllProductByType();
+            return Ok(result);
+        }
     }
 }

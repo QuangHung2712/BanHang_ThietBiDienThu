@@ -23,15 +23,15 @@ namespace QLBH_Core.Service.ProductS
         }
         public List<GetAllProductResModel> GetAll()
         {
-            var result =  _Context.Products.Where(item=> !item.IsDelete).Select(item=>new GetAllProductResModel
+            var result = _Context.Products.Where(item => !item.IsDelete).Select(item => new GetAllProductResModel
             {
-                Id = item.Id,  
+                Id = item.Id,
                 Name = item.Name,
                 Price = item.Price,
                 ProductTypeName = item.ProductType.Name,
                 WarrantyPeriod = item.WarrantyPeriod,
             }).ToList();
-            if(result.Count <= 0)
+            if (result.Count <= 0)
             {
                 throw new NotFoundException("Sản phẩm");
             }
@@ -40,28 +40,31 @@ namespace QLBH_Core.Service.ProductS
         public GetDetailProductResModel GetDetail(long Id)
         {
             var result = _Context.Products.GetAvailableById(Id);
-                return new GetDetailProductResModel
+            return new GetDetailProductResModel
             {
                 Id = result.Id,
                 Name = result.Name,
                 ProductTypeId = result.ProductTypeId,
                 ProductTypeName = _Context.ProductTypes.GetById(result.ProductTypeId).Name,
+                Capacity = result.Capacity,
+                Manufacturer = result.Manufacturer,
+                Size = result.Size,
                 Price = result.Price,
-                WarrantyPeriod= result.WarrantyPeriod,  
-                InfoProduct = _Context.InfoProducts.Where(item=> item.ProductId == result.Id).Select(record=> new InfoProductGetResModel { Id = record.Id,Name = record.Name, Describe = record.Describe}).ToList(),
+                WarrantyPeriod = result.WarrantyPeriod,
+                InfoProduct = _Context.InfoProducts.Where(item => item.ProductId == result.Id).Select(record => new InfoProductGetResModel { Id = record.Id, Name = record.Name, Describe = record.Describe }).ToList(),
                 PathImg = Functions.ConverPathIMG(_Context.ImgProducts.Where(item => item.ProductId == result.Id).Select(record => record.Path).ToList()),
             };
         }
-        public async Task CreateEdit(CreateEditProductReqModel data,List<IFormFile> img)
+        public async Task CreateEdit(CreateEditProductReqModel data, List<IFormFile> img)
         {
             //Kiểm tra xem loại sản phẩm có tồn tại không
             _Context.ProductTypes.IsGetById(data.ProductType);
-            if((data.InfoProduct == null ) || (data.InfoProduct.Count == 0))
+            if ((data.InfoProduct == null) || (data.InfoProduct.Count == 0))
             {
                 throw new Exception("Bạn vui lòng thêm ít nhất 1 thông số");
             }
 
-            if(data.Id <= 0)
+            if (data.Id <= 0)
             {
                 using var transaction = await _Context.Database.BeginTransactionAsync();
                 try
@@ -71,6 +74,9 @@ namespace QLBH_Core.Service.ProductS
                     {
                         Name = data.Name,
                         Price = data.Price,
+                        Manufacturer = data.Manufacturer,
+                        Capacity = data.Capacity,
+                        Size = data.Size,
                         ProductTypeId = data.ProductType,
                         WarrantyPeriod = data.WarrantyPeriod,
                     };
@@ -84,10 +90,10 @@ namespace QLBH_Core.Service.ProductS
                         Describe = item.Describe,
                         ProductId = newProduct.Id,
                     }).ToList();
-                    await _Context.InfoProducts.AddRangeAsync(infoProductNew);  
+                    await _Context.InfoProducts.AddRangeAsync(infoProductNew);
                     //Lưu ảnh vào local
                     string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), $@"{Constants.DefaultValue.DEFAULT_BASE_Directory_IMG}\images\Products\{newProduct.Id}");
-                    var filepath =  Functions.SaveImgToDB(img, directoryPath);
+                    var filepath = Functions.SaveImgToDB(img, directoryPath);
                     var imgProducts = filepath.Select(file => new ImgProduct
                     {
                         ProductId = newProduct.Id,
@@ -114,12 +120,15 @@ namespace QLBH_Core.Service.ProductS
                 var productData = _Context.Products.GetAvailableById(data.Id);
                 productData.Name = data.Name;
                 productData.Price = data.Price;
+                productData.Size = data.Size;
+                productData.Manufacturer = data.Manufacturer;
+                productData.Capacity = data.Capacity;
                 productData.ProductTypeId = data.ProductType;
                 productData.WarrantyPeriod = data.WarrantyPeriod;
                 _Context.Products.Update(productData);
 
                 //Xoá các thông tin sản phẩm cũ và thêm mới lại
-                var infoProduct = _Context.InfoProducts.Where(item=> item.ProductId == productData.Id).ToList();
+                var infoProduct = _Context.InfoProducts.Where(item => item.ProductId == productData.Id).ToList();
                 _Context.InfoProducts.RemoveRange(infoProduct);
 
                 // Thêm mới thông tin sản phẩm
@@ -132,7 +141,7 @@ namespace QLBH_Core.Service.ProductS
                 await _Context.InfoProducts.AddRangeAsync(infoProductNew);
 
                 //Xoá các đường dẫn ảnh sản phẩm cũ
-                var imgProductsOld =  _Context.ImgProducts.Where(item => item.ProductId == productData.Id).ToList();
+                var imgProductsOld = _Context.ImgProducts.Where(item => item.ProductId == productData.Id).ToList();
                 _Context.ImgProducts.RemoveRange(imgProductsOld);
                 string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), $@"{Constants.DefaultValue.DEFAULT_BASE_Directory_IMG}\images\Products\{productData.Id}");
                 var filepath = Functions.SaveImgToDB(img, directoryPath);
@@ -162,7 +171,7 @@ namespace QLBH_Core.Service.ProductS
         }
         public List<ResultFindProductResModel> FindProduct(string? name)
         {
-            var result = _Context.Products.Where(item => 
+            var result = _Context.Products.Where(item =>
                 (string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower())))
                 .Select(record => new ResultFindProductResModel
                 {
@@ -170,9 +179,9 @@ namespace QLBH_Core.Service.ProductS
                     Name = record.Name,
                     Price = record.Price,
                     ProductType = record.ProductTypeId,
-                    PathImg = Functions.ConverPathIMG(_Context.ImgProducts.Where(img => img.ProductId == record.Id).Select(img => img.Path).FirstOrDefault()?? ""),
+                    PathImg = Functions.ConverPathIMG(_Context.ImgProducts.Where(img => img.ProductId == record.Id).Select(img => img.Path).FirstOrDefault() ?? ""),
                 }).ToList();
-            if(result.Count == 0)
+            if (result.Count == 0)
             {
                 throw new Exception("Không có sản phẩm nào thoả mãn điều kiện của bạn");
             }
@@ -183,7 +192,7 @@ namespace QLBH_Core.Service.ProductS
             var data = _Context.Products
                 .Where(item => string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower()))
                 .ToList();
-            if(data.Count == 0)
+            if (data.Count == 0)
             {
                 throw new Exception("Không có sản phẩm nào thoả mãn điều kiện của bạn");
             }
@@ -194,16 +203,31 @@ namespace QLBH_Core.Service.ProductS
                 PriceTo = data.Max(item => item.Price),
             };
         }
-        public List<ResultFindProductResModel> GetProductByType (long productType, long Id)
+        public List<ResultFindProductResModel> GetProductByType(long productType, long Id = 0)
         {
-            var result = _Context.Products.Where(item=> item.ProductTypeId == productType && !item.IsDelete && item.Id != Id).Select(record=> new ResultFindProductResModel
+            var result = _Context.Products.Where(item => item.ProductTypeId == productType && !item.IsDelete && (Id == 0 || item.Id != Id)).Select(record => new ResultFindProductResModel
             {
-                Id = record.Id, 
-                Name = record.Name, 
+                Id = record.Id,
+                Name = record.Name,
                 Price = record.Price,
                 ProductType = record.ProductTypeId,
                 PathImg = Functions.ConverPathIMG(_Context.ImgProducts.Where(img => img.ProductId == record.Id).Select(img => img.Path).FirstOrDefault() ?? ""),
             }).ToList();
+            return result;
+        }
+        public List<GetAllProductByTypeResModel> GetAllProductByType()
+        {
+            var result = new List<GetAllProductByTypeResModel>();
+            foreach (var item in _Context.ProductTypes.ToList()) 
+            {
+                var newItem = new GetAllProductByTypeResModel();
+                newItem.ProductName = item.Name;
+                newItem.Products = GetProductByType(item.Id);
+                if(newItem.Products.Count != 0)
+                {
+                    result.Add(newItem);
+                }
+            }
             return result;
         }
     }

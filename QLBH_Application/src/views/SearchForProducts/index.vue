@@ -45,6 +45,10 @@
     .logo{
         width: 70%;
     }
+    .col-xl-6 h5{
+        color: white !important;
+        margin-top: 25px;
+    }
     @media (max-width: 768px) {
         .logo {
             width: 80%; /* Kích thước hình ảnh giảm xuống 50% khi màn hình nhỏ */
@@ -64,7 +68,23 @@
         }
     }
 </style>
-
+<style>
+    .product-card {
+        border: 1px solid #ddd;
+        padding: 15px;
+        text-align: center;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+    .product-card:hover {
+        transform: scale(1.05);
+    }
+    .product-card img {
+        width:  100%;
+        height: 250px;
+        border-radius: 10px;
+    }
+</style>
 <script>
 import Rightbar from "@/components/right-bar.vue"
 import { Autoplay, A11y } from 'swiper/modules';
@@ -176,9 +196,9 @@ export default {
 <template>
     <header id="home">
         <BNav style="background-color: #326e51; " class="navbar navbar-expand-md navbar-light default p-2">
-            <div class="container">
+            <div :class="{ 'container': !$vuetify.display.mdAndDown }">
                 <BRow>
-                    <BCol class="col-xl-3 col-6 col-md-4 m15">
+                    <BCol class="col-xl-3 col-6 col-md-2 m15">
                         <a class="pc-navbar-brand" href="/" >
                             <img src="/images/logo.png" alt="" class="logo" >
                         </a>
@@ -190,23 +210,23 @@ export default {
                     <button @click="closeMenu" v-show="!menu" class="navbar-toggler col-6 m15" type="button" >
                         <v-icon size="x-large">mdi-close</v-icon>
                     </button>
-                    <div class="col-6 collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <div class="col-6 col-md-6 collapse navbar-collapse" id="navbarTogglerDemo01">
                         <ul class="navbar-nav ">
                             <li class="nav-item px-1">
-                                <h4><router-link class="nav-link" to="/">TRANG CHỦ</router-link></h4>
+                                <h4><router-link class="nav-link" :to="'/'">TRANG CHỦ</router-link></h4>
                             </li>
                             <li class="nav-item px-1">
-                                <h4><router-link class="nav-link" to="/lstproduct">SẢN PHẨM</router-link></h4>
+                                <h4><router-link class="nav-link" :to="'/lstproduct'">SẢN PHẨM</router-link></h4>
                             </li>
                             <li class="nav-item px-1">
-                                <h4><router-link to="/introduce" class="nav-link" >GIỚI THIỆU</router-link></h4>
+                                <h4><router-link :to="'/introduce'" class="nav-link" >GIỚI THIỆU</router-link></h4>
                             </li>
                             <li class="nav-item px-1">
-                                <h4><router-link to="/contact" class="nav-link"> LIÊN HỆ</router-link></h4>
+                                <h4><router-link :to="'/contact'" class="nav-link"> LIÊN HỆ</router-link></h4>
                             </li>
                         </ul>
                     </div>
-                    <BCol class="col-xl-3 col-12">
+                    <BCol class="col-xl-3 col-12 col-md-4">
                         <v-text-field label="Tìm kiếm sản phẩm" v-model="searchProductName" hide-details append-icon="mdi-magnify"  @click:append="FindProductName()" @keyup.enter="FindProductName()"  class="custom-text-field"></v-text-field>
                     </BCol>
                 </BRow>
@@ -214,7 +234,7 @@ export default {
         </BNav>
     </header>
     <v-container style="min-height: 880px;" class="p-0">
-        <router-view>
+        <router-view :key="$route.fullPath">
         </router-view>
     </v-container>
     <!-- [ layout-card ] end -->
@@ -234,10 +254,25 @@ export default {
     </div>
     <div class="footer">
         <v-container >
-            <h5 style="color: white;">CỬA HÀNG THIẾT BỊ NHÀ HÀNG AN CHI</h5>
-            <p><v-icon>mdi-map-marker</v-icon> Địa chỉ: Lai xá Kim chung Hoài đức, Hanoi, Vietnam</p>
-            <p><v-icon>mdi-email-outline</v-icon> Email: thietbinhahang.anchi@gmail.com</p>
-            <p><v-icon>mdi-phone-outline</v-icon> CSKH: 038 612 5907</p>
+            <BRow>
+                <div class="col-xl-6">
+                    <h3 style="color: white;" class="mt-4">CỬA HÀNG THIẾT BỊ NHÀ HÀNG AN CHI</h3>
+                    <h5><v-icon>mdi-map-marker</v-icon> Địa chỉ: Lai xá Kim chung Hoài đức, Hanoi, Vietnam</h5>
+                    <h5><v-icon>mdi-email-outline</v-icon> Email: thietbinhahang.anchi@gmail.com</h5>
+                    <h5><v-icon>mdi-phone-outline</v-icon> CSKH: 038 612 5907</h5>
+                </div>
+                <div class="col-xl-6">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2642.460570765008!2d105.71467032267958!3d21.045184092730388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDAyJzQyLjQiTiAxMDXCsDQyJzU1LjkiRQ!5e1!3m2!1svi!2s!4v1740997209124!5m2!1svi!2s"
+                        width="80%"
+                        height="300"
+                        style="border: 0"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                </div>
+            </BRow>
         </v-container>
     </div>
 </template>

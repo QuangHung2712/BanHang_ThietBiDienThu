@@ -245,19 +245,19 @@
             </v-select>
         </div>
     </BOffcanvas>
-    <BRow style="min-height: 685px;">
-        <div v-for="(item,index) in filteredProduct" :key="index" class="col-xl-3 col-6 p-2">
-            <router-link @click="GotoDetail(item.id)" target="_blank">
-                <div class="d-flex w-100 justify-center">
-                    <img :src="item.pathImg" width="95%" height="300" alt="">
+    <div class="container">
+        <BRow style="min-height: 685px;">
+            <div class="product-grid col-xl-3 col-md-4 col-6 p-2"  v-for="(item,index) in filteredProduct" :key="index">
+                <div class="product-card " >
+                    <router-link @click="GotoDetail(item.id)" target="_blank">
+                        <div><img :src="item.pathImg" alt="product" /></div>
+                        <div class="product-name">{{ item.name }}</div>
+                        <h4 style="color: red;" class="text m-0">{{ item.price.toLocaleString("vi-vn") }} VNĐ</h4>
+                    </router-link>
                 </div>
-                <div class="text-center mt-3">
-                    <p class="product-name">{{ item.name }}</p>
-                    <h3 style="color: red;" class="text">{{ item.price.toLocaleString("vi-vn") }} VNĐ</h3>
-                </div>
-            </router-link>
-        </div>
-    </BRow>
+            </div>
+        </BRow>
+    </div>
 </template>
 <style scoped>
     @media (max-width: 768px) {

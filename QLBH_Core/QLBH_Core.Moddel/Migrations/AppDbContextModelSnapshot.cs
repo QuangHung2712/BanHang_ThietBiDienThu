@@ -114,8 +114,15 @@ namespace QLBH_Core.Moddel.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -126,6 +133,10 @@ namespace QLBH_Core.Moddel.Migrations
 
                     b.Property<long>("ProductTypeId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WarrantyPeriod")
                         .IsRequired()
