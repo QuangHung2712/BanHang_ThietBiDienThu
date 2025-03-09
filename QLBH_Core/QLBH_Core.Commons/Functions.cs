@@ -156,9 +156,9 @@ namespace QLBH_Core.Commons
         }
         public static string ConverPathIMG(string input)
         {
-            if (input != null)
+            if (!string.IsNullOrEmpty(input))
             {
-                string path = Path.GetRelativePath(DefaultValue.DEFAULT_BASE_Directory_IMG, input);
+                string path = Path.GetRelativePath(DefaultValue.DEFAULT_BASE_Directory_IMG, input) ?? "Đường dẫn không tồn tại";
                 var result = path.Replace("\\", "/");
                 return "/" + result;
             }

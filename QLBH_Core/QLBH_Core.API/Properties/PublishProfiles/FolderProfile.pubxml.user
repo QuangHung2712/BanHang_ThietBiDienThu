@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>D:\Du_An\BanHang_ThietBiDienThu\QLBH_Core\QLBH_Core.API\bin\Release\net8.0\publish\</_PublishTargetUrl>
-    <History>True|2025-02-28T17:50:56.0453326Z||;</History>
+    <_PublishTargetUrl>C:\inetpub\wwwroot\ThietBiAnChiAPI</_PublishTargetUrl>
+    <History>True|2025-03-06T11:00:33.8598387Z||;True|2025-03-06T17:50:30.7119008+07:00||;True|2025-03-06T17:47:24.7738764+07:00||;True|2025-03-06T13:09:19.9752604+07:00||;True|2025-03-06T12:58:58.7208350+07:00||;True|2025-03-06T12:52:00.7752015+07:00||;False|2025-03-06T12:50:37.8073285+07:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

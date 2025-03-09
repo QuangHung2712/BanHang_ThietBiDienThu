@@ -24,7 +24,7 @@
                 productTypeData: [],
                 searchProductType: null,
                 productData:[
-
+                    {pathImg: '', name: '',price: ''}
                 ],
                 offcanvasFilter:false
             }
@@ -77,7 +77,7 @@
                 },
             },
         },
-        created(){
+        mounted(){
             var productName = this.$route.query.productName ?? "";
             this.GetProductType(productName);
             this.GetPriceProduct(productName);
@@ -179,7 +179,7 @@
             </v-select>
         </BCol>
         <BCol class="col-6 d-block d-md-none d-flex justify-center align-center">
-            <v-btn style="background-color: #326e51; color: white; border-radius: 10px;" variant="primary" @click="offcanvasFilter = true" prepend-icon="mdi-menu">Lọc</v-btn>
+            <v-btn style="background-color: #81d4fa; color: white; border-radius: 10px;" variant="primary" @click="offcanvasFilter = true" prepend-icon="mdi-menu">Lọc</v-btn>
         </BCol>
     </BRow>
     <BOffcanvas v-model="offcanvasFilter" title="Lọc sản phẩm" header-class="border-bottom"
@@ -249,11 +249,11 @@
         <BRow style="min-height: 685px;">
             <div class="product-grid col-xl-3 col-md-4 col-6 p-2"  v-for="(item,index) in filteredProduct" :key="index">
                 <div class="product-card " >
-                    <router-link @click="GotoDetail(item.id)" target="_blank">
+                    <a @click="GotoDetail(item.id)" target="_blank">
                         <div><img :src="item.pathImg" alt="product" /></div>
                         <div class="product-name">{{ item.name }}</div>
                         <h4 style="color: red;" class="text m-0">{{ item.price.toLocaleString("vi-vn") }} VNĐ</h4>
-                    </router-link>
+                    </a>
                 </div>
             </div>
         </BRow>
@@ -262,11 +262,8 @@
 <style scoped>
     @media (max-width: 768px) {
         img {
-            height: 170px; /* Khi màn hình nhỏ hơn 768px */
-            width: 170px;
-        }
-        .product-name{
-            font-size: 90% !important;
+            width: 100%;
+            height: 170px;
         }
         .item{
             width: 50% !important;
@@ -275,7 +272,5 @@
             font-size: 18px;
         }
     }
-    .product-name{
-        font-size: 18px;
-    }
+
 </style>

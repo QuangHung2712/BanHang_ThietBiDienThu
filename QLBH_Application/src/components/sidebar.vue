@@ -1,6 +1,6 @@
 <style scoped>
     .navbar-wrapper{
-        background-color: #023573;
+        background-color: #023573 !important;
     }
     .pc-link{
         color: azure;
@@ -155,43 +155,6 @@ export default {
                             <span class="pc-mtext"> Đặt hàng</span>
                         </router-link>
                     </li>
-                    <!-- <li class="pc-item" :class="{ 'active': this.$route.path === `/${towerId}/arise` }">
-                        <router-link :to="`/${towerId}/arise`" class="pc-link">
-                            <span class="pc-micon">
-                                <v-icon icon="mdi-cash-plus"></v-icon>
-                            </span>
-                            <span class="pc-mtext"> Phát sinh</span>
-                        </router-link>
-                    </li>
-                    <li class="pc-item" :class="{ 'active': this.$route.path === `/${towerId}/bill` }">
-                        <router-link :to="`/${towerId}/bill`" class="pc-link">
-                            <span class="pc-micon">
-                                <v-icon icon="mdi-currency-usd"></v-icon>
-                            </span>
-                            <span class="pc-mtext">Hóa đơn</span>
-                        </router-link>
-                    </li>
-                    <li class="pc-item" :class="{ 'active': this.$route.path === `/${towerId}/contract` }">
-                        <router-link :to="`/${towerId}/contract`" class="pc-link">
-                            <span class="pc-micon">
-                                <v-icon icon="mdi-file-document-edit-outline"></v-icon>
-                            </span><span class="pc-mtext">Hợp đồng</span></router-link>
-                    </li>
-                    <li class="pc-item" :class="{ 'active': $route.path === `/${towerId}/report` }">
-                        <router-link :to="`/${towerId}/report`" class="pc-link">
-                            <span class="pc-micon">
-                                <v-icon icon="mdi-chart-line"></v-icon>
-                            </span>
-                            <span class="pc-mtext">Báo cáo</span></router-link>
-                    </li>
-                    <li class="pc-item" :class="{ 'active': this.$route.path === '/tower' }">
-                        <router-link to="/tower" class="pc-link">
-                            <span class="pc-micon">
-                                <v-icon icon="mdi-home-city"></v-icon>
-                            </span>
-                            <span class="pc-mtext">Khu nhà</span>
-                        </router-link>
-                    </li> -->
                 </ul>
 
                 <!-- <div class="card nav-action-card bg-brand-color-4">

@@ -22,6 +22,22 @@ namespace QLBH_Core.Service.Order
         {
             _Context = context;
         }
+        public GetDetailOrderResModel GetDetail( long Id)
+        {
+            return _Context.Orders.Where(item => item.Id == Id).Include(item=> item.Product).Select(record => new GetDetailOrderResModel
+            {
+                CustomerName = record.CustomerName,
+                ProductName = record.Product.Name,
+                Price = record.Product.Price,
+                ProductImg = Functions.ConverPathIMG(_Context.ImgProducts.Where(img => img.ProductId == record.ProductId).Select(img => img.Path).FirstOrDefault() ?? ""),
+                Address = record.Address,
+                Email = record.Email,   
+                Gender = record.Gender == 1 ? "Nam" : "Nữ",
+                Note = record.Note,
+                SDTCustomer = record.SDTCustomer,
+                OrderDate = record.OrderDate.ToString("dd/MM/yyyy")
+            }).FirstOrDefault() ?? throw new NotFoundException("Đơn hàng");
+        }
         public async Task Create(CreateOrderReqModel data)
         {
             var newOrder = new Orders
@@ -29,8 +45,9 @@ namespace QLBH_Core.Service.Order
                 ProductId = data.ProductId,
                 CustomerName = data.CustomerName,
                 SDTCustomer = data.SDTCustomer,
-                SDTZaloCustomer = data.SDTZaloCustomer,
-                FbCustomer = data.FbCustomer,
+                Address = data.Address,
+                Gender= data.Gender,
+                Note = data.Note,
                 OrderDate = DateTime.Now,
             };
             _Context.Orders.Add(newOrder);
@@ -42,37 +59,16 @@ namespace QLBH_Core.Service.Order
             {
                 Id = record.Id,
                 CustomerName= record.CustomerName,
-                FbCustomer= record.FbCustomer,
+                Address = record.Address,
                 OrderDate = record.OrderDate,
                 ProductId = record.ProductId,
                 SDTCustomer= record.SDTCustomer,
-                SDTZaloCustomer= record.SDTZaloCustomer,
                 ProductName = record.Product.Name,
+                Gender = record.Gender,
+                Note = record.Note,
                 ProductIMG = Functions.ConverPathIMG(_Context.ImgProducts.Where(img => img.ProductId == record.ProductId).Select(img => img.Path).FirstOrDefault() ?? "")
-            }).ToList();
+            }).OrderByDescending(item=> item.OrderDate).ToList();
             return result;
-        }
-        private void SendMessage(string message,string SDT)
-        {
-            var options = new ChromeOptions();
-            options.AddArgument("--start-maximized");
-
-            using (var driver = new ChromeDriver(options))
-            {
-                // Mở Zalo Web
-                driver.Navigate().GoToUrl("https://chat.zalo.me/");
-
-                // Yêu cầu đăng nhập thủ công nếu cần (lưu session sau đó)
-                // Tìm kiếm tài khoản
-                var searchBox = driver.FindElement(By.CssSelector("input[placeholder='Tìm bạn bè, tin nhắn...']"));
-                searchBox.SendKeys(SDT);
-                searchBox.SendKeys(Keys.Enter);
-
-                // Gửi tin nhắn
-                var messageBox = driver.FindElement(By.CssSelector("div[contenteditable='true']"));
-                messageBox.SendKeys(message);
-                messageBox.SendKeys(Keys.Enter);
-            }
         }
     }
 }

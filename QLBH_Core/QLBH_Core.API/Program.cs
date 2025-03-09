@@ -17,12 +17,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection(nameof(AppSettings)));
-builder.Services.AddDbContext<AppDbContext>(opt =>
+/*builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(
         builder.Configuration.GetConnectionString(Constants.AppSettingKeys.DEFAULT_CONNECTION)
     );
-}); //Kết nối DataBase
+});*/ //Kết nối DataBase
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 builder.Services.ServiceRegister();
 builder.Services.AddTransient<JwtMiddleWare>();

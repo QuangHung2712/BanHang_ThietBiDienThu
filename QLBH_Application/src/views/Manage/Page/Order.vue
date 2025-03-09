@@ -1,6 +1,5 @@
 <script>
     import pageheader from "@/components/page-header.vue"
-    import Swal from "sweetalert2";
     export default {
         name: "PRODUCT-LIST",
         components: {
@@ -15,10 +14,10 @@
                 headersTable:[
                         {title: 'STT', value: 'stt',sortable: true},
                         {title: 'Tên khách hàng',value:'customerName',sortable: true},
-                        {title: 'SĐT',value:'sdtCustomer',sortable: true},
-                        {title: 'SĐT Zalo',value:'sdtZaloCustomer',sortable: true},
                         {title: 'Tên sản phẩm',value:'productName',sortable: true},
-                        {title: 'Ảnh sản phẩm',value:'productName',sortable: true},
+                        {title: 'Ảnh sản phẩm',value:'productIMG',sortable: true},
+                        {title: 'SĐT',value:'sdtCustomer',sortable: true},
+                        {title: 'Địa chỉ',value:'address',sortable: true},
                         {title: 'Hành đồng',value: 'actions',sortable: false}
                     ],
                 orderData: [
@@ -27,6 +26,10 @@
                 product:[
 
                 ],
+                order:{
+
+                },
+                viewdialog: false
             }
         },
         computed:{
@@ -70,74 +73,10 @@
                             this.product = response.data;
                         })
             },
-            CreateEditProduct(id){
-                if(id == 0){
-                    this.titleDialog = "Thêm loại sản phẩm";
-                    this.selectProductType.id = 0;
-                    this.selectProductType.name = null;
-                }
-                else{
-                    const producttype = this.productTypeData.find(Type => Type.id === id);
-                    this.selectProductType = {...producttype}
-                }
-            },
-            DeleteProduct(id,name){
-                const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "btn btn-danger ml-2",
-                },
-                buttonsStyling: false,
-            });
-
-            swalWithBootstrapButtons
-                .fire({
-                    title: "Bạn có chắc chắn không?",
-                    text: `Bạn đang muốn xóa loại sản phẩm: ${name}`,
-                    icon: "warning",
-                    confirmButtonText: "Có!",
-                    cancelButtonText: "Không!",
-                    showCancelButton: true,
-                })
-                .then((confirm) => {
-                    if (confirm.value) {
-                        this.$apiClient.delete(`/ProductType/Delete/${id}`)
-                                    .then(reponse=> {
-                                        console.log(reponse)
-                                        if(reponse.status){
-                                            swalWithBootstrapButtons.fire(
-                                            "Xóa thành công!",
-                                            `Đã xóa thành công dịch vụ: ${name}`,
-                                            "success")
-                                            this.GetData()
-                                        }
-                                        else{
-                                            swalWithBootstrapButtons.fire(
-                                                reponse.data.Message,
-                                                reponse.data.Errors.join('. '),
-                                                "error"
-                                            );
-                                        }
-                                    })
-                                    .catch(error =>{
-                                        swalWithBootstrapButtons.fire(
-                                            error.reponse.data.Message,
-                                            error.reponse.data.Errors.join('. '),
-                                            "error"
-                                        );
-                                    })
-                    } else if ( /* Read more about handling dismissals below */ confirm.dismiss === Swal.DismissReason.cancel) return
-                });
-            },
-            Save(){
-                this.$apiClient.put(`/ProductType/CreateEdit`,this.selectProductType)
-                        .then(()=>{
-                            this.$notify("Thao tác thành công","","success");
-                            this.GetData();
-                            this.viewdialog = false;
-                        })
-                        .catch(error=>{
-                            this.$notify(error.response.data.Message,error.response.data.Errors.join('. '),"error");
+            Detail(Id){
+                this.$apiClient.get(`/Order/GetDetail/${Id}`)
+                        .then(response=>{
+                            this.order = response.data;
                         })
             }
         }
@@ -181,12 +120,86 @@
                                 {{ index + 1 }}
                             </template>
                             <template v-slot:[`item.actions`]="{ item }">
-                                <v-icon class="ml-lg-3" small @click="(viewdialog = !viewdialog) && (CreateEditProduct(item.id))" >mdi-pencil-circle </v-icon>
-                                <v-icon class="ml-lg-3" small @click="DeleteProduct(item.id,item.name)" >mdi-delete-empty </v-icon>
+                                <v-icon class="ml-lg-3" small @click="(viewdialog = !viewdialog) && (Detail(item.id))" >mdi-eye</v-icon>
+                            </template>
+                            <template v-slot:[`item.productIMG`]="{ item }">
+                                <img :src="item.productIMG" alt="Ảnh sản phẩm" width="70px" height="70px">
                             </template>
                         </v-data-table>
                     </BCardBody>
                 </BCard>
             </BCol>
         </BRow>
+        <BModal v-model="viewdialog" hide-footer title="Chi tiết đơn hàng" modal-class="fadeInRight"
+        class="v-modal-custom" centered size="xl" >
+        <div class="card-body">
+            <v-form v-model="form" ref="form">
+                <BRow>
+                    <BCol class="col-lg-6 d-flex justify-content-center">
+                        <img :src="order.productImg" alt="Ảnh sản phẩm" width="250px" height="250px">
+                    </BCol>
+                    <BCol class="col-lg-6">
+                        <div class="form-group m-0">
+                            <label class="form-label">Tên sản phẩm:</label>
+                            <v-text-field v-model="order.productName" variant="outlined" readonly class="input-control"></v-text-field>
+                        </div> 
+                        <div class="form-group m-0">
+                            <label class="form-label">Giá:</label>
+                            <v-text-field v-model="order.price" type="text" variant="outlined" readonly class="input-control"></v-text-field>
+                        </div>
+                    </BCol>
+                    <BCol class="col-xl-6">
+                        <div class="form-group m-0">
+                            <label class="form-label">Tên khách hàng:</label>
+                            <v-text-field v-model="order.customerName" type="text" variant="outlined" readonly class="input-control"></v-text-field>
+                        </div>
+                    </BCol>
+                    <BCol class="col-xl-6">
+                        <div class="form-group m-0">
+                            <label class="form-label">Số điện thoại:</label>
+                            <v-text-field v-model="order.sdtCustomer" type="text" variant="outlined" readonly class="input-control"></v-text-field>
+                        </div>
+                    </BCol>
+                    <BCol class="col-xl-6">
+                       <BRow>
+                            <BCol class="col-xl-6">
+                                <div class="form-group m-0">
+                                    <label class="form-label">Giới tính:</label>
+                                    <v-text-field v-model="order.gender" type="text" variant="outlined" readonly class="input-control"></v-text-field>
+                                </div>
+                            </BCol>
+                            <BCol class="col-xl-6">
+                                <div class="form-group m-0">
+                                    <label class="form-label">Ngày đặt hàng:</label>
+                                    <v-text-field v-model="order.orderDate" type="text" variant="outlined" readonly class="input-control"></v-text-field>
+                                </div>
+                            </BCol>
+                        </BRow>
+                    </BCol>
+                    <BCol class="col-xl-6">
+                        <div class="form-group m-0">
+                            <label class="form-label">Email:</label>
+                            <v-text-field v-model="order.email" type="text" variant="outlined" readonly class="input-control"></v-text-field>
+                        </div>
+                    </BCol>
+                    <BCol class="col-xl-12">
+                        <div class="form-group m-0">
+                            <label class="form-label">Địa chỉ:</label>
+                            <v-text-field v-model="order.address" type="text" variant="outlined" readonly class="input-control"></v-text-field>
+                        </div>
+                    </BCol>
+                    <BCol class="col-xl-12">
+                        <div class="form-group m-0">
+                            <label class="form-label">Ghi chú:</label>
+                            <v-text-field v-model="order.note" type="text" variant="outlined" class="input-control"></v-text-field>
+                        </div>
+                    </BCol>
+                </BRow>
+            </v-form>
+        </div>
+        <div class="modal-footer v-modal-footer">
+            <BButton type="button" variant="light" @click="viewdialog = false">Close
+            </BButton>
+        </div>
+    </BModal>
 </template>

@@ -16,7 +16,9 @@ namespace QLBH_Core.Moddel.Model.ResponseModels
         public DateTime OrderDate { get; set; }
         public string CustomerName { get; set; }
         public string SDTCustomer { get; set; }
-        public string SDTZaloCustomer { get; set; }
-        public string? FbCustomer { get; set; }
+        public string? Address {get; set; }
+        public int Gender { get; set; }
+        public string? Note { get; set; }
+        public string? Email { get; set; }
     }
 }

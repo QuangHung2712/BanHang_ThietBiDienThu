@@ -258,7 +258,14 @@
             formatTable(data){
                 var result = this.$common.formatTablePrice(data)
                 return result
-            }
+            },
+            Detail(id) {
+                this.$router.replace({
+                    name: "detail",
+                    params: { productId: id },
+                });
+                window.scrollTo({ top: 0, behavior: "smooth" }); // Cuộn lên đầu trang
+            },
         }
     }
 </script>
@@ -298,7 +305,7 @@
                     {{ this.$common.formatTablePrice(item.price) }}
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
-                    <v-icon small @click="(viewdialogDetail = !viewdialogDetail)&& (DetailRoom(item.id))" title="Xem chi tiết">mdi-eye</v-icon>
+                    <v-icon small @click="(Detail(item.id))" target="_blank" title="Xem chi tiết">mdi-eye</v-icon>
                     <v-icon class="ml-lg-3" small @click="(viewdialogEdit = !viewdialogEdit) && (createEditProduct(item.id))" title="Sửa phòng" >mdi-pencil-circle </v-icon>
                     <v-icon class="ml-lg-3" v-show="!item.customerName" small @click="DeleteProduct(item.id,item.name)" title="Xoá phòng" >mdi-delete-empty </v-icon>
                 </template>

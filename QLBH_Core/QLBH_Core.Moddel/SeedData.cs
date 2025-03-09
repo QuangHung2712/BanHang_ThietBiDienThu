@@ -13,7 +13,7 @@ namespace QLBH_Core.Moddel
     {
         public static void Seed(AppDbContext context)
         {
-            if (!context.Users.Any())
+            /*if (!context.Users.Any())
             {
                 using (var transaction = context.Database.BeginTransaction())
                 {
@@ -35,8 +35,8 @@ namespace QLBH_Core.Moddel
                         throw;
                     }
                 }
-            }
-            if (!context.ProductTypes.Any())
+            }*/
+            /*if (!context.ProductTypes.Any())
             {
                 using (var transaction = context.Database.BeginTransaction())
                 {
@@ -143,7 +143,7 @@ namespace QLBH_Core.Moddel
                         throw;
                     }
                 }
-            }
+            }*/
         }
 
     }

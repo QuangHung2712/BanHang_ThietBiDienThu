@@ -3,13 +3,26 @@
         color: azure;
     }
     .nav-item *{
+        margin-bottom: 0px;
         color: azure;
     }
-    .custom-text-field  {
-        color: white !important;
+    .nav-item {
+        margin-bottom: 0px;
+        color: azure;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-right: 1px solid white;
+    }
+    .navbar .nav-link a :hover{
+        color: azure !important;
+    }
+    .nav-item:hover {
+        background-color: #81d4fa;
     }
     .footer{
-        background-color: #326e51;
+        background-color: #81d4fa;
         color: white;
     }
     .floating-icons{
@@ -43,30 +56,109 @@
         transform: scale(1.1);
     }
     .logo{
-        width: 70%;
+        width: 80%;
     }
     .col-xl-6 h5{
         color: white !important;
         margin-top: 25px;
+    }        
+    .search-box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-box input {
+        padding: 5px;
+        width: 70%;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border: 3px solid #4fc3f7;
+    }
+
+    .search-box button {
+        background-color: #4fc3f7;
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-bottom: 1px;
+        font-size: 24px;
+        cursor: pointer;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    #home{
+        height: 130px;
     }
     @media (max-width: 768px) {
         .logo {
             width: 80%; /* Kích thước hình ảnh giảm xuống 50% khi màn hình nhỏ */
         }
         #home{
-            min-height: 110px;
-        }
-        .v-container{
-            padding: 16px 16px 16px 16px !important;
+            min-height: 130px;
         }
         .m15{
             margin-bottom: 7px;
         }
         .navbar-toggler{
-            color: white !important;
+            color: #4fc3f7 !important;
             border: 0px;
         }
+        .search-box {
+            background-color: #4fc3f7 ;
+        }
+        .search-box input {
+            background-color: white;
+        }
     }
+    .call-button {
+  display: flex;
+  align-items: center;
+  width: 200px;
+}
+
+.call-link {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  background-color: #81d4fa;
+  padding: 6px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.call-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-right: -10px;
+  z-index: 1;
+  animation: zoomEffect 1.5s infinite ease-in-out;
+  color: white;
+}
+
+.call-icon img {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes zoomEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 </style>
 <style>
     .product-card {
@@ -83,6 +175,22 @@
         width:  100%;
         height: 250px;
         border-radius: 10px;
+    }
+    .product-name{
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Giới hạn tối đa 2 dòng */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 55px; /* Giới hạn chiều cao */
+        text-overflow: ellipsis;
+        word-break: break-word;
+        font-size: 18px;
+    }
+    @media (max-width: 768px) {
+        .product-name{
+            height: 40px; /* Giới hạn chiều cao */
+            font-size: 90% !important;
+        }
     }
 </style>
 <script>
@@ -165,10 +273,7 @@ export default {
             navbar.classList.remove("show");
         },
         FindProductName(){
-            if(this.searchProductName == ""){
-                this.$notify("Vui lòng nhập tên sản phẩm","","error");
-                return;
-            }
+
             this.$router.push({ 
                 name: 'lstproduct', 
                 query: { 
@@ -195,40 +300,67 @@ export default {
 
 <template>
     <header id="home">
-        <BNav style="background-color: #326e51; " class="navbar navbar-expand-md navbar-light default p-2">
-            <div :class="{ 'container': !$vuetify.display.mdAndDown }">
-                <BRow>
-                    <BCol class="col-xl-3 col-6 col-md-2 m15">
-                        <a class="pc-navbar-brand" href="/" >
-                            <img src="/images/logo.png" alt="" class="logo" >
-                        </a>
-                    </BCol>
-                    
-                    <button @click="toggleMenu" v-show="menu" class="navbar-toggler col-6 m15" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                        <v-icon size="x-large">mdi-menu</v-icon>                      
-                    </button>
-                    <button @click="closeMenu" v-show="!menu" class="navbar-toggler col-6 m15" type="button" >
-                        <v-icon size="x-large">mdi-close</v-icon>
-                    </button>
-                    <div class="col-6 col-md-6 collapse navbar-collapse" id="navbarTogglerDemo01">
-                        <ul class="navbar-nav ">
-                            <li class="nav-item px-1">
-                                <h4><router-link class="nav-link" :to="'/'">TRANG CHỦ</router-link></h4>
+        <BNav style="background-color: white; " class="navbar navbar-expand-md navbar-light default p-0">
+            <div>
+                <BRow >
+                    <div class="container ">
+                        <div class="row mt-2 align-items-center">
+                            <BCol class="col-xl-3 col-6 col-md-2 m15">
+                                <a class="pc-navbar-brand" href="/" >
+                                    <img src="/images/z6387100830882_530977ddd7e3988629efa878cac295bc.jpg" alt="" class="logo" >
+                                </a>
+                            </BCol>
+                            
+                            <button @click="toggleMenu" v-show="menu" class="navbar-toggler col-6 m15" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                                <v-icon size="x-large">mdi-menu</v-icon>                      
+                            </button>
+                            <button @click="closeMenu" v-show="!menu" class="navbar-toggler col-6 m15" type="button" >
+                                <v-icon size="x-large">mdi-close</v-icon>
+                            </button>
+                            <BCol class="col-xl-6 col-12 col-md-4">
+                                <div class="search-box">
+                                    <input v-model="searchProductName" type="text" placeholder="Tìm kiếm sản phẩm, danh mục..." @keyup.enter="FindProductName()" />
+                                    <button @click="FindProductName()" >
+                                        <i class="mdi mdi-magnify" style="color: white"></i>
+                                    </button>
+                                </div>
+                            </BCol>
+                            <BCol class="col-xl-3 col-12 col-md-4 d-none d-md-flex justify-content-end">
+                                <div class="call-button">
+                                    <div class="call-icon">
+                                        <img src="https://tiemtraannhien.vn/wp-content/uploads/2023/04/phone.png" alt="Gọi ngay" />
+                                    </div>
+                                    <a href="tel:0386125907" class="call-link">: 0386 125 907</a>
+                                </div>
+                            </BCol>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-12 collapse navbar-collapse" id="navbarTogglerDemo01" style="background-color: #4fc3f7;">
+                        <ul class="navbar-nav container d-flex justify-content-center">
+                            <li class="nav-item" style="border-left: 1px white solid;">
+                                <router-link class="nav-link" :to="'/'">TRANG CHỦ</router-link>
                             </li>
-                            <li class="nav-item px-1">
-                                <h4><router-link class="nav-link" :to="'/lstproduct'">SẢN PHẨM</router-link></h4>
+                            <li class="nav-item">
+                                <router-link :to="'/introduce'" class="nav-link" >GIỚI THIỆU</router-link>
                             </li>
-                            <li class="nav-item px-1">
-                                <h4><router-link :to="'/introduce'" class="nav-link" >GIỚI THIỆU</router-link></h4>
+                            <li class="nav-item">
+                                <router-link class="nav-link" :to="'/lstproduct'">SẢN PHẨM</router-link>
                             </li>
-                            <li class="nav-item px-1">
-                                <h4><router-link :to="'/contact'" class="nav-link"> LIÊN HỆ</router-link></h4>
+                            <li class="nav-item">
+                                <router-link :to="'/chinh-sach-bao-hanh'" class="nav-link"> CHÍNH SÁCH BẢO HÀNH</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="'/chinh-sach-doi-tra'" class="nav-link"> CHÍNH SÁCH ĐỔI TRẢ</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="'/chinh-sach-giao-hang'" class="nav-link"> CHÍNH SÁCH GIAO HÀNG</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="'/contact'" class="nav-link"> LIÊN HỆ</router-link>
                             </li>
                         </ul>
                     </div>
-                    <BCol class="col-xl-3 col-12 col-md-4">
-                        <v-text-field label="Tìm kiếm sản phẩm" v-model="searchProductName" hide-details append-icon="mdi-magnify"  @click:append="FindProductName()" @keyup.enter="FindProductName()"  class="custom-text-field"></v-text-field>
-                    </BCol>
                 </BRow>
             </div>
         </BNav>
@@ -256,10 +388,11 @@ export default {
         <v-container >
             <BRow>
                 <div class="col-xl-6">
-                    <h3 style="color: white;" class="mt-4">CỬA HÀNG THIẾT BỊ NHÀ HÀNG AN CHI</h3>
-                    <h5><v-icon>mdi-map-marker</v-icon> Địa chỉ: Lai xá Kim chung Hoài đức, Hanoi, Vietnam</h5>
-                    <h5><v-icon>mdi-email-outline</v-icon> Email: thietbinhahang.anchi@gmail.com</h5>
-                    <h5><v-icon>mdi-phone-outline</v-icon> CSKH: 038 612 5907</h5>
+                    <h3 style="color: white;" class="mt-4">CÔNG TY TNHH TM&NK AN CHI</h3>
+                    <h5><v-icon>mdi-map-marker</v-icon> Địa chỉ: Cụm Công Nghiệp Đại Tự , Xã Kim Chung , Huyện Hoài Đức, Hà Nội</h5>
+                    <h5><v-icon>mdi-email-outline</v-icon> Email: Coolmaxvietnam@gmail.com</h5>
+                    <h5><v-icon>mdi-phone-outline</v-icon> CSKH: 0386.125.907</h5>
+                    <h3 style="color: white;" class="mt-3">Hotline: 039.335.6261</h3>
                 </div>
                 <div class="col-xl-6">
                     <iframe

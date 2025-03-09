@@ -14,7 +14,6 @@ namespace QLBH_Core.Commons
             public const string DEFAULT_PASSWORD = "defaultpassword";
             public const string DEFAULT_BASE_Directory_IMG = @"D:\Du_An\BanHang_ThietBiDienThu\QLBH_Application\public";
             public const string DEFAULT_IMG_AVATAR = @"D:\Du_An\BanHang_ThietBiDienThu\QLBH_Application\public\images\AvatarDefault.jpg";
-
         }
         public class AppSettingKeys
         {

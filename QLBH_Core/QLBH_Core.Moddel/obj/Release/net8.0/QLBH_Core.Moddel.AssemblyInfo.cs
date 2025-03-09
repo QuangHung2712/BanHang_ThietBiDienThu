@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QLBH_Core.Moddel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8078023f1894e97144122d8b3f7d6ddfb7f17c6d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dffcc9b89f17203bc78d8927150b9552c09fb190")]
 [assembly: System.Reflection.AssemblyProductAttribute("QLBH_Core.Moddel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QLBH_Core.Moddel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

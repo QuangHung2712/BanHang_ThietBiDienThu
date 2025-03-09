@@ -26,7 +26,7 @@ namespace QLBH_Core.Service.Auth
         }
         public string Login(LoginReqModel input)
         {
-            if(input.Email != "admin" || input.Password != "1")
+            if (!_Context.Users.Any(item => item.Email == input.Email && item.Password == input.Password))
             {
                 throw new Exception("Tài khoản hoặc mật khẩu không đúng");
             }

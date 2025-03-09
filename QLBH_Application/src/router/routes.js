@@ -93,6 +93,24 @@ export default [
                 component: () => import("../views/SearchForProducts/Contact.vue"),
             },
             {
+                path: "chinh-sach-doi-tra",
+                name: "ReturnPolicy",
+                meta: { title: "Chính sách đổi trả" },
+                component: () => import("../views/SearchForProducts/ReturnPolicy.vue"),
+            },
+            {
+                path: "chinh-sach-giao-hang",
+                name: "DeliveryPolicy",
+                meta: { title: "Chính sách giao hàng" },
+                component: () => import("../views/SearchForProducts/DeliveryPolicy.vue"),
+            },
+            {
+                path: "chinh-sach-bao-hanh",
+                name: "WarrantyPolicy",
+                meta: { title: "Chính sách bảo hành" },
+                component: () => import("../views/SearchForProducts/WarrantyPolicy.vue"),
+            },
+            {
                 path: "detail/:productId",
                 name: "detail",
                 meta: { title: "Chi tiết sản phẩm" },

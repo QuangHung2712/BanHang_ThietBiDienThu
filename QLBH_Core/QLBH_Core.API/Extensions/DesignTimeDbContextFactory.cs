@@ -16,7 +16,7 @@ namespace QLNhaTro.API
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
             var connectionString = configuration.GetConnectionString(QLBH_Core.Commons.Constants.AppSettingKeys.DEFAULT_CONNECTION);
 
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlite(connectionString);
 
             return new AppDbContext(optionsBuilder.Options);
         }

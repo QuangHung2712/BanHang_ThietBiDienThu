@@ -3,20 +3,100 @@
   "WorkspaceRootPath": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.moddel\\model\\responsemodels\\product\\getallproductbytyperesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|solutionrelative:qlbh_core.moddel\\model\\responsemodels\\product\\getallproductbytyperesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.moddel\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|solutionrelative:qlbh_core.moddel\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Migrations\\20250309085850_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QLBH_Core.Moddel\\Migrations\\20250309085850_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.api\\extensions\\designtimedbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|solutionrelative:qlbh_core.api\\extensions\\designtimedbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.moddel\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|solutionrelative:qlbh_core.moddel\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|solutionrelative:qlbh_core.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|solutionrelative:qlbh_core.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.service\\order\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|solutionrelative:qlbh_core.service\\order\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.moddel\\model\\responsemodels\\order\\getdetailorderresmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|solutionrelative:qlbh_core.moddel\\model\\responsemodels\\order\\getdetailorderresmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.moddel\\entity\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|solutionrelative:qlbh_core.moddel\\entity\\orders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.moddel\\model\\responsemodels\\order\\getallorderresmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|solutionrelative:qlbh_core.moddel\\model\\responsemodels\\order\\getallorderresmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43FC8909-92E6-4B63-8555-81BB8BC42C56}|QLBH_Core.Commons\\QLBH_Core.Commons.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.commons\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43FC8909-92E6-4B63-8555-81BB8BC42C56}|QLBH_Core.Commons\\QLBH_Core.Commons.csproj|solutionrelative:qlbh_core.commons\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43FC8909-92E6-4B63-8555-81BB8BC42C56}|QLBH_Core.Commons\\QLBH_Core.Commons.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.commons\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43FC8909-92E6-4B63-8555-81BB8BC42C56}|QLBH_Core.Commons\\QLBH_Core.Commons.csproj|solutionrelative:qlbh_core.commons\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.api\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|solutionrelative:qlbh_core.api\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.service\\order\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|solutionrelative:qlbh_core.service\\order\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.api\\extensions\\dbmigrationextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|solutionrelative:qlbh_core.api\\extensions\\dbmigrationextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.api\\qlbh_core.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|solutionrelative:qlbh_core.api\\qlbh_core.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.service\\product\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|solutionrelative:qlbh_core.service\\product\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.moddel\\model\\requestmodels\\order\\createorderreqmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|solutionrelative:qlbh_core.moddel\\model\\requestmodels\\order\\createorderreqmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.moddel\\entity\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|solutionrelative:qlbh_core.moddel\\entity\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.moddel\\entity\\producttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|solutionrelative:qlbh_core.moddel\\entity\\producttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.service\\auth\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|solutionrelative:qlbh_core.service\\auth\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.service\\product\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|solutionrelative:qlbh_core.service\\product\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|solutionrelative:qlbh_core.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1B0367F-3D22-4F6B-AEB1-EB8072EE2336}|QLBH_Core.API\\QLBH_Core.API.csproj|solutionrelative:qlbh_core.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.moddel\\model\\responsemodels\\product\\getallproductbytyperesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|solutionrelative:qlbh_core.moddel\\model\\responsemodels\\product\\getallproductbytyperesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.moddel\\entity\\producttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|solutionrelative:qlbh_core.moddel\\entity\\producttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{692104F5-E017-40E4-8BAB-162B5B230766}|QLBH_Core.Moddel\\QLBH_Core.Moddel.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.moddel\\model\\responsemodels\\product\\getdetailproductresmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,8 +109,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 496,
-          "SelectedChildIndex": 3,
+          "DockedHeight": 497,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,7 +126,267 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "20250309085850_InitialCreate.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Migrations\\20250309085850_InitialCreate.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.Moddel\\Migrations\\20250309085850_InitialCreate.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Migrations\\20250309085850_InitialCreate.cs",
+              "RelativeToolTip": "QLBH_Core.Moddel\\Migrations\\20250309085850_InitialCreate.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T08:58:50.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DesignTimeDbContextFactory.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\Extensions\\DesignTimeDbContextFactory.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.API\\Extensions\\DesignTimeDbContextFactory.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\Extensions\\DesignTimeDbContextFactory.cs",
+              "RelativeToolTip": "QLBH_Core.API\\Extensions\\DesignTimeDbContextFactory.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAlwBUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T08:58:20.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GetDetailOrderResModel.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Model\\ResponseModels\\Order\\GetDetailOrderResModel.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.Moddel\\Model\\ResponseModels\\Order\\GetDetailOrderResModel.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Model\\ResponseModels\\Order\\GetDetailOrderResModel.cs",
+              "RelativeToolTip": "QLBH_Core.Moddel\\Model\\ResponseModels\\Order\\GetDetailOrderResModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBMAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:39:24.649Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.API\\Controllers\\OrderController.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "QLBH_Core.API\\Controllers\\OrderController.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAiwCMAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:38:06.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IOrderService.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Service\\Order\\IOrderService.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.Service\\Order\\IOrderService.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Service\\Order\\IOrderService.cs",
+              "RelativeToolTip": "QLBH_Core.Service\\Order\\IOrderService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:36:05.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GetAllOrderResModel.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Model\\ResponseModels\\Order\\GetAllOrderResModel.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.Moddel\\Model\\ResponseModels\\Order\\GetAllOrderResModel.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Model\\ResponseModels\\Order\\GetAllOrderResModel.cs",
+              "RelativeToolTip": "QLBH_Core.Moddel\\Model\\ResponseModels\\Order\\GetAllOrderResModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:30:22.564Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "CreateOrderReqModel.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Model\\RequestModels\\Order\\CreateOrderReqModel.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.Moddel\\Model\\RequestModels\\Order\\CreateOrderReqModel.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Model\\RequestModels\\Order\\CreateOrderReqModel.cs",
+              "RelativeToolTip": "QLBH_Core.Moddel\\Model\\RequestModels\\Order\\CreateOrderReqModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:19:47.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Service\\Order\\OrderService.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.Service\\Order\\OrderService.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Service\\Order\\OrderService.cs",
+              "RelativeToolTip": "QLBH_Core.Service\\Order\\OrderService.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAUwCUAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:19:41.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Orders.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Entity\\Orders.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.Moddel\\Entity\\Orders.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Entity\\Orders.cs",
+              "RelativeToolTip": "QLBH_Core.Moddel\\Entity\\Orders.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAIBJwA0AAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:10:36.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Service\\Auth\\AuthService.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.Service\\Auth\\AuthService.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Service\\Auth\\AuthService.cs",
+              "RelativeToolTip": "QLBH_Core.Service\\Auth\\AuthService.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAIBJwBsAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T17:53:06.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Functions.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Commons\\Functions.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.Commons\\Functions.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Commons\\Functions.cs",
+              "RelativeToolTip": "QLBH_Core.Commons\\Functions.cs",
+              "ViewState": "AQIAAIwAAAAAAAAAAAAwwKMAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T16:43:47.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "SeedData.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\SeedData.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.Moddel\\SeedData.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\SeedData.cs",
+              "RelativeToolTip": "QLBH_Core.Moddel\\SeedData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T17:28:28.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "DbMigrationExtension.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\Extensions\\DbMigrationExtension.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.API\\Extensions\\DbMigrationExtension.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\Extensions\\DbMigrationExtension.cs",
+              "RelativeToolTip": "QLBH_Core.API\\Extensions\\DbMigrationExtension.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T10:02:06.792Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\Program.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.API\\Program.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\Program.cs",
+              "RelativeToolTip": "QLBH_Core.API\\Program.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAUwBgAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T05:45:44.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.API\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "QLBH_Core.API\\Controllers\\ProductController.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAwwDgAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T05:38:03.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.API\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "QLBH_Core.API\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T05:38:01.915Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Constants.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Commons\\Constants.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.Commons\\Constants.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Commons\\Constants.cs",
+              "RelativeToolTip": "QLBH_Core.Commons\\Constants.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAIBJwBEAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T14:46:21.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\appsettings.json",
+              "RelativeDocumentMoniker": "QLBH_Core.API\\appsettings.json",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\appsettings.json",
+              "RelativeToolTip": "QLBH_Core.API\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-04T18:12:08.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "QLBH_Core.Moddel\\AppDbContext.cs",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\AppDbContext.cs",
+              "RelativeToolTip": "QLBH_Core.Moddel\\AppDbContext.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAADwvw4AAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T08:44:23.215Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "QLBH_Core.API.csproj",
+              "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\QLBH_Core.API.csproj",
+              "RelativeDocumentMoniker": "QLBH_Core.API\\QLBH_Core.API.csproj",
+              "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.API\\QLBH_Core.API.csproj",
+              "RelativeToolTip": "QLBH_Core.API\\QLBH_Core.API.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-04T18:07:56.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
               "Title": "GetAllProductByTypeResModel.cs",
               "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Model\\ResponseModels\\Product\\GetAllProductByTypeResModel.cs",
               "RelativeDocumentMoniker": "QLBH_Core.Moddel\\Model\\ResponseModels\\Product\\GetAllProductByTypeResModel.cs",
@@ -59,7 +399,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 18,
               "Title": "Product.cs",
               "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Entity\\Product.cs",
               "RelativeDocumentMoniker": "QLBH_Core.Moddel\\Entity\\Product.cs",
@@ -72,7 +412,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 23,
               "Title": "ProductType.cs",
               "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Entity\\ProductType.cs",
               "RelativeDocumentMoniker": "QLBH_Core.Moddel\\Entity\\ProductType.cs",
@@ -80,11 +420,12 @@
               "RelativeToolTip": "QLBH_Core.Moddel\\Entity\\ProductType.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T07:50:54.366Z"
+              "WhenOpened": "2025-03-04T07:50:54.366Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 24,
               "Title": "GetDetailProductResModel.cs",
               "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Moddel\\Model\\ResponseModels\\Product\\GetDetailProductResModel.cs",
               "RelativeDocumentMoniker": "QLBH_Core.Moddel\\Model\\ResponseModels\\Product\\GetDetailProductResModel.cs",
@@ -92,24 +433,26 @@
               "RelativeToolTip": "QLBH_Core.Moddel\\Model\\ResponseModels\\Product\\GetDetailProductResModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAqwA8AAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T06:40:25.104Z"
+              "WhenOpened": "2025-03-04T06:40:25.104Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 16,
               "Title": "ProductService.cs",
               "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Service\\Product\\ProductService.cs",
               "RelativeDocumentMoniker": "QLBH_Core.Service\\Product\\ProductService.cs",
               "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Service\\Product\\ProductService.cs",
               "RelativeToolTip": "QLBH_Core.Service\\Product\\ProductService.cs",
-              "ViewState": "AQIAAMMAAAAAAAAAAAAqwOMAAAAoAAAA",
+              "ViewState": "AQIAAJsAAAAAAAAAAAAwwLUAAACkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T11:34:23.743Z"
+              "WhenOpened": "2025-03-03T11:34:23.743Z",
+              "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedHeight": 253,
+          "DockedHeight": 252,
           "SelectedChildIndex": -1,
           "Children": [
             {

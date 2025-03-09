@@ -12,5 +12,6 @@ namespace QLBH_Core.Service.Order
     {
         Task Create(CreateOrderReqModel data);
         List<GetAllOrderResModel> GetAll();
+        GetDetailOrderResModel GetDetail(long Id);
     }
 }

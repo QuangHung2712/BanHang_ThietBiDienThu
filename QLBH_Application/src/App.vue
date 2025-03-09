@@ -11,10 +11,10 @@ export default {
     },
   },
   created(){
-    // this.$apiClient.get("/Server/ping")
-    //   .catch(()=>{
-    //     this.$router.push({ name: 'error'});
-    //   })
+    this.$apiClient.get("/Server/ping")
+      .catch(()=>{
+        this.$router.push({ name: 'error'});
+      })
   }
   
 };
@@ -34,16 +34,18 @@ export default {
   <router-view></router-view>
 </template>
 <style>
-  .custom-snackbar {
-    top: 15% !important; /* Vị trí từ trên xuống */
-    right: 10% !important; /* Cách lề phải 10% */
-    /* bottom: auto !important;  Đảm bảo không bị căn dưới  */
-    left: auto !important; /* Loại bỏ căn lề trái nếu cần */
-  }
-  .v-snackbar__content{
-    text-align: center;
-  }
-  p{
-    font-size: 16px !important;
+  @media (min-width: 768px) {
+    .custom-snackbar {
+      top: 15% !important; /* Vị trí từ trên xuống */
+      right: 10% !important; /* Cách lề phải 10% */
+      /* bottom: auto !important;  Đảm bảo không bị căn dưới  */
+      left: auto !important; /* Loại bỏ căn lề trái nếu cần */
+    }
+    .v-snackbar__content{
+      text-align: center;
+    }
+    p{
+      font-size: 16px !important;
+    }
   }
 </style>

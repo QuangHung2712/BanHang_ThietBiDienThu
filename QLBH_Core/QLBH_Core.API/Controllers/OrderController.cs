@@ -31,5 +31,12 @@ namespace QLBH_Core.API.Controllers
             var result = _orderService.GetAll();
             return Ok(result);
         }
+        [HttpGet("{Id}")]
+        [Permission(Enums.FeatureCode.Admin)]
+        public IActionResult GetDetail( long Id)
+        {
+            var result = _orderService.GetDetail(Id);
+            return Ok(result);
+        }
     }
 }
