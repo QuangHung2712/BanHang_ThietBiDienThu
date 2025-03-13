@@ -9,9 +9,7 @@ namespace QLBH_Core.Moddel.Model.ResponseModels
 {
     public class GetDetailOrderResModel
     {
-        public string ProductImg { get; set; }
-        public  string ProductName { get; set; }
-        public decimal Price { get; set; }
+        public List<OrderProductResModel> Products { get; set; }
         public string CustomerName { get; set; }
         public string SDTCustomer { get; set; }
         public string Gender { get; set; }

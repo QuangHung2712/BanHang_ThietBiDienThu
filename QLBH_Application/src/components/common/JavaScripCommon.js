@@ -19,6 +19,7 @@ export function formatPrice(inputPrice) {
     // Cập nhật giá trị cho price
     return price ;
 }
+
 export default {
     formatTablePrice,
     formatPrice,

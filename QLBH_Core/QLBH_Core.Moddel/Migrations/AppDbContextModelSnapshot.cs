@@ -61,6 +61,30 @@ namespace QLBH_Core.Moddel.Migrations
                     b.ToTable("InfoProducts");
                 });
 
+            modelBuilder.Entity("QLBH_Core.Moddel.Entity.OrderProduct", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("OrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductQuantity")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderProduct");
+                });
+
             modelBuilder.Entity("QLBH_Core.Moddel.Entity.Orders", b =>
                 {
                     b.Property<long>("Id")
@@ -74,9 +98,6 @@ namespace QLBH_Core.Moddel.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("Gender")
                         .HasColumnType("INTEGER");
 
@@ -86,16 +107,11 @@ namespace QLBH_Core.Moddel.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("ProductId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("SDTCustomer")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Orders");
                 });
@@ -117,6 +133,10 @@ namespace QLBH_Core.Moddel.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NameSlug")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -211,13 +231,21 @@ namespace QLBH_Core.Moddel.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("QLBH_Core.Moddel.Entity.Orders", b =>
+            modelBuilder.Entity("QLBH_Core.Moddel.Entity.OrderProduct", b =>
                 {
+                    b.HasOne("QLBH_Core.Moddel.Entity.Orders", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("QLBH_Core.Moddel.Entity.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Order");
 
                     b.Navigation("Product");
                 });

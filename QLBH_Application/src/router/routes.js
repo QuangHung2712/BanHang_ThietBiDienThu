@@ -116,6 +116,18 @@ export default [
                 meta: { title: "Chi tiết sản phẩm" },
                 component: () => import("../views/SearchForProducts/ProductDetail.vue"),
             },
+            {
+                path: "gio-hang",
+                name: "productCart",
+                meta: { title: "Giỏ hàng" },
+                component: () => import("../views/SearchForProducts/ProductCart.vue"),
+            },
+            {
+                path: "thanh-toan",
+                name: "checkOutPay",
+                meta: { title: "Thanh toán" },
+                component: () => import("../views/SearchForProducts/CheckOutPay.vue"),
+            },
         ]
     },
 ]

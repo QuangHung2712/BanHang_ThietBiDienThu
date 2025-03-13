@@ -10,9 +10,7 @@ namespace QLBH_Core.Moddel.Model.ResponseModels
 {
     public class GetAllOrderResModel : BaseEntity
     {
-        public long ProductId { get; set; }
-        public string ProductName { get; set; }
-        public string ProductIMG { get; set; }
+        public List<OrderProductResModel> Products { get; set; }
         public DateTime OrderDate { get; set; }
         public string CustomerName { get; set; }
         public string SDTCustomer { get; set; }

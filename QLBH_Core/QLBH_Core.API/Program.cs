@@ -31,6 +31,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.ServiceRegister();
 builder.Services.AddTransient<JwtMiddleWare>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5000); // HTTP
+    options.ListenAnyIP(5001, listenOptions =>
+    {
+        listenOptions.UseHttps(); // Dùng SSL
+    });
+});
 builder.Services.AddSwaggerGen(option =>
 {
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "QLBH Thiết bị nhà hàng API", Version = "v1" });

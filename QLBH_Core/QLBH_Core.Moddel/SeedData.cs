@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using QLBH_Core.Commons;
 using QLBH_Core.Moddel.Entity;
 using System;
 using System.Collections.Generic;
@@ -144,6 +145,15 @@ namespace QLBH_Core.Moddel
                     }
                 }
             }*/
+            if (!context.Users.Any())
+            {
+                var newUser = new List<User>
+                {
+                    new User { Id = 1,Name = "Phạm Quang Hưng",Email = "admin", Password = "1",IsDelete = false, PathAvatar = Constants.DefaultValue.DEFAULT_IMG_AVATAR },
+                };
+                context.Users.AddRange(newUser);
+                context.SaveChanges();
+            }
         }
 
     }

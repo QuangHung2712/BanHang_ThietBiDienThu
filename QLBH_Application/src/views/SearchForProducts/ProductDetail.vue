@@ -21,29 +21,32 @@ export default {
         customerName: null,
         sDTCustomer: null,
         address: null,
-        email: null,
-        note: null, 
-        productId: null,
+        note: null,
         gender: 1,
+        products: [
+          {  quantity: 1, id: null}
+        ]
       },
       index: 0,
       visible: false,
       model: null,
       ViewAdvise: false,
       form: false,
+      quantity: 1,
     };
   },
   created() {
     const productId = this.$route.params.productId;
     this.GetDetail(productId);
   },
+  inject: ["reloadquantityCart"], // Inject hàm từ cha vào
   methods: {
-    GetDetail(Id) {
-      this.$apiClient.get(`/Product/GetDetail/${Id}`).then((response) => {
+    GetDetail(nameSlug) {
+      this.$apiClient.get(`/Product/GetDetail?nameSlug=${nameSlug}`).then((response) => {
         this.product = response.data;
         this.$apiClient
           .get(
-            `/Product/GetProductByType?productType=${this.product.productTypeId}&id=${Id}`
+            `/Product/GetProductByType?productType=${this.product.productTypeId}&nameSlug=${nameSlug}`
           )
           .then((response) => {
             this.SimilarProducts = response.data;
@@ -68,15 +71,18 @@ export default {
     btnAdvise() {
       this.ViewAdvise = !this.ViewAdvise;
       this.Advise = {
+        //
         customerName: null,
         sDTCustomer: null,
         address: null,
+        note: null,
         gender: 1,
-        productId: this.product.id,
-      };
+        products: [
+          {  quantity: this.quantity, id: this.product.id }
+        ]
+      }
     },
     SaveAdvise() {
-      console.log(this.Advise);
       this.$apiClient.post(`/Order/Create`, this.Advise).then(() => {
         this.$notify(
           "Thao tác thành công",
@@ -86,14 +92,55 @@ export default {
         this.ViewAdvise = false;
       });
     },
+    increaseQuantity(){
+      this.Advise.quantity++;
+    },
+    decreaseQuantity(){
+      if(this.Advise.quantity > 1) this.Advise.quantity--
+    },
+    AddToCart(){
+      if(this.product.id == undefined){
+        this.$notify(
+          "Đã xảy ra lỗi",
+          "Không có sản phẩm không thể thêm vào giỏ hàng",
+          "error"
+        );
+      }
+      try{
+        let cart = JSON.parse(localStorage.getItem("cart") ?? "[]");
+        let existingProduct = cart.find(p => p.id === this.product.id);
+        if (existingProduct) {
+            existingProduct.quantity += this.Advise.quantity;
+        } else {
+            cart.push({ id: this.product.id, quantity:  this.Advise.quantity});
+        }
+        localStorage.setItem("cart", JSON.stringify(cart)); // Lưu 1 năm
+        this.$notify(
+          "Thao tác thành công",
+          "Thêm sản phẩm vào giỏ hàng thành công",
+          "success"
+        );
+        if(this.reloadquantityCart)
+        {
+          this.reloadquantityCart();
+        }
+      }
+      catch{
+        this.$notify(
+          "Đã xảy ra lỗi",
+          "Thêm sản phẩm vào giỏ hàng đã xảy ra lỗi",
+          "error"
+        );
+      }
+    },
   },
 };
 </script>
 <template>
   <pageheader title="Chi tiết sản phẩm" pageTitle="Sản phẩm" />
-  <div class="container">
-    <BRow class="mb-10">
-      <BCol class="col-xl-7 col-12">
+  <div class="">
+    <BRow class="mb-12">
+      <BCol class="col-xl-5 col-12">
         <v-row justify="center" class="m-0">
           <!-- Carousel chính -->
           <v-carousel
@@ -131,10 +178,10 @@ export default {
       <BCol class="col-xl-5">
         <div style="min-height: 480px">
           <h3>{{ product.name }}</h3>
-          <h1 class="text-red">
+          <h2 class="text-red">
             {{ this.$common.formatTablePrice(product.price) }}
-          </h1>
-          <ul class="text-xl text-black">
+          </h2>
+          <ul class="text text-black">
             <li><strong>Kích thước(DxRxC cm): </strong>{{ product.size }}</li>
             <li><strong>Công suất: </strong>{{ product.capacity }}W</li>
             <li><strong>Hãng: </strong>{{ product.manufacturer }}</li>
@@ -148,17 +195,96 @@ export default {
               </li>
             </div>
           </ul>
+          <div class="promotion">
+            <h3 style="background-color: yellow">KHUYẾN MẠI</h3>
+            <ul>
+              <li><span>1️⃣</span> Giao hàng miễn phí nội thành Hà Nội.</li>
+              <li><span>2️⃣</span> Bảo hành 24 tháng tại nhà.</li>
+              <li>
+                <span>3️⃣</span> Lỗi nhà sản xuất đổi mới trong 7 ngày đầu.
+              </li>
+            </ul>
+          </div>
         </div>
-        <v-btn
-          class="custom-button"
-          color="#4ec3f7"
-          size="large"
-          variant="flat"
-          @click="btnAdvise()"
-        >
-          <strong>TƯ VẤN</strong>
-        </v-btn>
+        <BRow>
+          <div class="col-xl-3 col-3 d-flex">
+            <v-btn icon variant="outlined" @click="decreaseQuantity" rounded="0" class="square-btn">
+              <v-icon size="x-small">mdi-minus</v-icon>
+            </v-btn>
+            <span class="text-quantity">{{ quantity }}</span>
+            <v-btn icon variant="outlined" @click="increaseQuantity" rounded="0" class="square-btn">
+              <v-icon size="x-small">mdi-plus</v-icon>
+            </v-btn>
+          </div>
+          <div class="col-xl-4 col-4">
+            <v-btn
+              class="custom-button "
+              color="#4ec3f7"
+              size="large"
+              variant="flat"
+              @click="btnAdvise()"
+            >
+              <strong>Đặt hàng ngay</strong>
+            </v-btn>
+          </div>
+          <div class="col-xl-5 col-5 p-0">
+            <v-btn
+              class="custom-button"
+              color="#4ec3f7"
+              size="large"
+              variant="flat"
+              magin-top="10px"
+              @click="AddToCart()"
+            >
+              <strong>Thêm vào giỏ hàng</strong>
+            </v-btn>
+          </div>
+        </BRow>
+        
+        
       </BCol>
+      <div class="col-xl-2 contact-box">
+        <div class="contact-header">
+          <h5>📌 LIÊN HỆ – CỬA HÀNG</h5>
+        </div>
+        <div class="contact-info">
+          <p><strong>📍 Địa chỉ:</strong> KCN Nguyên Khê, Đông Anh, Hà Nội</p>
+          <p><strong>📞 Hotline:</strong> 0983.95.6666</p>
+        </div>
+        <hr />
+        <div class="contact-benefits">
+          <div class="benefit-item">
+            <img
+              src="https://goldcool.vn/wp-content/uploads/2019/02/3.jpg"
+              alt="Hàng chính hãng"
+            />
+            <p>
+              <strong>Bảo hành chính hãng</strong><br />
+              24 tháng tại nhà.
+            </p>
+          </div>
+          <div class="benefit-item">
+            <img
+              src="http://goldcool.vn/wp-content/uploads/2019/02/1.jpg"
+              alt="Đổi trả miễn phí"
+            />
+            <p>
+              <strong>Đổi mới trong 7 ngày</strong><br />
+              Lỗi do nhà sản xuất.
+            </p>
+          </div>
+          <div class="benefit-item">
+            <img
+              src="http://goldcool.vn/wp-content/uploads/2019/02/2.jpg"
+              alt="Giao hàng miễn phí"
+            />
+            <p>
+              <strong>Giao hàng lắp đặt miễn phí</strong><br />
+              nội thành Hà Nội.
+            </p>
+          </div>
+        </div>
+      </div>
     </BRow>
   </div>
   <BCard>
@@ -166,15 +292,26 @@ export default {
       <h3>Sản phẩm tương tự</h3>
     </BCardHeader>
     <BCardBody class="pl-0 pr-0">
-        <v-slide-group v-model="model" show-arrows class="pb-4">
-            <v-slide-group-item v-for="(itemProduct, indexProduct) in SimilarProducts" :key="indexProduct" >
-                <a @click="GotoDetail(itemProduct.id)" target="_blank" class="product-card item m-2 my-3">
-                    <div><img :src="itemProduct.pathImg" alt="product" /></div>
-                    <div class="product-name">{{ itemProduct.name }}</div>
-                    <h4 style="color: red;" class="text m-0">{{ itemProduct.price.toLocaleString("vi-vn") }} VNĐ</h4>
-                </a>
-            </v-slide-group-item>
-        </v-slide-group>
+      <v-slide-group v-model="model" show-arrows class="pb-4">
+        <v-slide-group-item
+          v-for="(itemProduct, indexProduct) in SimilarProducts"
+          :key="indexProduct"
+        >
+          <a
+            @click="GotoDetail(itemProduct.nameSlug)"
+            target="_blank"
+            class="product-card item m-2 my-3"
+          >
+            <div>
+              <img :src="itemProduct.pathImg" alt="product" />
+            </div>
+            <div class="product-name">{{ itemProduct.name }}</div>
+            <h4 style="color: red" class="text m-0">
+              {{ itemProduct.price.toLocaleString("vi-vn") }} VNĐ
+            </h4>
+          </a>
+        </v-slide-group-item>
+      </v-slide-group>
     </BCardBody>
   </BCard>
   <vue-easy-lightbox
@@ -210,7 +347,10 @@ export default {
                 </h3>
               </div>
             </div>
-            <h5>Bạn vui lòng nhập đúng số điện thoại để chúng tôi sẽ gọi xác nhận đơn hàng trước khi giao hàng. Xin cảm ơn!</h5>
+            <h5>
+              Bạn vui lòng nhập đúng số điện thoại để chúng tôi sẽ gọi xác nhận
+              đơn hàng trước khi giao hàng. Xin cảm ơn!
+            </h5>
           </BCol>
 
           <!-- Form nhập thông tin (bên phải thẻ card) -->
@@ -227,17 +367,17 @@ export default {
                   density="compact"
                 />
               </div>
-                <v-radio-group v-model="Advise.gender" hide-details>
-                    <div class="d-flex align-items-center">
-                            <div class="text-body-1 font-weight-bold">Giới tính</div>
-                            <div>
-                                <v-radio label="Nam" :value="1"></v-radio>
-                            </div>
-                            <div>
-                                <v-radio label="Nữ" :value="0"></v-radio>
-                            </div>
-                    </div>
-                </v-radio-group>
+              <v-radio-group v-model="Advise.gender" hide-details>
+                <div class="d-flex align-items-center">
+                  <div class="text-body-1 font-weight-bold">Giới tính</div>
+                  <div>
+                    <v-radio label="Nam" :value="1"></v-radio>
+                  </div>
+                  <div>
+                    <v-radio label="Nữ" :value="0"></v-radio>
+                  </div>
+                </div>
+              </v-radio-group>
               <div class="form-group m-0">
                 <label class="form-label">Số điện thoại*:</label>
                 <v-text-field
@@ -246,17 +386,6 @@ export default {
                   variant="outlined"
                   clearable
                   placeholder="Nhập số điện thoại"
-                  density="compact"
-                />
-              </div>
-
-              <div class="form-group m-0">
-                <label class="form-label">Email:</label>
-                <v-text-field
-                  v-model="Advise.email"
-                  variant="outlined"
-                  clearable
-                  placeholder="Nhập email"
                   density="compact"
                 />
               </div>
@@ -292,12 +421,99 @@ export default {
       <BButton type="button" variant="light" @click="ViewAdvise = false"
         >Close
       </BButton>
-      <BButton type="button" variant="primary" @click="SaveAdvise()" :disabled="!form">Đặt hàng ngay</BButton
+      <BButton
+        type="button"
+        variant="primary"
+        @click="SaveAdvise()"
+        :disabled="!form"
+        >Đặt hàng ngay</BButton
       >
     </div>
   </BModal>
 </template>
 <style scoped>
+/* CSS cho trang giảm giá*/
+.promotion {
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.promotion h3 {
+  text-align: center;
+  margin: 0;
+  font-weight: bold;
+}
+
+.promotion ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.promotion li {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.promotion li span {
+  margin-right: 8px;
+}
+
+/* CSS cho trang giảm giá*/
+
+/*CSS cho contact*/
+.contact-box {
+  border: 1px solid #ddd;
+
+  font-family: Arial, sans-serif;
+}
+
+.contact-header {
+  background-color: #9b9b9b;
+  color: rgb(38, 45, 225);
+
+  text-align: center;
+  font-weight: bold;
+}
+
+.contact-info {
+  background-color: #f2f2f2;
+
+  font-size: 14px;
+}
+
+.contact-info p {
+  margin: 5px 0;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.benefit-item img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.benefit-item p {
+  font-size: 14px;
+  margin: 0;
+}
+
+hr {
+  margin: 5px 10px;
+  border: 0.5px solid #ddd;
+}
+
+/*CSS cho contact*/
+
 .thumbnail-container {
   cursor: pointer;
   padding: 4px;
@@ -319,6 +535,7 @@ export default {
   height: 50px;
 }
 .custom-button {
+  width: 95%;
   font-size: 16px;
   font-weight: bold;
   color: white !important;
@@ -328,7 +545,21 @@ export default {
 .item {
   width: 25% !important;
 }
-
+.text-black {
+  font-size: 16px; /* Sửa kích cỡ chữ */
+}
+.square-btn {
+  border: 1px solid #e0e0e0;
+  height: 45px;
+  width: 25px;
+  background-color: #f1f1f1;
+  border-radius: 0 !important; /* Nút vuông */
+}
+.text-quantity{
+  font-size: 16px;
+  border: 1px solid #e0e0e0;
+  padding: 10px 20px 1px 20px;
+}
 @media (max-width: 768px) {
   img {
     height: 120px; /* Khi màn hình nhỏ hơn 768px */
@@ -339,6 +570,14 @@ export default {
   }
   .item {
     width: 50% !important;
+  }
+  .text-quantity{
+    font-size: 16px;
+    border: 1px solid #e0e0e0;
+    padding: 10px 10px 1px 10px;
+  }
+  .square-btn {
+    margin-right: 5px;
   }
 }
 </style>

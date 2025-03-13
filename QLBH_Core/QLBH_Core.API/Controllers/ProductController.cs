@@ -41,10 +41,10 @@ namespace QLBH_Core.API.Controllers
             var result = _productService.GetAll();
             return Ok(result);
         }
-        [HttpGet("{Id}")]
-        public IActionResult GetDetail(long Id)
+        [HttpGet]
+        public IActionResult GetDetail([FromQuery]long? Id , [FromQuery] string? nameSlug)
         {
-            var result = _productService.GetDetail(Id);
+            var result = _productService.GetDetail(nameSlug, Id);
             return Ok(result);
         }
         [HttpGet]
@@ -60,15 +60,21 @@ namespace QLBH_Core.API.Controllers
             return Ok(result);
         }
         [HttpGet]
-        public IActionResult GetProductByType([FromQuery] long productType, [FromQuery] long Id)
+        public IActionResult GetProductByType([FromQuery] long productType, [FromQuery] string nameSlug)
         {
-            var result = _productService.GetProductByType(productType,Id);
+            var result = _productService.GetProductByType(productType, nameSlug);
             return Ok(result);
         }
         [HttpGet]
         public IActionResult GetAllProductByType()
         {
             var result = _productService.GetAllProductByType();
+            return Ok(result);
+        }
+        [HttpPost]
+        public IActionResult GetAllProductById([FromBody] List<GetAllProductByIdReqModel> Data)
+        {
+            var result = _productService.GetAllProductByID(Data);
             return Ok(result);
         }
     }

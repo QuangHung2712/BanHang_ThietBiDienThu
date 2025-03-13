@@ -12,6 +12,7 @@ namespace QLBH_Core.Moddel.Model.ResponseModels
         public string Name { get; set; }
         public string PathImg { get; set; }
         public decimal Price { get; set; }
+        public string NameSlug { get; set; }
         public long ProductType { get; set; }
     }
 }

@@ -103,10 +103,11 @@
                 this.$apiClient.get(`/Product/FindProduct?name=${productName}`)
                         .then(response=>{
                             this.productData = response.data;
+                            console.log(this.productData);
                         })
             },
-            GotoDetail(id){
-                const route = this.$router.resolve({ name: 'detail', params: { productId: id } });
+            GotoDetail(nameSlug){
+                const route = this.$router.resolve({ name: 'detail', params: { productId: nameSlug } });
                 window.open(route.href, '_blank');
 
             }
@@ -249,7 +250,7 @@
         <BRow style="min-height: 685px;">
             <div class="product-grid col-xl-3 col-md-4 col-6 p-2"  v-for="(item,index) in filteredProduct" :key="index">
                 <div class="product-card " >
-                    <a @click="GotoDetail(item.id)" target="_blank">
+                    <a @click="GotoDetail(item.nameSlug)" target="_blank">
                         <div><img :src="item.pathImg" alt="product" /></div>
                         <div class="product-name">{{ item.name }}</div>
                         <h4 style="color: red;" class="text m-0">{{ item.price.toLocaleString("vi-vn") }} VNĐ</h4>

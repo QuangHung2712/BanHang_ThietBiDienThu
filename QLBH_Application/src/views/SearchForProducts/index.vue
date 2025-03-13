@@ -197,6 +197,7 @@
 import Rightbar from "@/components/right-bar.vue"
 import { Autoplay, A11y } from 'swiper/modules';
 
+
 // import { ref } from 'vue';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -212,6 +213,10 @@ export default {
             isOpen: false,
             menu: true,
             searchProductName: null,
+            quantityCart: 0,
+            cart: [
+                
+            ],
         }
     },
     name: "LANDING",
@@ -220,12 +225,18 @@ export default {
     },
     created(){
         this.searchProductName = this.$route.query.productName ?? "";
+        this.updateCart();
     },
     watch: {
         // Theo dõi sự thay đổi của query parameter productName
         '$route.query.productName': function(newValue) {
             this.searchProductName = newValue?? null
         },
+    },
+    provide() {
+        return {
+            reloadquantityCart: this.updateCart
+        };
     },
     methods: {
         changeMode(mode) {
@@ -280,6 +291,19 @@ export default {
                     productName: this.searchProductName // Thêm query parameters vào URL
                 } 
                 });
+        },
+        updateCart() {
+            this.quantityCart = 0;
+            let cookiData = JSON.parse(localStorage.getItem("cart") ?? "[]"); // Chuyển từ chuỗi JSON -> mảng
+
+            if (Array.isArray(cookiData)) { // Kiểm tra xem có phải mảng không
+                cookiData.forEach(item => this.quantityCart += item.quantity);
+            }
+            this.$apiClient.post(`/Product/GetAllProductById`,cookiData)
+                .then((response) => {
+                    this.cart = response.data;
+                    console.log(this.cart)
+                })
         }
     },
     setup() {
@@ -294,8 +318,9 @@ export default {
         }); // Initialize AOS
             // document.body.setAttribute("data-pc-direction", "rtl");
             document.body.classList.add("landing-page");
-    }
+    },
 }
+
 </script>
 
 <template>
@@ -307,7 +332,7 @@ export default {
                         <div class="row mt-2 align-items-center">
                             <BCol class="col-xl-3 col-6 col-md-2 m15">
                                 <a class="pc-navbar-brand" href="/" >
-                                    <img src="/images/z6387100830882_530977ddd7e3988629efa878cac295bc.jpg" alt="" class="logo" >
+                                    <img src="/images/logo.jpg" alt="" class="logo" >
                                 </a>
                             </BCol>
                             
@@ -358,6 +383,48 @@ export default {
                             </li>
                             <li class="nav-item">
                                 <router-link :to="'/contact'" class="nav-link"> LIÊN HỆ</router-link>
+                            </li>
+                            <li class="nav-item"  style="border: 0px; padding-top: 10px; margin-left: 100px;">
+                                <v-menu open-on-hover>
+                                    <template v-slot:activator="{ props }">
+                                    <v-badge :content="quantityCart" color="red" v-bind="props">
+                                        <router-link to="/gio-hang">
+                                            <v-icon size="x-large">mdi-cart</v-icon>
+                                        </router-link>
+                                    </v-badge>
+                                    </template>
+
+                                    <v-card width="400">
+                                        <v-list>
+                                            <v-list-item v-for="(item, index) in cart" :key="item.id">
+                                            <template v-slot:prepend>
+                                                <v-img :src="item.pathImg" height="50" width="50" cover></v-img>
+                                            </template>
+
+                                            <v-list-item-title>{{ item.name }}</v-list-item-title>
+                                            <v-list-item-subtitle>{{ item.quantity }} × {{ item.price.toLocaleString("vi-vn") }}</v-list-item-subtitle>
+
+                                            <template v-slot:append>
+                                                <v-btn icon @click="removeFromCart(index)">
+                                                    <v-icon color="red">mdi-close</v-icon>
+                                                </v-btn>
+                                            </template>
+                                            </v-list-item>
+                                        </v-list>
+
+                                        <v-divider></v-divider>
+
+                                        <v-card-text class="d-flex justify-space-between">
+                                            <strong>Tổng số phụ:</strong>
+                                            <strong>{{  }}</strong>
+                                        </v-card-text>
+
+                                        <v-card-actions>
+                                            <v-btn block color="green" variant="tonal">Xem giỏ hàng</v-btn>
+                                            <v-btn block color="brown" dark>Thanh toán</v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-menu>
                             </li>
                         </ul>
                     </div>

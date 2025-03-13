@@ -32,7 +32,17 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Xử lý lỗi chung
+    if (error.code === "ECONNABORTED") {
+      // Xử lý lỗi timeout
+      notification.show(
+        "Lỗi kết nối",
+        "Yêu cầu đã vượt quá thời gian chờ. Vui lòng thử lại!",
+        "error"
+      );
+      return new Promise(() => {}); 
+    }
+
+    // Xử lý lỗi không có quyền 
     if (error.response?.status === 401) {
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
@@ -59,6 +69,8 @@ apiClient.interceptors.response.use(
           });
         return new Promise(() => {}); 
     }
+
+    //Xử lý lỗi dữ liệu không hợp lệ
     if(error.response?.status === 400){
       notification.show(
         "Lỗi yêu cầu",
@@ -67,6 +79,8 @@ apiClient.interceptors.response.use(
       );
       return new Promise(() => {}); 
     }
+
+    //Xử lý lỗi từ server
     if(error.response?.status === 500){
       notification.show(
         error.response.data.Message??"Đã xảy ra lỗi",error.response.data.Errors.join('. ')?? " ",

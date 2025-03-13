@@ -48,6 +48,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "QLBH_Core.API.Controllers.OrderController",
+    "Method": "GetAll",
+    "RelativePath": "api/Order/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH_Core.API.Controllers.OrderController",
+    "Method": "GetDetail",
+    "RelativePath": "api/Order/GetDetail/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "QLBH_Core.API.Controllers.ProductController",
     "Method": "CreateEdit",
     "RelativePath": "api/Product/CreateEdit",
@@ -55,6 +81,21 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "Size",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Capacity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Manufacturer",
+        "Type": "System.String",
+        "IsRequired": false
+      },
       {
         "Name": "Price",
         "Type": "System.Decimal",
@@ -111,6 +152,22 @@
   },
   {
     "ContainingType": "QLBH_Core.API.Controllers.ProductController",
+    "Method": "FindProduct",
+    "RelativePath": "api/Product/FindProduct",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH_Core.API.Controllers.ProductController",
     "Method": "GetAll",
     "RelativePath": "api/Product/GetAll",
     "HttpMethod": "GET",
@@ -121,16 +178,84 @@
   },
   {
     "ContainingType": "QLBH_Core.API.Controllers.ProductController",
+    "Method": "GetAllProductById",
+    "RelativePath": "api/Product/GetAllProductById",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Data",
+        "Type": "System.Collections.Generic.List\u00601[[QLBH_Core.Moddel.Model.RequestModels.GetAllProductByIdReqModel, QLBH_Core.Moddel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH_Core.API.Controllers.ProductController",
+    "Method": "GetAllProductByType",
+    "RelativePath": "api/Product/GetAllProductByType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH_Core.API.Controllers.ProductController",
     "Method": "GetDetail",
-    "RelativePath": "api/Product/GetDetail/{Id}",
+    "RelativePath": "api/Product/GetDetail",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "Id",
+        "Type": "System.Nullable\u00601[[System.Int64, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "nameSlug",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH_Core.API.Controllers.ProductController",
+    "Method": "GetPrice",
+    "RelativePath": "api/Product/GetPrice",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH_Core.API.Controllers.ProductController",
+    "Method": "GetProductByType",
+    "RelativePath": "api/Product/GetProductByType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productType",
         "Type": "System.Int64",
-        "IsRequired": true
+        "IsRequired": false
+      },
+      {
+        "Name": "nameSlug",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -175,6 +300,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QLBH_Core.API.Controllers.ProductTypeController",
+    "Method": "GetProductTypeByName",
+    "RelativePath": "api/ProductType/GetProductTypeByName",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {

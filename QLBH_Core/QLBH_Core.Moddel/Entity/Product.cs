@@ -15,6 +15,7 @@ namespace QLBH_Core.Moddel.Entity
         public int Capacity { get; set; } // Công suất
         public string Manufacturer { get; set; } // Hãng
         public long ProductTypeId { get; set; }
+        public string NameSlug { get; set; }
         public ProductType ProductType { get; set; }
     }
 }

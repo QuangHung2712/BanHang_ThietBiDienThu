@@ -98,6 +98,41 @@
         }
       }
     },
+    "/api/Order/GetAll": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Order/GetDetail/{Id}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Product/CreateEdit": {
       "put": {
         "tags": [
@@ -109,6 +144,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "Size": {
+                    "type": "string"
+                  },
+                  "Capacity": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Manufacturer": {
+                    "type": "string"
+                  },
                   "Price": {
                     "type": "number",
                     "format": "double"
@@ -143,6 +188,15 @@
                 }
               },
               "encoding": {
+                "Size": {
+                  "style": "form"
+                },
+                "Capacity": {
+                  "style": "form"
+                },
+                "Manufacturer": {
+                  "style": "form"
+                },
                 "Price": {
                   "style": "form"
                 },
@@ -210,7 +264,7 @@
         }
       }
     },
-    "/api/Product/GetDetail/{Id}": {
+    "/api/Product/GetDetail": {
       "get": {
         "tags": [
           "Product"
@@ -218,14 +272,143 @@
         "parameters": [
           {
             "name": "Id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int64"
             }
+          },
+          {
+            "name": "nameSlug",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Product/GetPrice": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Product/FindProduct": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Product/GetProductByType": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "productType",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "nameSlug",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Product/GetAllProductByType": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Product/GetAllProductById": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/QLBH_Core.Moddel.Model.RequestModels.GetAllProductByIdReqModel"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/QLBH_Core.Moddel.Model.RequestModels.GetAllProductByIdReqModel"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/QLBH_Core.Moddel.Model.RequestModels.GetAllProductByIdReqModel"
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Success"
@@ -289,6 +472,27 @@
             "schema": {
               "type": "integer",
               "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ProductType/GetProductTypeByName": {
+      "get": {
+        "tags": [
+          "ProductType"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -478,16 +682,67 @@
         },
         "additionalProperties": false
       },
-      "QLBH_Core.Moddel.Model.RequestModels.CreateOrderReqModel": {
+      "QLBH_Core.Moddel.Model.RequestModels.CreateOrderProductReqModel": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int64"
           },
-          "sdtZaloCustomer": {
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "QLBH_Core.Moddel.Model.RequestModels.CreateOrderReqModel": {
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QLBH_Core.Moddel.Model.RequestModels.CreateOrderProductReqModel"
+            },
+            "nullable": true
+          },
+          "customerName": {
             "type": "string",
             "nullable": true
+          },
+          "sdtCustomer": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "QLBH_Core.Moddel.Model.RequestModels.GetAllProductByIdReqModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

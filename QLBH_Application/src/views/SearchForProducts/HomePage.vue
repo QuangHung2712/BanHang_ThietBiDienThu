@@ -106,7 +106,7 @@ export default {
             <hr>
             <v-slide-group v-model="model" show-arrows class="pb-4">
                 <v-slide-group-item v-for="(itemProduct, indexProduct) in item.products" :key="indexProduct" >
-                    <a @click="GotoDetail(itemProduct.id)" target="_blank" class="product-card item m-2 my-3">
+                    <a @click="GotoDetail(itemProduct.nameSlug)" target="_blank" class="product-card item m-2 my-3">
                         <div><img :src="itemProduct.pathImg" alt="product" /></div>
                         <div class="product-name">{{ itemProduct.name }}</div>
                         <h4 style="color: red;" class="text m-0">{{ itemProduct.price.toLocaleString("vi-vn") }} VNĐ</h4>

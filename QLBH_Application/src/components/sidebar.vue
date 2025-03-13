@@ -112,7 +112,7 @@ export default {
                 <!-- <img src="@/assets/images/logo-dark.svg" alt="" class="logo logo-lg">
                 <img src="@/assets/images/logo-white.svg" alt="" class="logo logo-lg"> -->
                 <!-- <img src="@/assets/images/favicon.svg" alt="" class="logo logo-sm"> <span class="badge bg-brand-color-2 rounded-pill ms-2 theme-version">v1.0</span> -->
-                <img src="/images/logo.png" alt=""  style="width: 100%;">
+                <img src="/images/test.png" alt=""  style="width: 100%;">
             </router-link>
         </div>
         <simplebar data-simplebar class="mt-4">

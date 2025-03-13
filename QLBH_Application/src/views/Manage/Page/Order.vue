@@ -15,7 +15,6 @@
                         {title: 'STT', value: 'stt',sortable: true},
                         {title: 'Tên khách hàng',value:'customerName',sortable: true},
                         {title: 'Tên sản phẩm',value:'productName',sortable: true},
-                        {title: 'Ảnh sản phẩm',value:'productIMG',sortable: true},
                         {title: 'SĐT',value:'sdtCustomer',sortable: true},
                         {title: 'Địa chỉ',value:'address',sortable: true},
                         {title: 'Hành đồng',value: 'actions',sortable: false}
@@ -62,6 +61,7 @@
                 this.$apiClient.get(`/Order/GetAll`)
                         .then(response=>{
                             this.orderData = response.data;
+                            console.log(this.orderData);
                         })
                         .catch(error=>{
                             this.$notify(error.response.data.Message,error.response.data.Errors.join('. '),"error");
@@ -122,9 +122,7 @@
                             <template v-slot:[`item.actions`]="{ item }">
                                 <v-icon class="ml-lg-3" small @click="(viewdialog = !viewdialog) && (Detail(item.id))" >mdi-eye</v-icon>
                             </template>
-                            <template v-slot:[`item.productIMG`]="{ item }">
-                                <img :src="item.productIMG" alt="Ảnh sản phẩm" width="70px" height="70px">
-                            </template>
+
                         </v-data-table>
                     </BCardBody>
                 </BCard>

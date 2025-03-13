@@ -1,4 +1,5 @@
 ﻿using QLBH_Core.Commons;
+using QLBH_Core.Moddel.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace QLBH_Core.Moddel.Model.RequestModels
 {
     public class CreateOrderReqModel
     {
-        public long ProductId { get; set; }
+        public List<CreateOrderProductReqModel> Products { get; set; }
         public string CustomerName { get; set; }
         public string SDTCustomer { get; set; }
         public string? Address { get; set; }

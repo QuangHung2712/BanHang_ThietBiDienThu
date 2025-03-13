@@ -13,11 +13,12 @@ namespace QLBH_Core.Service.ProductS
     {
         Task CreateEdit(CreateEditProductReqModel data, List<IFormFile> img);
         Task Delete(long Id);
-        GetDetailProductResModel GetDetail(long Id);
+        GetDetailProductResModel GetDetail(string? nameSlug, long? Id);
         List<GetAllProductResModel> GetAll();
         List<ResultFindProductResModel> FindProduct(string? name);
         GetPriceProductResModel GetPriceByProductName(string? name);
-        List<ResultFindProductResModel> GetProductByType(long productType,long Id);
+        List<ResultFindProductResModel> GetProductByType(long productType, string nameSlug);
         List<GetAllProductByTypeResModel> GetAllProductByType();
+        List<GetAllProductByIdResModel> GetAllProductByID(List<GetAllProductByIdReqModel> Data);
     }
 }

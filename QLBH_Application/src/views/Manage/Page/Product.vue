@@ -117,7 +117,7 @@
                     this.height = null;
                 }
                 else{
-                    this.$apiClient.get(`/Product/GetDetail/${id}`)
+                    this.$apiClient.get(`/Product/GetDetail?Id=${id}`)
                         .then(response=>{
                             this.selectProduct = response.data;
                             this.loadImages();

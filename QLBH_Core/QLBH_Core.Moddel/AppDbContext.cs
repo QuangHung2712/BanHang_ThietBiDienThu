@@ -15,7 +15,7 @@ namespace QLBH_Core.Moddel
         public DbSet<User> Users { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Orders> Orders { get; set; }
-
+        public DbSet<OrderProduct> OrderProduct { get; set; }
 
     }
 }

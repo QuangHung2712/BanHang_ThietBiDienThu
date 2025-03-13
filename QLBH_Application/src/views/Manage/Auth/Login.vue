@@ -66,10 +66,10 @@ export default {
             <div class="auth-sidecontent">
 
                 <div class="auth-sidefooter">
-                    <h4 class="text-white">QUẢN LÝ NHÀ TRỌ</h4>
+                    <h4 class="text-white">CÔNG TY TNHH TM&NK AN CHI</h4>
                     <!-- <img src="" class="img-brand img-fluid" alt="images"> -->
                     <hr class="mb-3 mt-4">
-                    <!-- <BRow class="row">
+                    <BRow class="row">
                         <BCol class="col-auto my-1">
                             <ul class="list-inline footer-link mb-0">
                                 <li class="list-inline-item"><router-link to="/dashboard">Home</router-link></li>
@@ -79,7 +79,7 @@ export default {
                                         target="_blank">Support</a></li>
                             </ul>
                         </BCol>
-                    </BRow> -->
+                    </BRow>
                 </div>
             </div>
             <div class="auth-form">
