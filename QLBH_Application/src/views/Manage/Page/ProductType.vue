@@ -79,7 +79,6 @@
                     if (confirm.value) {
                         this.$apiClient.delete(`/ProductType/Delete/${id}`)
                                     .then(reponse=> {
-                                        console.log(reponse)
                                         if(reponse.status){
                                             swalWithBootstrapButtons.fire(
                                             "Xóa thành công!",

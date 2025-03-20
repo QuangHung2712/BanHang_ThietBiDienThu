@@ -12,13 +12,18 @@
                 searchSDTCustomer: null,
                 form: false,
                 headersTable:[
-                        {title: 'STT', value: 'stt',sortable: true},
+                        {title: 'Mã đơn hàng', value: 'id',sortable: true},
                         {title: 'Tên khách hàng',value:'customerName',sortable: true},
                         {title: 'Tên sản phẩm',value:'productName',sortable: true},
                         {title: 'SĐT',value:'sdtCustomer',sortable: true},
                         {title: 'Địa chỉ',value:'address',sortable: true},
-                        {title: 'Hành đồng',value: 'actions',sortable: false}
                     ],
+                headersTableProduct:[
+                    {title: 'Tên sản phẩm', value: 'productName',sortable: true},
+                    {title: 'Số lượng',value:'productNumber',sortable: true},
+                    {title: 'Đơn giá',value:'price',sortable: true},
+                    {title: 'Tổng tiền',value:'sumPrice',sortable: true},
+                ],
                 orderData: [
 
                 ],
@@ -61,7 +66,6 @@
                 this.$apiClient.get(`/Order/GetAll`)
                         .then(response=>{
                             this.orderData = response.data;
-                            console.log(this.orderData);
                         })
                         .catch(error=>{
                             this.$notify(error.response.data.Message,error.response.data.Errors.join('. '),"error");
@@ -77,8 +81,9 @@
                 this.$apiClient.get(`/Order/GetDetail/${Id}`)
                         .then(response=>{
                             this.order = response.data;
+                            this.viewdialog = true
                         })
-            }
+            },
         }
 }
 </script>
@@ -115,89 +120,70 @@
                         <v-data-table 
                             :headers = "headersTable"
                             :items="filteredData"
-                            class="border-sm rounded-lg">
-                            <template v-slot:[`item.stt`]="{ index }">
-                                {{ index + 1 }}
+                            class="border-sm rounded-lg"
+                            >
+                            <template v-slot:[`item.id`]="{ item }">
+                                <button @click="Detail(item.id)" class="text-primary">{{ item.id }}</button>
                             </template>
-                            <template v-slot:[`item.actions`]="{ item }">
-                                <v-icon class="ml-lg-3" small @click="(viewdialog = !viewdialog) && (Detail(item.id))" >mdi-eye</v-icon>
+                            <template v-slot:[`item.productName`]="{ item }">
+                                <span v-for="(itemProduct,index) in item.products" :key="index">{{ itemProduct.productName }} (x{{ itemProduct.productNumber }})</span>
                             </template>
-
                         </v-data-table>
                     </BCardBody>
                 </BCard>
             </BCol>
         </BRow>
-        <BModal v-model="viewdialog" hide-footer title="Chi tiết đơn hàng" modal-class="fadeInRight"
-        class="v-modal-custom" centered size="xl" >
+        <BModal v-model="viewdialog" hide-footer 
+            :title="`Chi tiết đơn hàng: ${order.id} - ${order.orderDate}`"
+            modal-class="fadeInRight"
+            class="v-modal-custom" centered size="xl" >
         <div class="card-body">
             <v-form v-model="form" ref="form">
                 <BRow>
-                    <BCol class="col-lg-6 d-flex justify-content-center">
-                        <img :src="order.productImg" alt="Ảnh sản phẩm" width="250px" height="250px">
-                    </BCol>
-                    <BCol class="col-lg-6">
-                        <div class="form-group m-0">
-                            <label class="form-label">Tên sản phẩm:</label>
-                            <v-text-field v-model="order.productName" variant="outlined" readonly class="input-control"></v-text-field>
-                        </div> 
-                        <div class="form-group m-0">
-                            <label class="form-label">Giá:</label>
-                            <v-text-field v-model="order.price" type="text" variant="outlined" readonly class="input-control"></v-text-field>
-                        </div>
-                    </BCol>
-                    <BCol class="col-xl-6">
-                        <div class="form-group m-0">
-                            <label class="form-label">Tên khách hàng:</label>
-                            <v-text-field v-model="order.customerName" type="text" variant="outlined" readonly class="input-control"></v-text-field>
-                        </div>
-                    </BCol>
-                    <BCol class="col-xl-6">
-                        <div class="form-group m-0">
-                            <label class="form-label">Số điện thoại:</label>
-                            <v-text-field v-model="order.sdtCustomer" type="text" variant="outlined" readonly class="input-control"></v-text-field>
-                        </div>
-                    </BCol>
-                    <BCol class="col-xl-6">
-                       <BRow>
-                            <BCol class="col-xl-6">
-                                <div class="form-group m-0">
-                                    <label class="form-label">Giới tính:</label>
-                                    <v-text-field v-model="order.gender" type="text" variant="outlined" readonly class="input-control"></v-text-field>
+                    <BCard no-body>
+                        <BCardHeader class="p-3 "><h4 class="m-0">Khách hàng</h4></BCardHeader>
+                        <BCardBody  class="p-3">
+                            <h5>{{ order.customerName }} - {{ order.gender }}</h5>
+                            <p class="m-0">SĐT: {{ order.sdtCustomer }} </p>
+                            <p>Địa chỉ: {{ order.address }}</p>
+                        </BCardBody>
+                    </BCard>
+                    <v-data-table 
+                        :headers = "headersTableProduct"
+                        :items="order.products"
+                        class="border-sm rounded-lg"
+                        disable-pagination
+                        hide-default-footer
+                        >
+                        <template v-slot:[`item.productName`]="{ item }">
+                            <div class="d-flex align-center mt-1">
+                                <v-avatar :image="item.productIMG" size="60" class="mr-1"></v-avatar>
+                                <div>
+                                    <h5 class="m-0">{{ item.productName }}</h5>
+                                    <p class="m-0">Mã sản phẩm: {{ item.id }}</p>
                                 </div>
-                            </BCol>
-                            <BCol class="col-xl-6">
-                                <div class="form-group m-0">
-                                    <label class="form-label">Ngày đặt hàng:</label>
-                                    <v-text-field v-model="order.orderDate" type="text" variant="outlined" readonly class="input-control"></v-text-field>
-                                </div>
-                            </BCol>
-                        </BRow>
-                    </BCol>
-                    <BCol class="col-xl-6">
-                        <div class="form-group m-0">
-                            <label class="form-label">Email:</label>
-                            <v-text-field v-model="order.email" type="text" variant="outlined" readonly class="input-control"></v-text-field>
-                        </div>
-                    </BCol>
-                    <BCol class="col-xl-12">
-                        <div class="form-group m-0">
-                            <label class="form-label">Địa chỉ:</label>
-                            <v-text-field v-model="order.address" type="text" variant="outlined" readonly class="input-control"></v-text-field>
-                        </div>
-                    </BCol>
-                    <BCol class="col-xl-12">
-                        <div class="form-group m-0">
-                            <label class="form-label">Ghi chú:</label>
-                            <v-text-field v-model="order.note" type="text" variant="outlined" class="input-control"></v-text-field>
-                        </div>
-                    </BCol>
+                            </div>
+                        </template>
+                        <template v-slot:[`item.price`]="{ item }">
+                           {{ this.$common.formatTablePrice(item.price) }}
+                        </template>
+                        <template v-slot:[`item.sumPrice`]="{ item }">
+                           {{ this.$common.formatTablePrice(item.price * item.productNumber) }}
+                        </template>
+                    </v-data-table>
+                    
                 </BRow>
             </v-form>
         </div>
         <div class="modal-footer v-modal-footer">
-            <BButton type="button" variant="light" @click="viewdialog = false">Close
-            </BButton>
+            <div class="d-flex justify-space-between w-100">
+                <h4 class="m-0">Tổng tiền: 1.000.000 VNĐ</h4>
+                <BButton type="button" variant="light" @click="viewdialog = false">Close
+                </BButton>
+            </div>
+            
         </div>
     </BModal>
 </template>
+
+

@@ -1,6 +1,6 @@
 <template style="min-height: auto">
     <div style="height: 50px"></div>
-    <div class="shopping-page container">
+    <div class="shopping-page container" v-if="statusCart">
       <div class="row">
         <!-- Danh sách sản phẩm -->
         <div
@@ -33,7 +33,7 @@
                 class="col-2 text-danger"
                 style="font-weight: bold; font-size: 1.2em"
               >
-                {{ formatPrice(product.price) }}
+                {{ this.$common.formatTablePrice(product.price) }}
               </div>
               <div class="col-2 d-flex align-items-center justify-content-center">
                 <button @click="decreaseQuantity(product.id)" class="quantity-btn">
@@ -48,7 +48,7 @@
                 class="col-2 text-danger"
                 style="font-weight: bold; font-size: 1.2em"
               >
-                {{ formatPrice(product.price * product.quantity) }}
+                {{ this.$common.formatTablePrice(product.price * product.quantity) }}
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@
               <span
                 class="text-danger"
                 style="font-weight: bold; font-size: 1.1em"
-                >{{ formatPrice(totalPrice) }}</span
+                >{{ this.$common.formatTablePrice(totalPrice) }}</span
               >
             </div>
             <div class="sum d-flex justify-content-between mt-2">
@@ -71,7 +71,7 @@
               <span
                 class="text-danger"
                 style="font-weight: bold; font-size: 1.2em"
-                >{{ formatPrice(totalPrice) }}</span
+                >{{ this.$common.formatTablePrice(totalPrice) }}</span
               >
             </div>
             <button class="btn w-100 mt-3 custom-btn" @click="checkout">
@@ -118,6 +118,10 @@
         </BCardBody>
       </BCard>
     </div>
+    <div v-else class="text-center">
+      <h3>Chưa có sản phẩm nào trong giỏ hàng</h3>
+      <BButton type="button" variant="primary" style="width: 15%;" @click="BackProduct">QUAY TRỞ LẠI CỬA HÀNG</BButton>
+    </div>
   </template>
   
   <script>
@@ -128,7 +132,7 @@
         products: [
         ],
         discountCode: "",
-        
+        statusCart: false,
       };
     },
     inject: ["reloadquantityCart"], // Inject hàm từ cha vào
@@ -141,22 +145,20 @@
       },
       cookieProduct(){
         return  JSON.parse(localStorage.getItem("cart") ?? "[]");
-      }
+      },
     },
     created(){
       this.GetData();
+      this.reloadquantityCart();
+
     },
     methods: {
-      formatPrice(value) {
-        return new Intl.NumberFormat("vi-VN", {
-          style: "currency",
-          currency: "VND",
-        }).format(value);
-      },
+
       GetData(){
         this.$apiClient.post(`/Product/GetAllProductById`,this.cookieProduct)
             .then((response) => {
               this.products = response.data
+              this.statusCart = this.products.length !== 0
             })
       },
       increaseQuantity(id) {
@@ -196,6 +198,7 @@
           this.products = this.products.filter(item => item.id !== id);
           localStorage.setItem("cart", JSON.stringify(this.products ?? []));
           this.reloadquantityCart();
+          this.statusCart = this.products.length !== 0
           this.$notify(
             "Thao tác thành công",
             "Xoá sản phẩm khỏi giỏ hàng thành công",
@@ -211,15 +214,12 @@
         }
       },
       checkout() {
-        // Lưu giỏ hàng vào LocalStorage
-        localStorage.setItem("cart", JSON.stringify(this.products));
-  
-        // Lưu tổng tiền
-        localStorage.setItem("totalPrice", this.totalPrice);
-  
         // Chuyển hướng sang trang thanh toán
-        this.$router.push("checkout");
+        this.$router.push("thanh-toan");
       },
+      BackProduct(){
+        this.$router.push("lstproduct");
+      }
     },
   };
   </script>
@@ -239,7 +239,7 @@
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
   }
-  button {
+  .quantity-btn {
     border: none;
     background: #ddd;
     border-radius: 5px;

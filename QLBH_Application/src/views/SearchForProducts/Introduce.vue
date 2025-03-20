@@ -11,25 +11,26 @@ export default {
   <pageheader title="" pageTitle="Giới thiệu" />
   <div class="about-container">
     <h1 class="title">
-      <H1 style="color: red">AN CHI</H1> THIẾT BỊ NHÀ HÀNG , NỒI PHỞ , BẾP CÔNG
+      <H1 style="color: red">CoolMax</H1> THIẾT BỊ NHÀ HÀNG , NỒI PHỞ , BẾP CÔNG
       NGHIỆP HÀNG ĐẦU VIỆT NAM
     </h1>
     <p class="intro">
-      <strong>AN CHI </strong> chuyên nhập khẩu và phân phối các sản phẩm gia
+      <strong>CoolMax </strong> chuyên nhập khẩu và phân phối các sản phẩm gia
       dụng, điện lạnh có thương hiệu <strong>uy tín</strong>.
     </p>
     <p class="description">
-      AN CHI chuyên cung cấp các thiết bị nhà bếp , nhà hàng, nhập khẩu nguyên
+      CoolMax chuyên cung cấp các thiết bị nhà bếp , nhà hàng, nhập khẩu nguyên
       chiếc như: Tủ mát, tủ đông, nồi phở , tủ cơm , thiết bị nhà hàng inox và
       số đồ gia dụng đông lạnh khác.
     </p>
     <div class="contact-info">
       <div>
-        <strong>Trụ sở chính:</strong> Lai xá Kim chung Hoài đức, Hanoi, Vietnam
+        <strong>Trụ sở chính:</strong> Cụm Công Nghiệp Đại Tự , Xã Kim Chung ,
+        Huyện Hoài Đức, Hà Nội
       </div>
       <div>
-        <strong>Văn Phòng Hà Nội:</strong> Lai xá Kim chung Hoài đức, Hanoi,
-        Vietnam
+        <strong>Văn Phòng Hà Nội:</strong> Cụm Công Nghiệp Đại Tự , Xã Kim Chung
+        , Huyện Hoài Đức, Hà Nội Vietnam
       </div>
       <div><strong>Hotline CSKH:</strong> 038 612 5907 – 038 612 5907</div>
       <div>

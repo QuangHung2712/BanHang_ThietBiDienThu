@@ -81,10 +81,6 @@ export default {
                             this.$notify("Đổi mật khẩu thành công","","success");
                             this.viewdialogChangePassword = false;
                         })
-                        // .catch(error=>{
-                        //     console.log(error.response);
-                        //     this.$notify(error.response.data.Message,error.response.data.Errors.join('. '),"error");
-                        // })
         }
     }
             

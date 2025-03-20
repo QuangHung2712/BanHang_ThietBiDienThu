@@ -128,6 +128,12 @@ export default [
                 meta: { title: "Thanh toán" },
                 component: () => import("../views/SearchForProducts/CheckOutPay.vue"),
             },
+            {
+                path: "danh-gia",
+                name: "feedback",
+                meta: { title: "Đánh giá" },
+                component: () => import("../views/SearchForProducts/Feedback.vue"),
+            },
         ]
     },
 ]

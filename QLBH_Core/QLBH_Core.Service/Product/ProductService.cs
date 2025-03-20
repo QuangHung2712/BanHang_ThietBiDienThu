@@ -179,7 +179,7 @@ namespace QLBH_Core.Service.ProductS
         public List<ResultFindProductResModel> FindProduct(string? name)
         {
             var result = _Context.Products.Where(item =>
-                (string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower())))
+                ((string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower()))) && !item.IsDelete)
                 .Select(record => new ResultFindProductResModel
                 {
                     Id = record.Id,
@@ -198,7 +198,7 @@ namespace QLBH_Core.Service.ProductS
         public GetPriceProductResModel GetPriceByProductName(string? name)
         {
             var data = _Context.Products
-                .Where(item => string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower()))
+                .Where(item => string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower()) && !item.IsDelete)
                 .ToList();
             if (data.Count == 0)
             {

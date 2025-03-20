@@ -12,6 +12,8 @@ namespace QLBH_Core.Commons
         {
             public const string DEFAULT_CONTROLLER_ROUTER = "api/[controller]/[action]";
             public const string DEFAULT_PASSWORD = "defaultpassword";
+            //public const string DEFAULT_BASE_Directory_IMG = @"C:\inetpub\wwwroot\ThietBiAnChi\Application";
+            //public const string DEFAULT_IMG_AVATAR = @"C:\inetpub\wwwroot\ThietBiAnChi\Application\images\AvatarDefault.jpg";
             public const string DEFAULT_BASE_Directory_IMG = @"D:\Du_An\BanHang_ThietBiDienThu\QLBH_Application\public";
             public const string DEFAULT_IMG_AVATAR = @"D:\Du_An\BanHang_ThietBiDienThu\QLBH_Application\public\images\AvatarDefault.jpg";
         }

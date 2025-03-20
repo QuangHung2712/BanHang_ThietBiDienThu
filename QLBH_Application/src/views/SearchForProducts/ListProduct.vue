@@ -103,7 +103,6 @@
                 this.$apiClient.get(`/Product/FindProduct?name=${productName}`)
                         .then(response=>{
                             this.productData = response.data;
-                            console.log(this.productData);
                         })
             },
             GotoDetail(nameSlug){

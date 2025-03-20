@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QLBH_Core.Moddel.Model.ResponseModels
 {
-    public class GetDetailOrderResModel
+    public class GetDetailOrderResModel : BaseEntity
     {
         public List<OrderProductResModel> Products { get; set; }
         public string CustomerName { get; set; }
@@ -15,7 +15,6 @@ namespace QLBH_Core.Moddel.Model.ResponseModels
         public string Gender { get; set; }
         public string? Address { get; set; }
         public string? Note { get; set; }
-        public string? Email { get; set; }
         public string OrderDate { get; set; }
     }
 }

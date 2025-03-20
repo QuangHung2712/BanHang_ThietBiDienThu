@@ -26,6 +26,7 @@ namespace QLBH_Core.Service.Order
         {
             return _Context.Orders.Where(item => item.Id == Id).Select(record => new GetDetailOrderResModel
             {
+                Id = record.Id,
                 CustomerName = record.CustomerName,
                 Products = _Context.OrderProduct.Where(OP=> OP.OrderId == record.Id).Include(op=> op.Product).Select(recordop=> new OrderProductResModel
                 {
@@ -39,7 +40,7 @@ namespace QLBH_Core.Service.Order
                 Gender = record.Gender == 1 ? "Nam" : "Nữ",
                 Note = record.Note,
                 SDTCustomer = record.SDTCustomer,
-                OrderDate = record.OrderDate.ToString("dd/MM/yyyy")
+                OrderDate = record.OrderDate.ToString("HH:mm - dd/MM/yyyy")
             }).FirstOrDefault() ?? throw new NotFoundException("Đơn hàng");
         }
         public async Task Create(CreateOrderReqModel data)

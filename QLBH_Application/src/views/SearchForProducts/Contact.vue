@@ -11,14 +11,6 @@ export default {
   <pageheader title="" pageTitle="Liên hệ" />
 
   <div class="container">
-    <div class="image">
-      <div class="image">
-        <img
-          src="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/377709707_823082186286727_8751057681866016829_n.png?_nc_cat=109&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeEVPxjqhDQzSoWO_kSTaLPT6dZsU5laef7p1mxTmVp5_tchAsPnxceuDnKFv2tKO2FTP188N7tMQUityMWBRlEA&_nc_ohc=YYySfcVhHiYQ7kNvgG4XY2v&_nc_oc=AdhmuOqD64S9wOQeGI9kh3RgxW2ND7xht8IAG7VHe9y2unjDFfm1MN0o2HPepl4vBeE&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=ApH1glwMugieuKJVs7lzCgD&oh=00_AYDhDAXTr69OXjFIv-81KSsT9rSn6OWC2ZvFldJe6WzzSA&oe=67CB63A7"
-          alt=""
-        />
-      </div>
-    </div>
     <div class="contact-container">
       <h2 class="contact-title">Liên hệ với chúng tôi</h2>
       <p class="contact-desc">Bạn có thắc mắc? Hãy liên hệ ngay!</p>
@@ -26,20 +18,28 @@ export default {
       <div class="contact-info">
         <div class="contact-item">
           <i class="fas fa-map-marker-alt"></i>
-          <span>Lai xá Kim chung Hoài đức, Hanoi, Vietnam</span>
+          <span>Cụm Công Nghiệp Đại Tự , Xã Kim Chung , Huyện Hoài Đức, Hà Nội</span>
         </div>
         <div class="contact-item">
           <i class="fas fa-phone-alt"></i>
-          <span>038 612 5907</span>
+          <span>0386.125.907</span>
         </div>
         <div class="contact-item">
           <i class="fas fa-envelope"></i>
-          <span>thietbinhahang.anchi@gmail.com</span>
+          <span>Coolmaxvietnam@gmail.com</span>
         </div>
       </div>
     </div>
     <div class="map-container">
-      
+      <iframe
+          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2642.460570765008!2d105.71467032267958!3d21.045184092730388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDAyJzQyLjQiTiAxMDXCsDQyJzU1LjkiRQ!5e1!3m2!1svi!2s!4v1740997209124!5m2!1svi!2s"
+          width="80%"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
     </div>
   </div>
 </template>

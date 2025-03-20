@@ -7,7 +7,7 @@ export function formatTablePrice(price) {
         formattedPrice = formattedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 
-    return formattedPrice + '  VND';
+    return formattedPrice + 'đ';
 }
 export function formatPrice(inputPrice) {
     // Loại bỏ tất cả các ký tự không phải là số

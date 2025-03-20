@@ -85,7 +85,7 @@ export default {
     SaveAdvise() {
       this.$apiClient.post(`/Order/Create`, this.Advise).then(() => {
         this.$notify(
-          "Thao tác thành công",
+          "Đặt hàng thánh công",
           "Bạn vui lòng để ý tin nhắn  chúng tôi sẽ liên hệ với bạn",
           "success"
         );
@@ -93,10 +93,10 @@ export default {
       });
     },
     increaseQuantity(){
-      this.Advise.quantity++;
+      this.quantity++;
     },
     decreaseQuantity(){
-      if(this.Advise.quantity > 1) this.Advise.quantity--
+      if(this.quantity > 1) this.quantity--
     },
     AddToCart(){
       if(this.product.id == undefined){
@@ -110,9 +110,9 @@ export default {
         let cart = JSON.parse(localStorage.getItem("cart") ?? "[]");
         let existingProduct = cart.find(p => p.id === this.product.id);
         if (existingProduct) {
-            existingProduct.quantity += this.Advise.quantity;
+            existingProduct.quantity += this.quantity;
         } else {
-            cart.push({ id: this.product.id, quantity:  this.Advise.quantity});
+            cart.push({ id: this.product.id, quantity:  this.quantity});
         }
         localStorage.setItem("cart", JSON.stringify(cart)); // Lưu 1 năm
         this.$notify(
@@ -189,11 +189,6 @@ export default {
               <strong>Loại sản phẩm: </strong>{{ product.productTypeName }}
             </li>
             <li><strong>Bảo hành: </strong>{{ product.warrantyPeriod }}</li>
-            <div v-for="(item, index) in product.infoProduct" :key="index">
-              <li>
-                <strong>{{ item.name }}: </strong>{{ item.describe }}
-              </li>
-            </div>
           </ul>
           <div class="promotion">
             <h3 style="background-color: yellow">KHUYẾN MẠI</h3>
@@ -243,45 +238,50 @@ export default {
         
         
       </BCol>
-      <div class="col-xl-2 contact-box">
+      <div class="col-xl-2 contact-box" style="padding: 0px">
         <div class="contact-header">
-          <h5>📌 LIÊN HỆ – CỬA HÀNG</h5>
+          <h5 style="padding: 5px">📌 LIÊN HỆ – CỬA HÀNG</h5>
         </div>
-        <div class="contact-info">
-          <p><strong>📍 Địa chỉ:</strong> KCN Nguyên Khê, Đông Anh, Hà Nội</p>
-          <p><strong>📞 Hotline:</strong> 0983.95.6666</p>
-        </div>
-        <hr />
-        <div class="contact-benefits">
-          <div class="benefit-item">
-            <img
-              src="https://goldcool.vn/wp-content/uploads/2019/02/3.jpg"
-              alt="Hàng chính hãng"
-            />
+        <div style="margin-left: 15px">
+          <div class="contact-info">
             <p>
-              <strong>Bảo hành chính hãng</strong><br />
-              24 tháng tại nhà.
+              <strong>📍 Địa chỉ:</strong> Cụm Công Nghiệp Đại Tự, Kim Chung,
+              Hoài Đức, Hà Nội
             </p>
+            <p><strong>📞 Hotline:</strong> 039.335.6261</p>
           </div>
-          <div class="benefit-item">
-            <img
-              src="http://goldcool.vn/wp-content/uploads/2019/02/1.jpg"
-              alt="Đổi trả miễn phí"
-            />
-            <p>
-              <strong>Đổi mới trong 7 ngày</strong><br />
-              Lỗi do nhà sản xuất.
-            </p>
-          </div>
-          <div class="benefit-item">
-            <img
-              src="http://goldcool.vn/wp-content/uploads/2019/02/2.jpg"
-              alt="Giao hàng miễn phí"
-            />
-            <p>
-              <strong>Giao hàng lắp đặt miễn phí</strong><br />
-              nội thành Hà Nội.
-            </p>
+          <hr />
+          <div class="contact-benefits">
+            <div class="benefit-item">
+              <img
+                src="https://goldcool.vn/wp-content/uploads/2019/02/3.jpg"
+                alt="Hàng chính hãng"
+              />
+              <p>
+                <strong>Bảo hành chính hãng</strong><br />
+                24 tháng tại nhà.
+              </p>
+            </div>
+            <div class="benefit-item">
+              <img
+                src="http://goldcool.vn/wp-content/uploads/2019/02/1.jpg"
+                alt="Đổi trả miễn phí"
+              />
+              <p>
+                <strong>Đổi mới trong 7 ngày</strong><br />
+                Lỗi do nhà sản xuất.
+              </p>
+            </div>
+            <div class="benefit-item">
+              <img
+                src="http://goldcool.vn/wp-content/uploads/2019/02/2.jpg"
+                alt="Giao hàng miễn phí"
+              />
+              <p>
+                <strong>Giao hàng lắp đặt miễn phí</strong><br />
+                nội thành Hà Nội.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -367,7 +367,7 @@ export default {
                   density="compact"
                 />
               </div>
-              <v-radio-group v-model="Advise.gender" hide-details>
+              <v-radio-group v-model="Advise.gender" >
                 <div class="d-flex align-items-center">
                   <div class="text-body-1 font-weight-bold">Giới tính</div>
                   <div>
@@ -546,7 +546,7 @@ hr {
   width: 25% !important;
 }
 .text-black {
-  font-size: 16px; /* Sửa kích cỡ chữ */
+  font-size: 20px; /* Sửa kích cỡ chữ */
 }
 .square-btn {
   border: 1px solid #e0e0e0;
