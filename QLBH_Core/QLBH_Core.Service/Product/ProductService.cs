@@ -198,7 +198,7 @@ namespace QLBH_Core.Service.ProductS
         public GetPriceProductResModel GetPriceByProductName(string? name)
         {
             var data = _Context.Products
-                .Where(item => string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower()) && !item.IsDelete)
+                .Where(item => ( string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower())) && !item.IsDelete)
                 .ToList();
             if (data.Count == 0)
             {

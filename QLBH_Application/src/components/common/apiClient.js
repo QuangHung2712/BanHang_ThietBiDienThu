@@ -7,7 +7,6 @@ import notification from "@/components/common/Notification";
 // Tạo một instance của axios
 const apiClient = axios.create({
   baseURL: "https://localhost:7254/api", // URL cơ bản của API
-  timeout: 10000, // Thời gian chờ (ms)
   headers: {
     "Content-Type": "application/json",
   },

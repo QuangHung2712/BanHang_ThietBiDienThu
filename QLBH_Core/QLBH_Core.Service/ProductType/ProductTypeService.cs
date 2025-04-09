@@ -59,7 +59,7 @@ namespace QLBH_Core.Service.ProductTypeS
         }
         public List<BaseModel> GetProductypeByName(string? name)
         {
-            return _Context.Products.Where(item=> string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower()))
+            return _Context.Products.Where(item=> !item.IsDelete && (string.IsNullOrEmpty(name) || item.Name.ToLower().Contains(name.ToLower())))
                 .GroupBy(item=>item.ProductTypeId)
                 .Select(record => new BaseModel
                 {

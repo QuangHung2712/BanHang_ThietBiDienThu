@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{43FC8909-92E6-4B63-8555-81BB8BC42C56}|QLBH_Core.Commons\\QLBH_Core.Commons.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.commons\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43FC8909-92E6-4B63-8555-81BB8BC42C56}|QLBH_Core.Commons\\QLBH_Core.Commons.csproj|solutionrelative:qlbh_core.commons\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.service\\product\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|solutionrelative:qlbh_core.service\\product\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43FC8909-92E6-4B63-8555-81BB8BC42C56}|QLBH_Core.Commons\\QLBH_Core.Commons.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.commons\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43FC8909-92E6-4B63-8555-81BB8BC42C56}|QLBH_Core.Commons\\QLBH_Core.Commons.csproj|solutionrelative:qlbh_core.commons\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7AA9A075-13FC-469E-AB2A-CDA4850F1800}|QLBH_Core.Service\\QLBH_Core.Service.csproj|d:\\du_an\\banhang_thietbidienthu\\qlbh_core\\qlbh_core.service\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -182,7 +182,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 497,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -198,13 +198,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Functions.cs",
               "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Commons\\Functions.cs",
               "RelativeDocumentMoniker": "QLBH_Core.Commons\\Functions.cs",
               "ToolTip": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Commons\\Functions.cs",
               "RelativeToolTip": "QLBH_Core.Commons\\Functions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-04T16:05:21.021Z",
               "EditorCaption": ""
@@ -243,7 +243,8 @@
               "RelativeToolTip": "QLBH_Core.Service\\DependencyInjection.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T15:14:26.138Z"
+              "WhenOpened": "2025-04-03T15:14:26.138Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -315,11 +316,12 @@
               "RelativeToolTip": "QLBH_Core.API\\Controllers\\ProductController.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T16:31:27.939Z"
+              "WhenOpened": "2025-03-09T16:31:27.939Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ProductService.cs",
               "DocumentMoniker": "D:\\Du_An\\BanHang_ThietBiDienThu\\QLBH_Core\\QLBH_Core.Service\\Product\\ProductService.cs",
               "RelativeDocumentMoniker": "QLBH_Core.Service\\Product\\ProductService.cs",

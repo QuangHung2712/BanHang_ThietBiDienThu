@@ -17,8 +17,8 @@ export default {
     data(){
         return{
             login:{
-                email: 'admin',
-                password:'1',
+                email: '',
+                password:'',
             },
             remember: false,
             form: false,
@@ -105,7 +105,7 @@ export default {
                                     label="Mật khẩu"  
                                     variant="outlined"
                                     placeholder="Mật khẩu" 
-                                    :rules="[required]" 
+                                    :rules="[rules.required]" 
                                     v-model="login.password"
                                     prepend-inner-icon="mdi-lock-outline"
                                     :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
